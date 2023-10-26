@@ -1,0 +1,23 @@
+type Ads {
+        id: ID!
+        daysOfSale: Int!
+        Status: String!
+        published: String!
+        sellerId: Int!
+        car: Car!
+}
+
+type Car {
+        id: ID!
+       model:String!
+       city: String!
+       days: String!
+       price: String!
+       mileage: String!
+       generation: String!
+
+}
+
+type Query {
+  findAdById(id: ID!): Ads
+}
