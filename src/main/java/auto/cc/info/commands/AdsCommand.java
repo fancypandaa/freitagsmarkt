@@ -14,5 +14,5 @@ public class AdsCommand {
     private String Status;
     private Date published;
     private Long sellerId;
-    private CarCommand carCommand;
+    private Long carId;
 }
