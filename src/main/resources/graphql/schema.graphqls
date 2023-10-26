@@ -1,10 +1,15 @@
-type Ads {
+schema {
+    query: Query
+#    mutation: Mutation
+}
+
+type AdsCommand {
         id: ID!
-        daysOfSale: Int!
-        Status: String!
-        published: String!
-        sellerId: Int!
-        car: Car!
+        daysOfSale: Int
+        Status: String
+        published: String
+        sellerId: Int
+        car: Car
 }
 
 type Car {
@@ -19,5 +24,8 @@ type Car {
 }
 
 type Query {
-  findAdById(id: ID!): Ads
+    listAds(page:Int,size:Int):[AdsCommand]
+    findAdById(id: ID!): AdsCommand
 }
+
+#scalar Date
