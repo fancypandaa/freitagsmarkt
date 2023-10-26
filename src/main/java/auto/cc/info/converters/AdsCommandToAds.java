@@ -2,6 +2,7 @@ package auto.cc.info.converters;
 
 import auto.cc.info.commands.AdsCommand;
 import auto.cc.info.domain.Ads;
+import auto.cc.info.domain.Car;
 import auto.cc.info.domain.Seller;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
@@ -11,7 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class AdsCommandToAds implements Converter<AdsCommand, Ads> {
     private final CarCommandToCar carCommandToCar;
-
     public AdsCommandToAds(CarCommandToCar carCommandToCar) {
         this.carCommandToCar = carCommandToCar;
     }
@@ -34,7 +34,12 @@ public class AdsCommandToAds implements Converter<AdsCommand, Ads> {
             ads.setSeller(seller);
             seller.addAdsInfo(ads);
         }
-        ads.setCar(carCommandToCar.convert(source.getCarCommand()));
+        if(source.getCarId() != null){
+            Car car = new Car();
+            car.setId(source.getCarId());
+            ads.setCar(car);
+            car.setAds(ads);
+        }
         return ads;
     }
 }

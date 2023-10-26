@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class AdsToAdsCommand implements Converter<Ads,AdsCommand> {
     private final CarToCarCommand carToCarCommand;
-
     public AdsToAdsCommand(CarToCarCommand carToCarCommand) {
         this.carToCarCommand = carToCarCommand;
     }
@@ -30,7 +29,7 @@ public class AdsToAdsCommand implements Converter<Ads,AdsCommand> {
         if(source.getSeller().getId()!= null){
             ads.setSellerId(source.getSeller().getId());
         }
-        ads.setCarCommand(carToCarCommand.convert(source.getCar()));
+        ads.setCarId(source.getCar().getId());
         return ads;
     }
 }
