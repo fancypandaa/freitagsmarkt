@@ -56,7 +56,7 @@ public class AdsServiceImpl implements AdsService {
     @Transactional
     public AdsCommand createNewAds(AdsCommand adsCommand) {
         Optional<Seller> sellerOptional= sellerRepository.findById(adsCommand.getSellerId());
-        Optional<Car> carOptional= carRepository.findById(adsCommand.getCarCommand().getId());
+        Optional<Car> carOptional= carRepository.findById(adsCommand.getCarId());
 
         if(!sellerOptional.isPresent() || !carOptional.isPresent()){
             log.error("Seller not found for id: ",adsCommand.getSellerId());
@@ -65,7 +65,7 @@ public class AdsServiceImpl implements AdsService {
         else{
         Seller seller= sellerOptional.get();
         Optional<Ads> adsOptional= seller.getAds()
-                .stream().filter(ads -> ads.getCar().getId().equals(adsCommand.getCarCommand().getId())).findFirst();
+                .stream().filter(ads -> ads.getCar().getId().equals(adsCommand.getCarId())).findFirst();
 
         if(adsOptional.isPresent()){
             log.info("Current Ad is Already exist");
@@ -84,7 +84,6 @@ public class AdsServiceImpl implements AdsService {
     @Override
     public Ads findAdsById(Long ads_id) {
         Ads ads = adsRepository.findById(ads_id).get();
-//        AdsCommand adsCommand = adsToAdsCommand.convert(ads);
         return ads;
     }
 
