@@ -17,7 +17,7 @@ public class Ads {
     @Min(1)
     @Max(365)
     private Integer daysOfSale;
-    private String Status;
+    private String status;
     private Date published;
     @ManyToOne
     Seller seller;
