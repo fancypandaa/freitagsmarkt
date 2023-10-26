@@ -21,13 +21,6 @@ public class AdsController {
     public void setAdsService(AdsService adsService){
         this.adsService = adsService;
     }
-    @RequestMapping(value = "/ads_list", method= RequestMethod.GET, produces = "application/json")
-    public Page<AdsCommand> listAds(@RequestParam(defaultValue = "0") int page
-                                    , @RequestParam(defaultValue = "2") int size){
-        Page<AdsCommand> adsList = adsService.listAllAds(page,size);
-
-        return adsList;
-    }
     @RequestMapping(value = "",method = RequestMethod.POST,produces = "application/json")
     public AdsCommand createNewAd(@RequestBody AdsCommand adsCommand){
         Optional<AdsCommand> adsCommandOptional = Optional.ofNullable(adsService.createNewAds(adsCommand));
@@ -38,6 +31,14 @@ public class AdsController {
         else {
             return adsCommandOptional.get();
         }
+    }
+
+//    @RequestMapping(value = "/ads_list", method= RequestMethod.GET, produces = "application/json")
+    @QueryMapping("listAds")
+    public Page<AdsCommand> listAds(@Argument int page,@Argument int size){
+
+        Page<AdsCommand> adsList = adsService.listAllAds(0,2);
+        return adsList;
     }
     @QueryMapping(name = "findAdById")
     public Ads findAdById(@Argument Long id) {
