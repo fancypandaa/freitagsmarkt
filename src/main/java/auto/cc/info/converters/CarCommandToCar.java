@@ -39,6 +39,7 @@ public class CarCommandToCar implements Converter<CarCommand, Car> {
             carBrand.setCars(car);
         }
         car.setSpecs(specsCommandToSpecs.convert(source.getSpecsCommand()));
+
         return car;
     }
 }
