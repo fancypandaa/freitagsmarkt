@@ -18,11 +18,11 @@ public class Seller {
     private String name;
     private String phone;
     private String sellerWebsite;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "seller")
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "seller")
     private List<Ads> ads = new ArrayList<>();
-    @ManyToMany(mappedBy = "sellers")
-    private List<Car> cars;
-    public Seller addAdsInfo(Ads ads){
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "sellers")
+    private Set<Car> cars;
+    public Seller addAds(Ads ads){
         ads.setSeller(this);
         this.ads.add(ads);
         return this;
