@@ -5,6 +5,8 @@ import auto.cc.info.service.SellerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -19,12 +21,6 @@ public class SellerController {
     public void setSellerService(SellerService sellerService) {
         this.sellerService = sellerService;
     }
-    @RequestMapping(value = "/car_list", method= RequestMethod.GET, produces = "application/json")
-    public Page<SellerCommand> listAllSeller(@RequestParam(defaultValue = "0") int page
-            , @RequestParam(defaultValue = "10") int size){
-        Page<SellerCommand> sellerCommands = sellerService.listSellers(page,size);
-        return sellerCommands;
-    }
     @RequestMapping(value = "",method = RequestMethod.POST,produces = "application/json")
     public SellerCommand addNewSeller(@RequestBody SellerCommand sellerCommand){
         Optional<SellerCommand> sellerCommandOptional = Optional.ofNullable(sellerService.createNewSellerProfile(sellerCommand));
@@ -35,5 +31,10 @@ public class SellerController {
         else {
             return sellerCommandOptional.get();
         }
+    }
+    @QueryMapping("listAllSeller")
+    public Page<SellerCommand> listAllSeller(@Argument int page, @Argument int size){
+        Page<SellerCommand> sellerCommands = sellerService.listSellers(page,size);
+        return sellerCommands;
     }
 }
