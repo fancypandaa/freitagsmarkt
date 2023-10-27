@@ -3,7 +3,7 @@ schema {
 #    mutation: Mutation
 }
 
-type AdsCommand {
+type Ads {
         id: ID!
         daysOfSale: Int
         Status: String
@@ -11,21 +11,42 @@ type AdsCommand {
         sellerId: Int
         car: Car
 }
+type Specs {
+    id:ID!
+}
+type CarBrand {
+    id:ID!
 
+}
 type Car {
         id: ID!
-       model:String!
-       city: String!
-       days: String!
-       price: String!
-       mileage: String!
-       generation: String!
+       model:String
+       city: String
+       days: String
+       price: String
+       mileage: String
+       generation: String
+       specs:Specs
+       carBrandId:Int
+}
 
+
+
+type Seller {
+    id:ID!
+    type:String
+    name:String
+    phone:String
+    sellerWebsite:String
+    ads:[Ads]
+    cars:[Car]
 }
 
 type Query {
-    listAds(page:Int,size:Int):[AdsCommand]
-    findAdById(id: ID!): AdsCommand
+    listAds(page:Int = 0,size:Int = 10):[Ads]
+    findAdById(id: ID!): Ads
+    listAllCars(page:Int = 0,size:Int = 10):[Car]
+    listAllSeller(page:Int = 0,size:Int=10):[Seller]
 }
 
 #scalar Date
