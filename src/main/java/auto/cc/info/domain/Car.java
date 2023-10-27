@@ -26,11 +26,9 @@ public class Car {
     @JoinTable(name = "car_seller",
             joinColumns = @JoinColumn(name = "car_id"),inverseJoinColumns = @JoinColumn(name = "seller_id"))
     private List<Seller> sellers= new ArrayList<>();
-
     @ManyToOne
     private CarBrand carBrand;
     @OneToOne(fetch = FetchType.EAGER)
     private Specs specs;
-    @OneToOne
-    private Ads ads;
+
 }
