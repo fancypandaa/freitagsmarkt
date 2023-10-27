@@ -4,8 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 @NoArgsConstructor
 @Getter
 @Setter
@@ -15,7 +14,7 @@ public class SellerCommand {
     private String name;
     private String phone;
     private String sellerWebsite;
-    private List<AdsCommand> ads = new ArrayList<>();
-    private List<CarCommand> cars;
+    private List<AdsCommand> ads= new ArrayList<>();
+    private Set<CarCommand> cars=new HashSet<>();
 
 }
