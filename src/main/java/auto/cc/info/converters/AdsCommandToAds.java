@@ -32,13 +32,12 @@ public class AdsCommandToAds implements Converter<AdsCommand, Ads> {
             Seller seller = new Seller();
             seller.setId(source.getSellerId());
             ads.setSeller(seller);
-            seller.addAdsInfo(ads);
+            seller.addAds(ads);
         }
         if(source.getCarId() != null){
             Car car = new Car();
             car.setId(source.getCarId());
             ads.setCar(car);
-            car.setAds(ads);
         }
         return ads;
     }
