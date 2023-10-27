@@ -9,13 +9,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Slf4j
 @Service
 public class BrakesServiceImpl implements BrakesService{
     private final BrakesRepository brakesRepository;
     private final BrakesCommandToBrakes brakesCommandToBrakes;
     private final BrakesToBrakesCommand brakesToBrakesCommand;
-
     public BrakesServiceImpl(BrakesRepository brakesRepository, BrakesCommandToBrakes brakesCommandToBrakes, BrakesToBrakesCommand brakesToBrakesCommand) {
         this.brakesRepository = brakesRepository;
         this.brakesCommandToBrakes = brakesCommandToBrakes;
@@ -32,4 +33,14 @@ public class BrakesServiceImpl implements BrakesService{
         brakesRepository.save(brakes);
         return brakesCommand;
     }
+
+    @Override
+    public BrakesCommand findBrakesById(Long id) {
+        Optional<Brakes> brakes = brakesRepository.findById(id);
+        if(!brakes.isPresent()){
+            return null;
+        }
+        return brakesToBrakesCommand.convert(brakes.get());
+    }
+
 }

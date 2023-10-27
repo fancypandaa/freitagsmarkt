@@ -1,9 +1,13 @@
 package auto.cc.info.controllers;
 
 import auto.cc.info.commands.BrakesCommand;
+import auto.cc.info.domain.Ads;
+import auto.cc.info.domain.Brakes;
 import auto.cc.info.service.BrakesService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,5 +34,10 @@ public class BrakesController {
         else {
             return brakesCommandOptional.get();
         }
+    }
+    @QueryMapping(name = "findBrakesById")
+    public BrakesCommand findAdById(@Argument Long id) {
+        BrakesCommand brakes = brakesService.findBrakesById(id);
+        return brakes;
     }
 }
