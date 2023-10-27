@@ -74,7 +74,7 @@ public class AdsServiceImpl implements AdsService {
         else {
             Ads ad = adsCommandToAds.convert(adsCommand);
             ad.setSeller(seller);
-            seller.addAdsInfo(ad);
+            seller.addAds(ad);
             adsRepository.save(ad);
             return adsToAdsCommand.convert(ad);
         }}
