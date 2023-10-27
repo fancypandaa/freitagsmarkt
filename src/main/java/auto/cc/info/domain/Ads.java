@@ -20,7 +20,7 @@ public class Ads {
     private String status;
     private Date published;
     @ManyToOne
-    Seller seller;
+    Seller seller; // **
     @OneToOne(fetch = FetchType.EAGER)
     Car car;
 }
