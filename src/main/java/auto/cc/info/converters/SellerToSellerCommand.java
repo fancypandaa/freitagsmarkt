@@ -1,6 +1,9 @@
 package auto.cc.info.converters;
 
+import auto.cc.info.commands.AdsCommand;
 import auto.cc.info.commands.SellerCommand;
+import auto.cc.info.domain.Ads;
+import auto.cc.info.domain.Car;
 import auto.cc.info.domain.Seller;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
@@ -30,16 +33,16 @@ public class SellerToSellerCommand implements Converter<Seller,SellerCommand> {
         sellerCommand.setName(source.getName());
         sellerCommand.setPhone(source.getPhone());
         sellerCommand.setType(source.getType().toString());
-        if(source.getAds() != null && source.getAds().size()>0){
+        if(source.getAds() != null && source.getAds().size() > 0){
             source.getAds().forEach(
-                    ad ->{
+                    (Ads ad) ->{
                     sellerCommand.getAds().add(adsCommand.convert(ad));
                     }
             );
         }
-        if(source.getCars() != null && source.getCars().size()>0){
-            source.getCars().forEach(
-                    car ->{
+        if(source.getCars()!=null && source.getCars().size() > 0){
+            source.getCars().forEach((Car car)
+                     ->{
                         sellerCommand.getCars().add(carCommand.convert(car));
                     }
             );
