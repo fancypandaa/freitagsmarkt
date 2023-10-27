@@ -20,6 +20,5 @@ public class Brakes {
     private String cooling;
     @Column(nullable = false)
     private String rearBrakes;
-    @OneToOne
-    Engine engine;
+
 }
