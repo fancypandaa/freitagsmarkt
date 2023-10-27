@@ -16,7 +16,6 @@ import java.util.*;
 @Slf4j
 public class AdsController {
     private AdsService adsService;
-
     @Autowired
     public void setAdsService(AdsService adsService){
         this.adsService = adsService;
@@ -33,11 +32,9 @@ public class AdsController {
         }
     }
 
-//    @RequestMapping(value = "/ads_list", method= RequestMethod.GET, produces = "application/json")
     @QueryMapping("listAds")
     public Page<AdsCommand> listAds(@Argument int page,@Argument int size){
-
-        Page<AdsCommand> adsList = adsService.listAllAds(0,2);
+        Page<AdsCommand> adsList = adsService.listAllAds(page,size);
         return adsList;
     }
     @QueryMapping(name = "findAdById")
