@@ -11,6 +11,15 @@ type Ads {
         sellerId: Int
         car: Car
 }
+type Brakes{
+    id:ID!
+    parkingBrake:String
+    manual:String
+     frontBrakes:String!
+    cooling:String
+   rearBrakes:String!
+}
+
 type Specs {
     id:ID!
 }
@@ -43,8 +52,11 @@ type Seller {
 }
 
 type Query {
+#    ads
     listAds(page:Int = 0,size:Int = 10):[Ads]
     findAdById(id: ID!): Ads
+#    brakes
+    findBrakesById(id:ID):Brakes
     listAllCars(page:Int = 0,size:Int = 10):[Car]
     listAllSeller(page:Int = 0,size:Int=10):[Seller]
 }
