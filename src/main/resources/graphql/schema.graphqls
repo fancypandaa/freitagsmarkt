@@ -19,13 +19,34 @@ type Brakes{
     cooling:String
    rearBrakes:String!
 }
-
+type Engine{
+    id:ID!
+    engineSpecification:JSON
+    engineConfiguration:JSON
+    engineFluids:JSON
+    serviceIntervals:JSON
+    brakes:Brakes
+    suspensions:Suspensions
+    fuel:Fuel
+    transmission:Transmission
+}
 type Specs {
     id:ID!
+    engine:Engine
+    dimensionsAndWeight:DimensionsAndWeight
+    exterior:Exterior
+    interior:Interior
+    features:Features
+    safetyAndSecurity:SafetyAndSecurity
 }
 type CarBrand {
     id:ID!
-
+    name:String
+    countryOfOrigin:String
+    productionYears:String
+    series:String
+    logoUrl:String
+    cars:[Car]
 }
 type Car {
         id: ID!
@@ -39,8 +60,6 @@ type Car {
        carBrandId:Int
 }
 
-
-
 type Seller {
     id:ID!
     type:String
@@ -51,14 +70,130 @@ type Seller {
     cars:[Car]
 }
 
+type DimensionsAndWeight{
+    id:ID!
+    length:Float
+     width:Float
+     widthWithMirrors:Float
+     height:Float
+     trackFront:Float
+     trackRear:Float
+     wheelBase:Float
+     overhangFront:Float
+     overhangRear:Float
+     turningCircle:Float
+     groundClearance:Float
+    interior:JSON
+    weight:JSON
+}
+
+type Features{
+    id:ID!
+    comfort:JSON
+    accessories:JSON
+    others:JSON
+}
+type SafetyAndSecurity{
+    id:ID!
+     seatBelt:JSON
+    assistSystems:JSON
+     brakeSystem:JSON
+     sensors:JSON
+     safetyTesting:JSON
+     airbags:JSON
+     childProtection:JSON
+     othersFeatures:JSON
+}
+
+type EXEquipment{
+    id:ID!
+    sideMirrors :JSON
+    windscreenWipers :JSON
+    windows :JSON
+    lights :JSON
+    rimsAndTires :JSON
+    otherEquipments :JSON
+    tireDimensions :JSON
+    roofColour:String
+    accent:String
+    doorHandles:String
+}
+type Exterior{
+     id:ID!
+    chassis:String
+      numberOfDoors:String
+      frontDoors:String
+      backDoors:String
+      platform:String
+     chassisOptions:JSON
+    exteriorEquipment:EXEquipment
+    
+}
+type InEquipments{
+    id:ID!
+    steeringWheels:JSON
+    trunk:JSON
+    design:JSON
+    seats:JSON
+    rimsAndTires:JSON
+    otherEquipments:JSON
+    tireDimensions:JSON
+}
+type Interior{
+    id:ID!
+    instrumentCluster:JSON
+    connectivity:JSON
+    climateControl:JSON
+    displays:JSON
+    speakers:JSON
+    rear_viewMirror:JSON
+    interiorStorage:JSON
+    lights:JSON
+    interiorEquipments:InEquipments
+}
+type Fuel{
+    id:ID!
+    fuel:String
+    tankVolume:String
+    fuelCapPosition:String
+    fuelConsumptionNEDC:JSON
+    co2Combined:String
+    topSpeed:String
+    acceleration:String
+}
+type Suspensions{
+    id:ID!
+      springFront:String
+      springRear:String
+      anti_rollBar:String
+    suspensionRear:JSON
+    suspensionFront:JSON
+}
+type Transmission{
+    id:ID!
+    driveTrain:String
+    transmission:String
+}
 type Query {
 #    ads
     listAds(page:Int = 0,size:Int = 10):[Ads]
     findAdById(id: ID!): Ads
 #    brakes
     findBrakesById(id:ID):Brakes
+#    car
     listAllCars(page:Int = 0,size:Int = 10):[Car]
+#    carBrand
+    listAllBrands(page:Int = 0,size:Int = 10):[CarBrand]
+#    seller
     listAllSeller(page:Int = 0,size:Int=10):[Seller]
+    listAllEngine(page:Int = 0 , size:Int=10):[Engine]
+    findDimAndWeightById(id:ID):DimensionsAndWeight
+    findFeaturesById(id:ID):Features
+    findBySecurityId(id:ID):SafetyAndSecurity
+    findExteriorById(id:ID):Exterior
+    findInteriorId(id:ID):Interior
+    findBySpecsId(id:ID):Specs
 }
 
 #scalar Date
+scalar JSON
