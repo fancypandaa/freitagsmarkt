@@ -25,11 +25,9 @@ public class Features {
     private HashMap<String,String> comfort  =new HashMap<>();
     @Type(type = "json")
     @Column(columnDefinition = "json")
-    private HashMap<String,Boolean> accessories  =new HashMap<>();
+    private HashMap<String,String> accessories  =new HashMap<>();
     @Type(type = "json")
     @Column(columnDefinition = "json")
     private HashMap<String,String> others  =new HashMap<>();
-    @OneToOne
-    Specs specs;
 }
 
