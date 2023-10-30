@@ -2,6 +2,7 @@ package auto.cc.info.converters;
 
 import auto.cc.info.commands.FuelCommand;
 import auto.cc.info.domain.Fuel;
+import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class FuelCommandToFuel implements Converter<FuelCommand, Fuel> {
     @Override
     @Nullable
-    @Transactional
+    @Synchronized
     public Fuel convert(FuelCommand source) {
         if(source == null) return null;
         final Fuel fuel = new Fuel();
