@@ -12,5 +12,4 @@ public class TransmissionCommand {
     private Long id;
     private String driveTrain;
     private String transmission;
-
 }

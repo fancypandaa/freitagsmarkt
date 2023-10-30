@@ -16,7 +16,4 @@ public class Transmission {
     private Long id;
     private String driveTrain;
     private String transmission;
-    @OneToOne
-    Engine engine;
-
 }
