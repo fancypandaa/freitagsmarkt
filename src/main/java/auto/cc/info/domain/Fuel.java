@@ -33,6 +33,5 @@ public class Fuel {
 //    performance
     private String topSpeed;
     private String acceleration;
-    @OneToOne
-    Engine engine;
+
 }
