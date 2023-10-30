@@ -45,4 +45,12 @@ public class SpecsServiceImpl implements SpecsService{
         repository.save(specs);
         return specsCommand;
     }
+
+    @Override
+    @Transactional
+    public SpecsCommand findSpecsById(Long id) {
+        Optional<Specs> specs = repository.findById(id);
+        if(!specs.isPresent()) return null;
+        return specsToSpecsCommand.convert(specs.get());
+    }
 }

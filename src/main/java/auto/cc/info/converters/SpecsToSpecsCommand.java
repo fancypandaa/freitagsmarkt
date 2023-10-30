@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpecsToSpecsCommand implements Converter<Specs,SpecsCommand> {
     private final EngineToEngineCommand engineToEngineCommand;
-    private final DimensionsAndWeightToDimensionsAndWeightCommand dimensionsConverter;
+    private final DimAndWeightToDimAndWeightCommand dimensionsConverter;
     private final ExteriorToExteriorCommand exteriorCommand;
     private final  InteriorToInteriorCommand interiorToInteriorCommand;
     private final FeaturesToFeaturesCommand featuresCommandConverter;
     private final SafetyAndSecurityToSafetyAndSecurityCommand securityToSafetyAndSecurityCommand;
 
-    public SpecsToSpecsCommand(EngineToEngineCommand engineToEngineCommand, DimensionsAndWeightToDimensionsAndWeightCommand dimensionsConverter, ExteriorToExteriorCommand exteriorCommand, InteriorToInteriorCommand interiorToInteriorCommand, FeaturesToFeaturesCommand featuresCommandConverter, SafetyAndSecurityToSafetyAndSecurityCommand securityToSafetyAndSecurityCommand) {
+    public SpecsToSpecsCommand(EngineToEngineCommand engineToEngineCommand, DimAndWeightToDimAndWeightCommand dimensionsConverter, ExteriorToExteriorCommand exteriorCommand, InteriorToInteriorCommand interiorToInteriorCommand, FeaturesToFeaturesCommand featuresCommandConverter, SafetyAndSecurityToSafetyAndSecurityCommand securityToSafetyAndSecurityCommand) {
         this.engineToEngineCommand = engineToEngineCommand;
         this.dimensionsConverter = dimensionsConverter;
         this.exteriorCommand = exteriorCommand;

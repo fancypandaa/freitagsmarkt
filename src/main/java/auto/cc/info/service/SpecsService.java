@@ -4,4 +4,5 @@ import auto.cc.info.commands.SpecsCommand;
 
 public interface SpecsService {
     SpecsCommand createNewSpecs(SpecsCommand specsCommand);
+    SpecsCommand findSpecsById(Long id);
 }
