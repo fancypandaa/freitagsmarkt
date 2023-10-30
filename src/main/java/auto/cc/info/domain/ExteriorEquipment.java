@@ -40,10 +40,7 @@ public class ExteriorEquipment {
     @Type(type = "json")
     @Column(columnDefinition = "json")
     private Map<String,String> tireDimensions =new HashMap<>();
-
     private String roofColour;
     private String accent;
     private String doorHandles;
-    @OneToOne
-    Exterior exterior;
 }
