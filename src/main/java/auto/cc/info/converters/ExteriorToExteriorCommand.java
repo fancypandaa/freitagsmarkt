@@ -9,19 +9,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ExteriorToExteriorCommand implements Converter<Exterior,ExteriorCommand> {
-    private final ExteriorEquipmentToExteriorEquipmentCommand equipmentCommand;
+    private final ExEquipmentToExEquipmentCommand equipmentCommand;
 
-    public ExteriorToExteriorCommand(ExteriorEquipmentToExteriorEquipmentCommand equipmentCommand) {
+    public ExteriorToExteriorCommand(ExEquipmentToExEquipmentCommand equipmentCommand) {
         this.equipmentCommand = equipmentCommand;
     }
-
-
     @Override
     @Nullable
     @Synchronized
     public ExteriorCommand convert(Exterior source) {
         if(source == null) return null;
-
         final ExteriorCommand exteriorCommand = new ExteriorCommand();
         exteriorCommand.setId(source.getId());
         exteriorCommand.setChassis(source.getChassis());
