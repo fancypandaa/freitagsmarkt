@@ -43,7 +43,7 @@ public class EngineServiceImpl implements EngineService{
     public EngineCommand addNewEngineDetails(EngineCommand engineCommand) {
         Optional<Brakes> brakesOptional = brakesRepository.findById(engineCommand.getBrakes().getId());
         Optional<Fuel> fuelOptional = fuelRepository.findById(engineCommand.getFuel().getId());
-        Optional<Suspensions> suspensionsOptional = suspensionsRepository.findById(engineCommand.getSuspensionsCommand().getId());
+        Optional<Suspensions> suspensionsOptional = suspensionsRepository.findById(engineCommand.getSuspensions().getId());
         Optional<Transmission> transmission = transmissionRepository.findById(engineCommand.getTransmission().getId());
 
         if(!brakesOptional.isPresent() || !fuelOptional.isPresent()||
@@ -57,6 +57,7 @@ public class EngineServiceImpl implements EngineService{
     }
 
     @Override
+    @Transactional
     public Page<EngineCommand> listEngines(int page,int size) {
         Pageable paging = PageRequest.of(page, size);
         List<EngineCommand> engineCommandList = engineRepository.findAll(paging).stream()
