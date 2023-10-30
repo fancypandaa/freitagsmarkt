@@ -12,10 +12,10 @@ import java.util.HashMap;
 public class ExteriorCommand {
     private Long id;
     private String chassis;
-    private HashMap<String,String> chassisOptions =new HashMap<>();
     private String numberOfDoors;
     private String frontDoors;
     private String backDoors;
     private String platform;
+    private HashMap<String,String> chassisOptions =new HashMap<>();
     private ExteriorEquipmentCommand exteriorEquipment;
 }
