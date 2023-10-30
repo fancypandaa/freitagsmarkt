@@ -10,7 +10,6 @@ import java.util.HashMap;
 @Setter
 public class SuspensionsCommand {
     private Long id;
-
     private String springFront;
     private String springRear;
     private String anti_rollBar;

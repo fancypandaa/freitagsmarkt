@@ -18,7 +18,6 @@ public class Suspensions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String springFront;
     private String springRear;
     private String anti_rollBar;
@@ -28,6 +27,4 @@ public class Suspensions {
     @Type(type = "json")
     @Column(columnDefinition = "json")
     private HashMap<String,String> suspensionFront =new HashMap<>();
-    @OneToOne
-    Engine engine;
 }
