@@ -1,9 +1,12 @@
 package auto.cc.info.controllers;
 
+import auto.cc.info.commands.BrakesCommand;
 import auto.cc.info.commands.DimensionsAndWeightCommand;
 import auto.cc.info.service.DimAndWeightService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,5 +33,11 @@ public class DimAndWeightController{
         else {
             return dimensionsAndWeightCommandOptional.get();
         }
+    }
+
+    @QueryMapping(name = "findDimAndWeightById")
+    public DimensionsAndWeightCommand findDimAndWeightById(@Argument Long id) {
+        DimensionsAndWeightCommand dimensionsAndWeightCommand = dimAndWeightService.findDimensionsAndWeighById(id);
+        return dimensionsAndWeightCommand;
     }
 }

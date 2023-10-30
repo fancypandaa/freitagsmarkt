@@ -24,8 +24,8 @@ public class DimensionsAndWeightCommand {
     private Float turningCircle;
     private Float groundClearance;
 //    Interior mm
-    private HashMap<String,String> interior =new HashMap<>();
+    private HashMap<String,Float> interior =new HashMap<>();
 //    Weight KG
-    private HashMap<String,String> weight =new HashMap<>();
+    private HashMap<String,Float> weight =new HashMap<>();
 
 }

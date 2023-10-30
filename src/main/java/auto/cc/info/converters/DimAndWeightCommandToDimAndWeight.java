@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DimensionsAndWeightCommandToDimensionsAndWeight implements Converter<DimensionsAndWeightCommand, DimensionsAndWeight> {
+public class DimAndWeightCommandToDimAndWeight implements Converter<DimensionsAndWeightCommand, DimensionsAndWeight> {
     @Override
     @Synchronized
     @Nullable
