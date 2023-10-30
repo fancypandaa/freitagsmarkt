@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 @Component
-public class InteriorEquipmentsToInteriorEquipmentsCommand implements Converter<InteriorEquipments,InteriorEquipmentsCommand> {
+public class InEquipmentsToInEquipmentsCommand implements Converter<InteriorEquipments,InteriorEquipmentsCommand> {
     @Override
     @Synchronized
     @Nullable

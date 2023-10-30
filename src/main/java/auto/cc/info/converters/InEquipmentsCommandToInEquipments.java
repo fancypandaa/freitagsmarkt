@@ -2,15 +2,16 @@ package auto.cc.info.converters;
 
 import auto.cc.info.commands.InteriorEquipmentsCommand;
 import auto.cc.info.domain.InteriorEquipments;
+import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
-public class InteriorEquipmentsCommandToInteriorEquipments implements Converter<InteriorEquipmentsCommand, InteriorEquipments> {
+public class InEquipmentsCommandToInEquipments implements Converter<InteriorEquipmentsCommand, InteriorEquipments> {
     @Override
-    @Transactional
+    @Synchronized
     @Nullable
     public InteriorEquipments convert(InteriorEquipmentsCommand source) {
         if(source == null) return null;
