@@ -15,7 +15,6 @@ public class CarBrandCommandToCarBrand implements Converter<CarBrandCommand, Car
         this.carCommandToCar = carCommandToCar;
     }
 
-    @Synchronized
     @Nullable
     @Override
     public CarBrand convert(CarBrandCommand source) {

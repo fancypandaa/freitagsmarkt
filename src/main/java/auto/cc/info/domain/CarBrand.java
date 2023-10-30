@@ -19,7 +19,7 @@ public class CarBrand {
     private String series;
     private String logoUrl;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "carBrand")
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "carBrand")
     private List<Car> cars = new ArrayList<>();
 
     public CarBrand setCars(Car car){
