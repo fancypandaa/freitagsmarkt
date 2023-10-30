@@ -34,12 +34,9 @@ public class DimensionsAndWeight {
 //    Interior mm
     @Type(type = "json")
     @Column(columnDefinition = "json")
-    private HashMap<String,String> interior =new HashMap<>();
+    private HashMap<String,Float> interior =new HashMap<>();
 //    Weight KG
     @Type(type = "json")
     @Column(columnDefinition = "json")
-    private HashMap<String,String> weight =new HashMap<>();
-    @OneToOne
-    Specs specs;
-
+    private HashMap<String,Float> weight =new HashMap<>();
 }
