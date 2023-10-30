@@ -1,9 +1,12 @@
 package auto.cc.info.controllers;
 
+import auto.cc.info.commands.DimensionsAndWeightCommand;
 import auto.cc.info.commands.FeaturesCommand;
 import auto.cc.info.service.FeaturesService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -28,4 +31,10 @@ public class FeaturesController {
             return featuresCommandOptional.get();
         }
     }
+    @QueryMapping(name = "findFeaturesById")
+    public FeaturesCommand findFeaturesById(@Argument Long id) {
+        FeaturesCommand featuresCommand = featuresService.findFeaturesById(id);
+        return featuresCommand;
+    }
+
 }
