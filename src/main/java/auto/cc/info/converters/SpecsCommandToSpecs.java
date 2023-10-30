@@ -10,13 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 public class SpecsCommandToSpecs implements Converter<SpecsCommand, Specs> {
     private final EngineCommandToEngine engineCommandToEngine;
-    private final DimensionsAndWeightCommandToDimensionsAndWeight commandToDimensionsAndWeight;
+    private final DimAndWeightCommandToDimAndWeight commandToDimensionsAndWeight;
     private final ExteriorCommandToExterior exteriorCommandToExterior;
     private final  InteriorCommandToInterior commandToInterior;
     private final FeaturesCommandToFeatures featuresCommandToFeatures;
     private final SafetyAndSecurityCommandToSafetyAndSecurity commandToSafetyAndSecurity;
 
-    public SpecsCommandToSpecs(EngineCommandToEngine engineCommandToEngine, DimensionsAndWeightCommandToDimensionsAndWeight commandToDimensionsAndWeight, ExteriorCommandToExterior exteriorCommandToExterior, InteriorCommandToInterior commandToInterior, FeaturesCommandToFeatures featuresCommandToFeatures, SafetyAndSecurityCommandToSafetyAndSecurity commandToSafetyAndSecurity) {
+    public SpecsCommandToSpecs(EngineCommandToEngine engineCommandToEngine, DimAndWeightCommandToDimAndWeight commandToDimensionsAndWeight, ExteriorCommandToExterior exteriorCommandToExterior, InteriorCommandToInterior commandToInterior, FeaturesCommandToFeatures featuresCommandToFeatures, SafetyAndSecurityCommandToSafetyAndSecurity commandToSafetyAndSecurity) {
         this.engineCommandToEngine = engineCommandToEngine;
         this.commandToDimensionsAndWeight = commandToDimensionsAndWeight;
         this.exteriorCommandToExterior = exteriorCommandToExterior;
