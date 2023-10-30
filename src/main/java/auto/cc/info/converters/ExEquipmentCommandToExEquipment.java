@@ -7,10 +7,8 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-
 @Component
-public class ExteriorEquipmentCommandToExteriorEquipment implements Converter<ExteriorEquipmentCommand,ExteriorEquipment> {
+public class ExEquipmentCommandToExEquipment implements Converter<ExteriorEquipmentCommand,ExteriorEquipment> {
     @Override
     @Nullable
     @Synchronized

@@ -8,7 +8,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ExteriorEquipmentToExteriorEquipmentCommand implements Converter<ExteriorEquipment,ExteriorEquipmentCommand> {
+public class ExEquipmentToExEquipmentCommand implements Converter<ExteriorEquipment,ExteriorEquipmentCommand> {
     @Override
     @Nullable
     @Synchronized
