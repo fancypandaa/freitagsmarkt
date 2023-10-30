@@ -29,6 +29,5 @@ public class Exterior {
     private String platform;
     @OneToOne(fetch = FetchType.EAGER)
     ExteriorEquipment exteriorEquipment;
-    @OneToOne
-    Specs specs;
+
 }
