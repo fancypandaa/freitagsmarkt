@@ -30,6 +30,7 @@ public class CarBrandServiceImpl implements CarBrandService{
     }
 
     @Override
+    @Transactional
     public Page<CarBrandCommand> listCarBrands(int page, int size) {
         Pageable paging = PageRequest.of(page, size);
         List<CarBrandCommand> carBrandList = carBrandRepository.findAll(paging).stream()
