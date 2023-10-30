@@ -43,9 +43,7 @@ public class Interior {
     @Type(type = "json")
     @Column(columnDefinition = "json")
     private HashMap<String,String> lights  =new HashMap<>();
-
     @OneToOne(fetch = FetchType.EAGER)
     InteriorEquipments interiorEquipments;
-    @OneToOne
-    Specs specs;
+
 }

@@ -1,10 +1,13 @@
 package auto.cc.info.controllers;
 
+import auto.cc.info.commands.ExteriorCommand;
 import auto.cc.info.commands.InteriorCommand;
 import auto.cc.info.commands.InteriorEquipmentsCommand;
 import auto.cc.info.service.InteriorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +25,6 @@ public class InteriorController {
     public void setInteriorService(InteriorService interiorService) {
         this.interiorService = interiorService;
     }
-
 
     @RequestMapping(value = "",method = RequestMethod.POST,produces = "application/json")
     public InteriorCommand addNewInterior(@RequestBody InteriorCommand interiorCommand){
@@ -45,5 +47,10 @@ public class InteriorController {
         else {
             return interiorEquipmentsCommandOptional.get();
         }
+    }
+    @QueryMapping(name = "findInteriorId")
+    public InteriorCommand findInteriorId(@Argument Long id) {
+        InteriorCommand interiorCommand = interiorService.findInteriorById(id);
+        return interiorCommand;
     }
 }

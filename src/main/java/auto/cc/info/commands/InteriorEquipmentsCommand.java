@@ -3,7 +3,6 @@ package auto.cc.info.commands;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.util.HashMap;
 @NoArgsConstructor
 @Getter
