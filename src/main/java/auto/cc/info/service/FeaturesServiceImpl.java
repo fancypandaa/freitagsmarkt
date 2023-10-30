@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Slf4j
 @Service
 public class FeaturesServiceImpl implements FeaturesService{
@@ -31,5 +33,14 @@ public class FeaturesServiceImpl implements FeaturesService{
         Features features= featuresCommandToFeatures.convert(featuresCommand);
         featuresRepository.save(features);
         return featuresCommand;
+    }
+
+    @Override
+    public FeaturesCommand findFeaturesById(Long id) {
+        Optional<Features> features = featuresRepository.findById(id);
+        if(!features.isPresent()){
+            return null;
+        }
+        return featuresToFeaturesCommand.convert(features.get());
     }
 }

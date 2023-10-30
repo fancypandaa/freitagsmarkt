@@ -4,4 +4,5 @@ import auto.cc.info.commands.FeaturesCommand;
 
 public interface FeaturesService {
     FeaturesCommand addNewCarFeatures(FeaturesCommand featuresCommand);
+    FeaturesCommand findFeaturesById(Long id);
 }
