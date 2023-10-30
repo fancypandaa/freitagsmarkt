@@ -18,7 +18,6 @@ public class ExteriorEquipmentCommand {
     private Map<String,String> rimsAndTires =new HashMap<>();
     private Map<String,String> otherEquipments =new HashMap<>();
     private Map<String,String> tireDimensions =new HashMap<>();
-
     private String roofColour;
     private String accent;
     private String doorHandles;
