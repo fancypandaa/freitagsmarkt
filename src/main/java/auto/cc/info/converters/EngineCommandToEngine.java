@@ -14,7 +14,6 @@ public class EngineCommandToEngine implements Converter<EngineCommand, Engine> {
     private final SuspensionsCommandToSuspensions suspensionsCommandToSuspensions;
     private final  FuelCommandToFuel fuelCommandToFuel;
     private final TransmissionCommandToTransmission transmissionCommandToTransmission;
-
     public EngineCommandToEngine(BrakesCommandToBrakes brakesCommandToBrakes, SuspensionsCommandToSuspensions suspensionsCommandToSuspensions, FuelCommandToFuel fuelCommandToFuel, TransmissionCommandToTransmission transmissionCommandToTransmission) {
         this.brakesCommandToBrakes = brakesCommandToBrakes;
         this.suspensionsCommandToSuspensions = suspensionsCommandToSuspensions;
@@ -36,7 +35,7 @@ public class EngineCommandToEngine implements Converter<EngineCommand, Engine> {
         engine.setServiceIntervals(source.getServiceIntervals());
         engine.setEngineSpecification(source.getEngineSpecification());
         engine.setBrakes(brakesCommandToBrakes.convert(source.getBrakes()));
-        engine.setSuspensions(suspensionsCommandToSuspensions.convert(source.getSuspensionsCommand()));
+        engine.setSuspensions(suspensionsCommandToSuspensions.convert(source.getSuspensions()));
         engine.setFuel(fuelCommandToFuel.convert(source.getFuel()));
         engine.setTransmission(transmissionCommandToTransmission.convert(source.getTransmission()));
         return engine;

@@ -15,7 +15,7 @@ public class EngineCommand {
     private HashMap<String,String> engineFluids= new HashMap<>();
     private HashMap<String,String> serviceIntervals= new HashMap<>();
     private BrakesCommand brakes;
-    private SuspensionsCommand suspensionsCommand;
+    private SuspensionsCommand suspensions;
     private FuelCommand fuel;
     private TransmissionCommand transmission;
 
