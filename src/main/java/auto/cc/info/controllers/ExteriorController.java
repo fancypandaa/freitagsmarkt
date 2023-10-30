@@ -1,10 +1,13 @@
 package auto.cc.info.controllers;
 
+import auto.cc.info.commands.BrakesCommand;
 import auto.cc.info.commands.ExteriorCommand;
 import auto.cc.info.commands.ExteriorEquipmentCommand;
 import auto.cc.info.service.ExteriorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,7 +24,6 @@ public class ExteriorController {
     public void setExteriorService(ExteriorService exteriorService) {
         this.exteriorService = exteriorService;
     }
-
 
     @RequestMapping(value = "",method = RequestMethod.POST,produces = "application/json")
     public ExteriorCommand addNewExterior(@RequestBody ExteriorCommand exteriorCommand){
@@ -44,5 +46,10 @@ public class ExteriorController {
         else {
             return exteriorEquipmentCommandOptional.get();
         }
+    }
+    @QueryMapping(name = "findExteriorById")
+    public ExteriorCommand findExteriorById(@Argument Long id) {
+        ExteriorCommand exteriorCommand = exteriorService.findByExteriorId(id);
+        return exteriorCommand;
     }
 }
