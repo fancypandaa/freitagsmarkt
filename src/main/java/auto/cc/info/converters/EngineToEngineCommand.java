@@ -37,7 +37,7 @@ public class EngineToEngineCommand implements Converter<Engine,EngineCommand> {
         engineCommand.setServiceIntervals(source.getServiceIntervals());
         engineCommand.setEngineSpecification(source.getEngineSpecification());
         engineCommand.setBrakes(brakesCommand.convert(source.getBrakes()));
-        engineCommand.setSuspensionsCommand(suspensionsCommand.convert(source.getSuspensions()));
+        engineCommand.setSuspensions(suspensionsCommand.convert(source.getSuspensions()));
         engineCommand.setFuel(fuelCommand.convert(source.getFuel()));
         engineCommand.setTransmission(transmissionCommand.convert(source.getTransmission()));
         return engineCommand;
