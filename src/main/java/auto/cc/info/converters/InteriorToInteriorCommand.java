@@ -9,18 +9,16 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class InteriorToInteriorCommand implements Converter<Interior,InteriorCommand> {
-    private final InteriorEquipmentsToInteriorEquipmentsCommand interiorEquipmentsConverter;
+    private final InEquipmentsToInEquipmentsCommand interiorEquipmentsConverter;
 
-    public InteriorToInteriorCommand(InteriorEquipmentsToInteriorEquipmentsCommand interiorEquipmentsConverter) {
+    public InteriorToInteriorCommand(InEquipmentsToInEquipmentsCommand interiorEquipmentsConverter) {
         this.interiorEquipmentsConverter = interiorEquipmentsConverter;
     }
-
     @Override
     @Synchronized
     @Nullable
     public InteriorCommand convert(Interior source) {
         if(source==null) return null;
-
         final InteriorCommand interiorCommand = new InteriorCommand();
         interiorCommand.setId(source.getId());
         interiorCommand.setInstrumentCluster(source.getInstrumentCluster());
@@ -31,7 +29,7 @@ public class InteriorToInteriorCommand implements Converter<Interior,InteriorCom
         interiorCommand.setRear_viewMirror(source.getRear_viewMirror());
         interiorCommand.setInteriorStorage(source.getInteriorStorage());
         interiorCommand.setLights(source.getLights());
-        interiorCommand.setInteriorEquipmentsCommand(interiorEquipmentsConverter.convert(source.getInteriorEquipments()));
+        interiorCommand.setInteriorEquipments(interiorEquipmentsConverter.convert(source.getInteriorEquipments()));
         return interiorCommand;
     }
 }
