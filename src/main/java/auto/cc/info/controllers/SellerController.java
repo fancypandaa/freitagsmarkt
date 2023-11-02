@@ -1,6 +1,7 @@
 package auto.cc.info.controllers;
 
 import auto.cc.info.commands.SellerCommand;
+import auto.cc.info.commands.SpecsCommand;
 import auto.cc.info.service.SellerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import java.util.Optional;
 @Slf4j
 public class SellerController {
     private SellerService sellerService;
-
     @Autowired
     public void setSellerService(SellerService sellerService) {
         this.sellerService = sellerService;
@@ -36,5 +36,10 @@ public class SellerController {
     public Page<SellerCommand> listAllSeller(@Argument int page, @Argument int size){
         Page<SellerCommand> sellerCommands = sellerService.listSellers(page,size);
         return sellerCommands;
+    }
+    @QueryMapping(name = "findBySellerId")
+    public SellerCommand findBySellerId(@Argument Long id) {
+        SellerCommand sellerCommand = sellerService.findSellerById(id);
+        return sellerCommand;
     }
 }
