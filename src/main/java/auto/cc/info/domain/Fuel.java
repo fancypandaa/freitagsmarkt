@@ -21,7 +21,8 @@ public class Fuel {
     private Long id;
 //    General
     @Column(nullable = false)
-    private String fuel;
+    @Enumerated(value = EnumType.STRING)
+    private FuelType fuelType;
     @Column(nullable = false)
     private String tankVolume;
     private String fuelCapPosition;
