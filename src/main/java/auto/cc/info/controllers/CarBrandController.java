@@ -1,6 +1,7 @@
 package auto.cc.info.controllers;
 
 import auto.cc.info.commands.CarBrandCommand;
+import auto.cc.info.commands.CarCommand;
 import auto.cc.info.service.CarBrandService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,19 @@ public class CarBrandController {
     @QueryMapping(name = "listAllBrands")
     public Page<CarBrandCommand> listAllBrands(@Argument int page, @Argument int size){
         Page<CarBrandCommand> carBrandsCommands = carBrandService.listCarBrands(page,size);
+        return carBrandsCommands;
+    }
+    @QueryMapping(name = "findCarBrandById")
+    public CarBrandCommand findCarBrandById(@Argument Long id) {
+        CarBrandCommand carBrandCommand = carBrandService.findCarBrandById(id);
+        return carBrandCommand;
+    }
+
+    @QueryMapping(name = "findByProductionYearsAndSeries")
+    public Page<CarBrandCommand> findByProductionYearsAndSeries(@Argument Integer page, @Argument Integer size,
+                                                      @Argument Optional<String> series,
+                                                      @Argument Optional<Integer> productionYears){
+        Page<CarBrandCommand> carBrandsCommands = carBrandService.findByProductionYearsAndSeries(page,size,series,productionYears);
         return carBrandsCommands;
     }
 }
