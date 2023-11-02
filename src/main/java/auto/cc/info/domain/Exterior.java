@@ -19,7 +19,9 @@ public class Exterior {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String chassis;
+    @Enumerated(value = EnumType.STRING)
+    @Column(nullable = false)
+    private ChassisType chassis;
     @Type(type = "json")
     @Column(columnDefinition = "json")
     private HashMap<String,String> chassisOptions =new HashMap<>();
