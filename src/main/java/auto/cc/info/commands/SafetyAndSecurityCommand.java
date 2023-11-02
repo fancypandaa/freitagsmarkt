@@ -5,12 +5,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 @NoArgsConstructor
 @Getter
 @Setter
-public class SafetyAndSecurityCommand {
+public class SafetyAndSecurityCommand implements Serializable {
+    private static final long serialVersionUID = -4439114469417994311L;
     private Long id;
     private HashMap<String,String> seatBelt =new HashMap<>();
     private HashMap<String,Boolean> assistSystems =new HashMap<>();
