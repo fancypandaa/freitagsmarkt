@@ -4,12 +4,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 @NoArgsConstructor
 @Getter
 @Setter
-public class DimensionsAndWeightCommand {
+public class DimensionsAndWeightCommand implements Serializable {
+    private static final long serialVersionUID = -4439114469417994311L;
     private Long id;
 //    Exterior mm
     private Float length;

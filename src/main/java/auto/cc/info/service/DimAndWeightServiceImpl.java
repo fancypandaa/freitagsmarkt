@@ -15,14 +15,11 @@ public class DimAndWeightServiceImpl implements DimAndWeightService{
     private final DimAndWeightRepository dimAndWeightRepository;
     private final DimAndWeightCommandToDimAndWeight dimCommandToDim;
     private final DimAndWeightToDimAndWeightCommand dimToDimCommand;
-
     public DimAndWeightServiceImpl(DimAndWeightRepository dimAndWeightRepository, DimAndWeightCommandToDimAndWeight dimCommandToDim, DimAndWeightToDimAndWeightCommand dimToDimCommand) {
         this.dimAndWeightRepository = dimAndWeightRepository;
         this.dimCommandToDim = dimCommandToDim;
         this.dimToDimCommand = dimToDimCommand;
     }
-
-
     @Override
     @Transactional
     public DimensionsAndWeightCommand addNewDimAndWeight(DimensionsAndWeightCommand dimensionsAndWeightCommand) {
@@ -30,7 +27,6 @@ public class DimAndWeightServiceImpl implements DimAndWeightService{
         dimAndWeightRepository.save(dimensionsAndWeight);
         return dimensionsAndWeightCommand;
     }
-
     @Override
     @Transactional
     public DimensionsAndWeightCommand findDimensionsAndWeighById(Long id) {

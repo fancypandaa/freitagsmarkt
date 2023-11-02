@@ -16,7 +16,7 @@ public class FuelToFuelCommand implements Converter<Fuel,FuelCommand> {
         if(source == null) return null;
         final FuelCommand fuelCommand = new FuelCommand();
         fuelCommand.setId(source.getId());
-        fuelCommand.setFuel(source.getFuel());
+        fuelCommand.setFuelType(source.getFuelType());
         fuelCommand.setTankVolume(source.getTankVolume());
         fuelCommand.setFuelCapPosition(source.getFuelCapPosition());
         fuelCommand.setFuelConsumptionNEDC(source.getFuelConsumptionNEDC());
