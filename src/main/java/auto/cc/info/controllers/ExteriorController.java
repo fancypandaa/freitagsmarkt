@@ -3,6 +3,8 @@ package auto.cc.info.controllers;
 import auto.cc.info.commands.BrakesCommand;
 import auto.cc.info.commands.ExteriorCommand;
 import auto.cc.info.commands.ExteriorEquipmentCommand;
+import auto.cc.info.commands.custom.IExteriorCustom;
+import auto.cc.info.commands.custom.IFuelCustom;
 import auto.cc.info.service.ExteriorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -51,5 +54,11 @@ public class ExteriorController {
     public ExteriorCommand findExteriorById(@Argument Long id) {
         ExteriorCommand exteriorCommand = exteriorService.findByExteriorId(id);
         return exteriorCommand;
+    }
+
+    @QueryMapping(name = "getChassisTypesByGroups")
+    public List<IExteriorCustom> getChassisTypesByGroups(){
+        List<IExteriorCustom> exteriorCustomList = exteriorService.getChassisTypesByGroups();
+        return exteriorCustomList;
     }
 }

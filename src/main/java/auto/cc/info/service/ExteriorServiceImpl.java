@@ -2,6 +2,7 @@ package auto.cc.info.service;
 
 import auto.cc.info.commands.ExteriorCommand;
 import auto.cc.info.commands.ExteriorEquipmentCommand;
+import auto.cc.info.commands.custom.IExteriorCustom;
 import auto.cc.info.converters.ExteriorCommandToExterior;
 import auto.cc.info.converters.ExEquipmentCommandToExEquipment;
 import auto.cc.info.converters.ExteriorToExteriorCommand;
@@ -13,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -57,5 +59,11 @@ public class ExteriorServiceImpl implements ExteriorService{
         Optional<Exterior> exterior= exteriorRepository.findById(id);
         if(!exterior.isPresent()) return null;
         return exteriorToExteriorCommand.convert(exterior.get());
+    }
+
+    @Override
+    public List<IExteriorCustom> getChassisTypesByGroups() {
+        List<IExteriorCustom> exteriorCustomList = exteriorRepository.getChassisTypesByGroups();
+        return exteriorCustomList;
     }
 }
