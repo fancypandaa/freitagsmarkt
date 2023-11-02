@@ -18,17 +18,27 @@ public class Car {
     private String model;
     private String city;
     private String days;
-    private String price;
-    private String mileage;
+    private Long price;
+    private Long mileage;
     private String generation;
-
-    @ManyToMany
-    @JoinTable(name = "car_seller",
-            joinColumns = @JoinColumn(name = "car_id"),inverseJoinColumns = @JoinColumn(name = "seller_id"))
-    private List<Seller> sellers= new ArrayList<>();
+    private String saleStatus;
+//    @ManyToMany
+//    @JoinTable(name = "car_seller",
+//            joinColumns = @JoinColumn(name = "car_id"),inverseJoinColumns = @JoinColumn(name = "seller_id"))
+    @ManyToOne
+    private Seller seller;
     @ManyToOne
     private CarBrand carBrand;
-    @OneToOne(fetch = FetchType.EAGER)
-    private Specs specs;
-
+    @OneToOne
+    private Engine engine;
+    @OneToOne
+    private DimensionsAndWeight dimensionsAndWeight;
+    @OneToOne
+    private Exterior exterior;
+    @OneToOne
+    private Interior interior;
+    @OneToOne
+    private Features features;
+    @OneToOne
+    private SafetyAndSecurity safetyAndSecurity;
 }
