@@ -5,11 +5,10 @@ import auto.cc.info.converters.CarCommandToCar;
 import auto.cc.info.converters.CarToCarCommand;
 import auto.cc.info.domain.Car;
 import auto.cc.info.domain.CarBrand;
-import auto.cc.info.domain.Specs;
 import auto.cc.info.repository.CarBrandRepository;
 import auto.cc.info.repository.CarRepository;
-import auto.cc.info.repository.SpecsRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -27,21 +26,18 @@ public class CarServiceImpl implements CarService{
     private final CarToCarCommand carToCarCommand;
     private final CarRepository carRepository;
     private final CarBrandRepository carBrandRepository;
-    private final SpecsRepository specsRepository;
-    public CarServiceImpl(CarCommandToCar carCommandToCar, CarToCarCommand carToCarCommand, CarRepository carRepository, CarBrandRepository carBrandRepository, SpecsRepository specsRepository) {
+    public CarServiceImpl(CarCommandToCar carCommandToCar, CarToCarCommand carToCarCommand, CarRepository carRepository, CarBrandRepository carBrandRepository) {
         this.carCommandToCar = carCommandToCar;
         this.carToCarCommand = carToCarCommand;
         this.carRepository = carRepository;
         this.carBrandRepository = carBrandRepository;
-        this.specsRepository = specsRepository;
     }
 
     @Override
     @Transactional
     public CarCommand addNewCar(CarCommand carCommand) {
         Optional<CarBrand> carBrandOptional = carBrandRepository.findById(carCommand.getCarBrandId());
-        Optional<Specs> specsOptional = specsRepository.findById(carCommand.getSpecsCommand().getId());
-        if(!carBrandOptional.isPresent() || !specsOptional.isPresent()){
+        if(!carBrandOptional.isPresent()){
             return new CarCommand();
         }
         CarBrand carBrand = carBrandOptional.get();
@@ -65,6 +61,15 @@ public class CarServiceImpl implements CarService{
         int end = Math.min((start + paging.getPageSize()), carCommandList.size());
         List<CarCommand> pageContent = carCommandList.subList(start,end);
         return new PageImpl<>(pageContent, paging, carCommandList.size());
+    }
+
+    @Override
+    @Transactional
+    @Cacheable(value = "Car",key="#carId")
+    public CarCommand findCarById(Long carId) {
+        Optional<Car> carOptional = carRepository.findById(carId);
+        if(!carOptional.isPresent()) return null;
+        return carToCarCommand.convert(carOptional.get());
     }
 
 
