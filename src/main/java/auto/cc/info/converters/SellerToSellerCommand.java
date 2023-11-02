@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 public class SellerToSellerCommand implements Converter<Seller,SellerCommand> {
     private final AdsToAdsCommand adsCommand;
     private final CarToCarCommand carCommand;
-
     public SellerToSellerCommand(AdsToAdsCommand adsCommand, CarToCarCommand carCommand) {
         this.adsCommand = adsCommand;
         this.carCommand = carCommand;
