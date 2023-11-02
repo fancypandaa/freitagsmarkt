@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.util.*;
 @Entity
 @Getter
@@ -15,7 +17,8 @@ public class CarBrand {
     @Column(unique=true,nullable = false)
     private String name;
     private String countryOfOrigin;
-    private String productionYears;
+    @Min(1800)
+    private Integer productionYears;
     private String series;
     private String logoUrl;
 
