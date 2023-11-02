@@ -44,7 +44,5 @@ public class Engine {
     @OneToOne
     Transmission transmission;
 
-    @OneToOne
-    Specs specs;
 
 }
