@@ -2,14 +2,36 @@ schema {
     query: Query
 #    mutation: Mutation
 }
-
+enum ChassisType {
+    LCV
+    LIGHT_WEIGHT
+    MPV
+    PICKUP
+    SUV
+    SEDAN
+    STATION_WAG
+}
+enum FuelType {
+    DIESEL
+    ELECTRIC
+    ETHANOL
+    FUEL_CELL
+    LPG
+    NATURAL_GAS
+    PETROL
+    HYBRID_PETROL
+    HYBRID_DIESEL
+    PLUG_IN_HYBRID_PETROL
+    PLUG_IN_HYBRID_DIESEL
+    MID_H_P
+}
 type Ads {
-        id: ID!
-        daysOfSale: Int
-        Status: String
-        published: String
-        sellerId: Int
-        car: Car
+    id: ID!
+    daysOfSale: Int
+    Status: String
+    published: String
+    sellerId: Int
+    carId: Int
 }
 type Brakes{
     id:ID!
@@ -18,6 +40,50 @@ type Brakes{
      frontBrakes:String!
     cooling:String
    rearBrakes:String!
+}
+type CarBrand {
+    id:ID!
+    name:String
+    countryOfOrigin:String
+    productionYears:String
+    series:String
+    logoUrl:String
+    cars:[Car]
+}
+
+type Car {
+    id: ID!
+    model:String
+    city: String
+    days: String
+    price: String
+    mileage: String
+    generation: String
+    saleStatus:String
+    engine:Engine
+    dimensionsAndWeight:DimensionsAndWeight
+    exterior:Exterior
+    interior:Interior
+    features:Features
+    safetyAndSecurity:SafetyAndSecurity
+    carBrandId:Int
+    sellerId:Int
+}
+type DimensionsAndWeight{
+    id:ID!
+    length:Float
+    width:Float
+    widthWithMirrors:Float
+    height:Float
+    trackFront:Float
+    trackRear:Float
+    wheelBase:Float
+    overhangFront:Float
+    overhangRear:Float
+    turningCircle:Float
+    groundClearance:Float
+    interior:JSON
+    weight:JSON
 }
 type Engine{
     id:ID!
@@ -30,81 +96,6 @@ type Engine{
     fuel:Fuel
     transmission:Transmission
 }
-type Specs {
-    id:ID!
-    engine:Engine
-    dimensionsAndWeight:DimensionsAndWeight
-    exterior:Exterior
-    interior:Interior
-    features:Features
-    safetyAndSecurity:SafetyAndSecurity
-}
-type CarBrand {
-    id:ID!
-    name:String
-    countryOfOrigin:String
-    productionYears:String
-    series:String
-    logoUrl:String
-    cars:[Car]
-}
-type Car {
-        id: ID!
-       model:String
-       city: String
-       days: String
-       price: String
-       mileage: String
-       generation: String
-       specs:Specs
-       carBrandId:Int
-}
-
-type Seller {
-    id:ID!
-    type:String
-    name:String
-    phone:String
-    sellerWebsite:String
-    ads:[Ads]
-    cars:[Car]
-}
-
-type DimensionsAndWeight{
-    id:ID!
-    length:Float
-     width:Float
-     widthWithMirrors:Float
-     height:Float
-     trackFront:Float
-     trackRear:Float
-     wheelBase:Float
-     overhangFront:Float
-     overhangRear:Float
-     turningCircle:Float
-     groundClearance:Float
-    interior:JSON
-    weight:JSON
-}
-
-type Features{
-    id:ID!
-    comfort:JSON
-    accessories:JSON
-    others:JSON
-}
-type SafetyAndSecurity{
-    id:ID!
-     seatBelt:JSON
-    assistSystems:JSON
-     brakeSystem:JSON
-     sensors:JSON
-     safetyTesting:JSON
-     airbags:JSON
-     childProtection:JSON
-     othersFeatures:JSON
-}
-
 type EXEquipment{
     id:ID!
     sideMirrors :JSON
@@ -119,15 +110,53 @@ type EXEquipment{
     doorHandles:String
 }
 type Exterior{
-     id:ID!
-    chassis:String
-      numberOfDoors:String
-      frontDoors:String
-      backDoors:String
-      platform:String
-     chassisOptions:JSON
+    id:ID!
+    chassis:ChassisType!
+    numberOfDoors:String
+    frontDoors:String
+    backDoors:String
+    platform:String
+    chassisOptions:JSON
     exteriorEquipment:EXEquipment
-    
+
+}
+type Features{
+    id:ID!
+    comfort:JSON
+    accessories:JSON
+    others:JSON
+}
+type Fuel{
+    id:ID!
+    fuel:FuelType!
+    tankVolume:String
+    fuelCapPosition:String
+    fuelConsumptionNEDC:JSON
+    co2Combined:String
+    topSpeed:String
+    acceleration:String
+    types:Int
+}
+
+type Seller {
+    id:ID!
+    type:String
+    name:String
+    phone:String
+    sellerWebsite:String
+    ads:[Ads]
+    cars:[Car]
+}
+type SafetyAndSecurity{
+    id:ID!
+     seatBelt:JSON
+    assistSystems:JSON
+     brakeSystem:JSON
+     sensors:JSON
+     safetyTesting:JSON
+     airbags:JSON
+     childProtection:JSON
+     othersFeatures:JSON
 }
 type InEquipments{
     id:ID!
@@ -151,16 +180,6 @@ type Interior{
     lights:JSON
     interiorEquipments:InEquipments
 }
-type Fuel{
-    id:ID!
-    fuel:String
-    tankVolume:String
-    fuelCapPosition:String
-    fuelConsumptionNEDC:JSON
-    co2Combined:String
-    topSpeed:String
-    acceleration:String
-}
 type Suspensions{
     id:ID!
       springFront:String
@@ -174,25 +193,34 @@ type Transmission{
     driveTrain:String
     transmission:String
 }
+type CustomFuel{
+    fuelType:String!
+    types:Int!
+}
+type CustomExterior{
+    chassis:String!
+    types:Int!
+}
 type Query {
-#    ads
-    listAds(page:Int = 0,size:Int = 10):[Ads]
     findAdById(id: ID!): Ads
-#    brakes
     findBrakesById(id:ID):Brakes
-#    car
-    listAllCars(page:Int = 0,size:Int = 10):[Car]
-#    carBrand
-    listAllBrands(page:Int = 0,size:Int = 10):[CarBrand]
-#    seller
-    listAllSeller(page:Int = 0,size:Int=10):[Seller]
-    listAllEngine(page:Int = 0 , size:Int=10):[Engine]
     findDimAndWeightById(id:ID):DimensionsAndWeight
     findFeaturesById(id:ID):Features
     findBySecurityId(id:ID):SafetyAndSecurity
     findExteriorById(id:ID):Exterior
     findInteriorId(id:ID):Interior
-    findBySpecsId(id:ID):Specs
+    findBySellerId(id:ID):Seller
+    findCarById(id:ID):Car
+    findCarBrandById(id:ID):CarBrand
+    findByProductionYearsAndSeries( page:Int=0,size:Int = 10,series:String, productionYears:Int):[CarBrand]
+    findBySpecsAndPrice(page:Int=0,size:Int = 10,series:String, productionYears:Int):[Car]
+    listAllCars(page:Int = 0,size:Int = 10):[Car]
+    listAllBrands(page:Int = 0,size:Int = 10):[CarBrand]
+    listAllSeller(page:Int = 0,size:Int=10):[Seller]
+    listAllEngine(page:Int = 0 , size:Int=10):[Engine]
+    listAds(page:Int = 0,size:Int = 10):[Ads]
+    getFuelTypesByGroups:[CustomFuel]
+    getChassisTypesByGroups:[CustomExterior]
 }
 
 #scalar Date
