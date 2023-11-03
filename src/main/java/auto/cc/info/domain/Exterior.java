@@ -29,7 +29,7 @@ public class Exterior {
     private String frontDoors;
     private String backDoors;
     private String platform;
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     ExteriorEquipment exteriorEquipment;
 
 }
