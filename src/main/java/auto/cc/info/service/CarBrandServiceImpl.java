@@ -23,7 +23,6 @@ public class CarBrandServiceImpl implements CarBrandService{
     private final CarBrandRepository carBrandRepository;
     private final CarBrandToCarBrandCommand carBrandToCarBrandCommand;
     private final CarBrandCommandToCarBrand carBrandCommandToCarBrand;
-
     public CarBrandServiceImpl(CarBrandRepository carBrandRepository, CarBrandToCarBrandCommand carBrandToCarBrandCommand, CarBrandCommandToCarBrand carBrandCommandToCarBrand) {
         this.carBrandRepository = carBrandRepository;
         this.carBrandToCarBrandCommand = carBrandToCarBrandCommand;
@@ -89,5 +88,10 @@ public class CarBrandServiceImpl implements CarBrandService{
         int end = Math.min((start + paging.getPageSize()), carBrandList.size());
         List<CarBrandCommand> pageContent = carBrandCommandList.subList(start,end);
         return new PageImpl<>(pageContent, paging, carBrandCommandList.size());
+    }
+
+    @Override
+    public void removeCarBrandById(Long carBrandId) {
+        carBrandRepository.deleteById(carBrandId);
     }
 }
