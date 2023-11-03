@@ -1,5 +1,6 @@
 package auto.cc.info.commands;
 
+import auto.cc.info.domain.SellerType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +13,7 @@ import java.util.*;
 public class SellerCommand implements Serializable {
     private static final long serialVersionUID = -4439114469417994311L;
     private Long id;
-    private String type;
+    private SellerType type;
     private String name;
     private String phone;
     private String sellerWebsite;

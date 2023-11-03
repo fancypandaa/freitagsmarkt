@@ -31,7 +31,7 @@ public class SellerToSellerCommand implements Converter<Seller,SellerCommand> {
         sellerCommand.setSellerWebsite(source.getSellerWebsite());
         sellerCommand.setName(source.getName());
         sellerCommand.setPhone(source.getPhone());
-        sellerCommand.setType(source.getType().toString());
+        sellerCommand.setType(source.getType());
         if(source.getAds() != null && source.getAds().size() > 0){
             source.getAds().forEach(
                     (Ads ad) ->{
