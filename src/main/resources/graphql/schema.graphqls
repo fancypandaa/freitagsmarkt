@@ -55,7 +55,7 @@ type Car {
     id: ID!
     model:String
     city: String
-    days: String
+    days: Int
     price: String
     mileage: String
     generation: String

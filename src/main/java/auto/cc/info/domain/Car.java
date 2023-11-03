@@ -17,7 +17,7 @@ public class Car {
     @Column(unique=true,nullable = false)
     private String model;
     private String city;
-    private String days;
+    private Integer days;
     private Long price;
     private Long mileage;
     private String generation;

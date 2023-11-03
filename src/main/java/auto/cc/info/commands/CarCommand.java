@@ -15,7 +15,7 @@ public class CarCommand implements Serializable {
     private Long id;
     private String model;
     private String city;
-    private String days;
+    private Integer days;
     private Long price;
     private Long mileage;
     private String generation;
