@@ -16,6 +16,7 @@ public class CarBrandCommandToCarBrand implements Converter<CarBrandCommand, Car
     }
 
     @Nullable
+    @Synchronized
     @Override
     public CarBrand convert(CarBrandCommand source) {
         if (source == null) {
