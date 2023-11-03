@@ -34,6 +34,11 @@ public class CarController {
             return carCommandOptional.get();
         }
     }
+
+    @RequestMapping(value = "{carId}",method = RequestMethod.DELETE,produces = "application/json")
+    public void deleteCarById(@PathVariable Long carId){
+        carService.removeCarById(carId);
+    }
     @QueryMapping("listAllCars")
     public Page<CarCommand> listAllCars(@Argument int page, @Argument int size){
         Page<CarCommand> carCommands = carService.listCars(page,size);

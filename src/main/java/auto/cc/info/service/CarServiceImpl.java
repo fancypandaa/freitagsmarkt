@@ -72,5 +72,10 @@ public class CarServiceImpl implements CarService{
         return carToCarCommand.convert(carOptional.get());
     }
 
+    @Override
+    public void removeCarById(Long Id) {
+        carRepository.deleteById(Id);
+    }
+
 
 }

@@ -29,16 +29,16 @@ public class Car {
     private Seller seller;
     @ManyToOne
     private CarBrand carBrand;
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private Engine engine;
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private DimensionsAndWeight dimensionsAndWeight;
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private Exterior exterior;
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private Interior interior;
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private Features features;
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     private SafetyAndSecurity safetyAndSecurity;
 }

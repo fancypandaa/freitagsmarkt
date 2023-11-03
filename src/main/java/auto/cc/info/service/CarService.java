@@ -8,4 +8,5 @@ public interface CarService {
     CarCommand addNewCar(CarCommand carCommand);
     Page<CarCommand> listCars(int page,int size);
     CarCommand findCarById(Long carId);
+    void removeCarById(Long Id);
 }
