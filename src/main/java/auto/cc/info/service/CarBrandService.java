@@ -8,4 +8,5 @@ public interface CarBrandService {
     CarBrandCommand addNewCarBrand(CarBrandCommand carBrandCommand);
     CarBrandCommand findCarBrandById(Long carBrandId);
     Page<CarBrandCommand> findByProductionYearsAndSeries(Integer page,Integer size,Optional<String> series,Optional<Integer> productionYear);
+    void removeCarBrandById(Long carBrandId);
 }

@@ -33,6 +33,10 @@ public class CarBrandController {
             return carBrandCommandOptional.get();
         }
     }
+    @RequestMapping(value = "{carBrandId}",method = RequestMethod.DELETE,produces = "application/json")
+    public void deleteBrandById(@PathVariable Long carBrandId){
+        carBrandService.removeCarBrandById(carBrandId);
+    }
     @QueryMapping(name = "listAllBrands")
     public Page<CarBrandCommand> listAllBrands(@Argument int page, @Argument int size){
         Page<CarBrandCommand> carBrandsCommands = carBrandService.listCarBrands(page,size);
