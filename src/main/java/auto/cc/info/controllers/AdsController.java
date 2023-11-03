@@ -31,7 +31,10 @@ public class AdsController {
             return adsCommandOptional.get();
         }
     }
-
+    @RequestMapping(value = "/{adsId}",method = RequestMethod.DELETE,produces = "application/json")
+    public void deleteAdsById(@PathVariable Long adsId){
+            adsService.removeAdsById(Long.valueOf(adsId));
+    }
     @QueryMapping("listAds")
     public Page<AdsCommand> listAds(@Argument int page,@Argument int size){
         Page<AdsCommand> adsList = adsService.listAllAds(page,size);

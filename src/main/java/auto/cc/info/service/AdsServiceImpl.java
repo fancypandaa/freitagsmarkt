@@ -80,11 +80,17 @@ public class AdsServiceImpl implements AdsService {
         }}
 
     }
-
     @Override
+    @Transactional
     public Ads findAdsById(Long ads_id) {
         Ads ads = adsRepository.findById(ads_id).get();
         return ads;
     }
+
+    @Override
+    public void removeAdsById(Long ads_id) {
+        adsRepository.deleteById(ads_id);
+    }
+
 
 }

@@ -8,4 +8,5 @@ public interface AdsService {
     Page<AdsCommand> listAllAds(int page, int size);
     AdsCommand createNewAds(AdsCommand ads);
     Ads findAdsById(Long ads_id);
+    void removeAdsById(Long ads_id);
 }
