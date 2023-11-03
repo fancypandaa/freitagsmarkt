@@ -32,6 +32,11 @@ public class SellerController {
             return sellerCommandOptional.get();
         }
     }
+    @RequestMapping(value = "{sellerId}",method = RequestMethod.DELETE,produces = "application/json")
+    public void deleteSellerById(@PathVariable Long sellerId){
+        sellerService.removeSellerById(sellerId);
+    }
+
     @QueryMapping("listAllSeller")
     public Page<SellerCommand> listAllSeller(@Argument int page, @Argument int size){
         Page<SellerCommand> sellerCommands = sellerService.listSellers(page,size);

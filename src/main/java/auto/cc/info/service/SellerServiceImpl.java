@@ -66,4 +66,9 @@ public class SellerServiceImpl implements SellerService{
         if(!sellerOptional.isPresent()) return null;
         return sellerToSellerCommand.convert(sellerOptional.get());
     }
+
+    @Override
+    public void removeSellerById(Long sellerId) {
+        sellerRepository.deleteById(sellerId);
+    }
 }

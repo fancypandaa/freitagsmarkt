@@ -7,4 +7,5 @@ public interface SellerService {
     SellerCommand createNewSellerProfile(SellerCommand SellerCommand);
     Page<SellerCommand> listSellers(int page, int size);
     SellerCommand findSellerById(Long sellerId);
+    void removeSellerById(Long sellerId);
 }
