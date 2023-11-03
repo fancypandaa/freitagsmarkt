@@ -35,13 +35,13 @@ public class Engine {
     @Column(columnDefinition = "json")
     private HashMap<String,String> serviceIntervals= new HashMap<>();
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     Brakes brakes;
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     Suspensions suspensions;
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     Fuel fuel;
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     Transmission transmission;
 
 

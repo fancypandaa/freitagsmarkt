@@ -33,6 +33,10 @@ public class EngineController {
             return engineCommandOptional.get();
         }
     }
+    @RequestMapping(value = "{engineId}",method = RequestMethod.DELETE,produces = "application/json")
+    public void deleteEngineById(@PathVariable Long engineId){
+        engineService.removeEngineById(engineId);
+    }
     @QueryMapping("listAllEngine")
     public Page<EngineCommand> listAllEngine(@Argument int page, @Argument int size){
         Page<EngineCommand> engineCommandPage = engineService.listEngines(page,size);

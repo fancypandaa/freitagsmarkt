@@ -70,4 +70,9 @@ public class EngineServiceImpl implements EngineService{
         List<EngineCommand> pageContent = engineCommandList.subList(start,end);
         return new PageImpl<>(pageContent, paging, engineCommandList.size());
     }
+
+    @Override
+    public void removeEngineById(Long engineId) {
+        engineRepository.deleteById(engineId);
+    }
 }
