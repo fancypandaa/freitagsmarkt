@@ -21,7 +21,7 @@ public class Seller {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "seller")
     private List<Ads> ads = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "seller")
-    private List<Car> cars;
+    private List<Car> cars= new ArrayList<>();
     public Seller addAds(Ads ads){
         ads.setSeller(this);
         this.ads.add(ads);
