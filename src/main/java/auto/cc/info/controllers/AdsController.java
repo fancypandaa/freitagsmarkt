@@ -41,9 +41,8 @@ public class AdsController {
         return adsList;
     }
     @QueryMapping(name = "findAdById")
-    public Ads findAdById(@Argument Long id) {
-        Ads ads = adsService.findAdsById(id);
-        System.out.println(ads.getCar().getId()+" "+ads.getCar().getModel());
+    public AdsCommand findAdById(@Argument Long id) {
+        AdsCommand ads = adsService.findAdsById(id);
         return ads;
     }
 }
