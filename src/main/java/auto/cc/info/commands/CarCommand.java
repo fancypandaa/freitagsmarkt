@@ -22,7 +22,6 @@ public class CarCommand implements Serializable {
     private String saleStatus;
     private Long carBrandId;
     private Long sellerId;
-    private SpecsCommand specsCommand;
     private EngineCommand engine;
     private DimensionsAndWeightCommand dimensionsAndWeight;
     private ExteriorCommand exterior;
