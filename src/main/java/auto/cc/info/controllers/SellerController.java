@@ -1,7 +1,6 @@
 package auto.cc.info.controllers;
 
 import auto.cc.info.commands.SellerCommand;
-import auto.cc.info.commands.SpecsCommand;
 import auto.cc.info.service.SellerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,11 @@ public class SellerController {
         else {
             return sellerCommandOptional.get();
         }
+    }
+    @RequestMapping(value = "/{sellerId}",method = RequestMethod.PATCH,produces = "application/json")
+    public SellerCommand updateSeller(@PathVariable Long sellerId, @RequestBody SellerCommand sellerCommand){
+        SellerCommand sellerCommand1 = sellerService.updateSeller(sellerId,sellerCommand);
+        return sellerCommand1;
     }
     @RequestMapping(value = "{sellerId}",method = RequestMethod.DELETE,produces = "application/json")
     public void deleteSellerById(@PathVariable Long sellerId){
