@@ -5,6 +5,7 @@ import auto.cc.info.commands.SellerCommand;
 import auto.cc.info.converters.SellerCommandToSeller;
 import auto.cc.info.converters.SellerToSellerCommand;
 import auto.cc.info.domain.Car;
+import auto.cc.info.domain.CarBrand;
 import auto.cc.info.domain.Seller;
 import auto.cc.info.repository.SellerRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -65,6 +66,20 @@ public class SellerServiceImpl implements SellerService{
         Optional<Seller> sellerOptional = sellerRepository.findById(sellerId);
         if(!sellerOptional.isPresent()) return null;
         return sellerToSellerCommand.convert(sellerOptional.get());
+    }
+
+    @Override
+    public SellerCommand updateSeller(Long sellerId, SellerCommand sellerCommand) {
+        Optional<Seller> sellerOptional = sellerRepository.findById(sellerId);
+        if(!sellerOptional.isPresent()) return null;
+        if(sellerOptional.get().getSellerWebsite() != sellerCommand.getSellerWebsite()){
+            sellerOptional.get().setSellerWebsite(sellerCommand.getSellerWebsite());
+        }
+        if(sellerOptional.get().getPhone() != sellerCommand.getPhone()){
+            sellerOptional.get().setPhone(sellerCommand.getPhone());
+        }
+        sellerRepository.save(sellerOptional.get());
+        return sellerCommand;
     }
 
     @Override
