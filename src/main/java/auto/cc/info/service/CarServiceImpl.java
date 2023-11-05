@@ -73,6 +73,27 @@ public class CarServiceImpl implements CarService{
     }
 
     @Override
+    public CarCommand updateCarById(Long carId,CarCommand newCarCommand) {
+        Optional<Car> carOptional = carRepository.findById(carId);
+        if(!carOptional.isPresent()) return null;
+        CarCommand carCommand = carToCarCommand.convert(carOptional.get());
+        if(carCommand.getDays() != newCarCommand.getDays()){
+            carCommand.setDays(newCarCommand.getDays());
+        }
+        if(carCommand.getPrice() != newCarCommand.getPrice()){
+            carCommand.setPrice(newCarCommand.getPrice());
+        }
+        if(carCommand.getMileage() != newCarCommand.getMileage()){
+            carCommand.setMileage(newCarCommand.getMileage());
+        }
+        if (carCommand.getSaleStatus() != newCarCommand.getSaleStatus()){
+            carCommand.setSaleStatus(newCarCommand.getSaleStatus());
+        }
+        carRepository.save(carCommandToCar.convert(carCommand));
+        return newCarCommand;
+    }
+
+    @Override
     public void removeCarById(Long Id) {
         carRepository.deleteById(Id);
     }
