@@ -3,6 +3,7 @@ package auto.cc.info.service;
 import auto.cc.info.commands.CarBrandCommand;
 import auto.cc.info.converters.CarBrandCommandToCarBrand;
 import auto.cc.info.converters.CarBrandToCarBrandCommand;
+import auto.cc.info.domain.Ads;
 import auto.cc.info.domain.CarBrand;
 import auto.cc.info.repository.CarBrandRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -88,6 +89,20 @@ public class CarBrandServiceImpl implements CarBrandService{
         int end = Math.min((start + paging.getPageSize()), carBrandList.size());
         List<CarBrandCommand> pageContent = carBrandCommandList.subList(start,end);
         return new PageImpl<>(pageContent, paging, carBrandCommandList.size());
+    }
+
+    @Override
+    public CarBrandCommand updateCarBrand(Long carBrandId,CarBrandCommand carBrandCommand) {
+        Optional<CarBrand> carBrandCommandOptional = carBrandRepository.findById(carBrandId);
+        if(!carBrandCommandOptional.isPresent()) return null;
+        if(carBrandCommandOptional.get().getLogoUrl() != carBrandCommand.getLogoUrl()){
+            carBrandCommandOptional.get().setLogoUrl(carBrandCommand.getLogoUrl());
+        }
+        if(carBrandCommandOptional.get().getSeries() != carBrandCommand.getSeries()){
+            carBrandCommandOptional.get().setSeries(carBrandCommand.getSeries());
+        }
+        carBrandRepository.save(carBrandCommandOptional.get());
+        return carBrandCommand;
     }
 
     @Override
