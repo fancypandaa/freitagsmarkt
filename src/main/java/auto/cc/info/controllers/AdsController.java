@@ -20,9 +20,9 @@ public class AdsController {
     public void setAdsService(AdsService adsService){
         this.adsService = adsService;
     }
-    @RequestMapping(value = "",method = RequestMethod.POST,produces = "application/json")
-    public AdsCommand createNewAd(@RequestBody AdsCommand adsCommand){
-        Optional<AdsCommand> adsCommandOptional = Optional.ofNullable(adsService.createNewAds(adsCommand));
+    @RequestMapping(value = "/{sellerId}",method = RequestMethod.POST,produces = "application/json")
+    public AdsCommand createNewAd(@PathVariable Long sellerId,@RequestBody AdsCommand adsCommand){
+        Optional<AdsCommand> adsCommandOptional = Optional.ofNullable(adsService.createNewAds(sellerId,adsCommand));
         if(!adsCommandOptional.isPresent()){
             log.error("Your seller id not found !!!");
             return null;
@@ -30,6 +30,11 @@ public class AdsController {
         else {
             return adsCommandOptional.get();
         }
+    }
+    @RequestMapping(value ="/{sellerId}/{adsId}",method = RequestMethod.PATCH,produces = "application/json")
+    public AdsCommand updateAds(@PathVariable Long sellerId,@PathVariable Long adsId,@RequestBody AdsCommand adsCommand){
+        AdsCommand adsCommandI = adsService.updateAds(sellerId,adsId,adsCommand);
+        return adsCommandI;
     }
     @RequestMapping(value = "/{adsId}",method = RequestMethod.DELETE,produces = "application/json")
     public void deleteAdsById(@PathVariable Long adsId){
