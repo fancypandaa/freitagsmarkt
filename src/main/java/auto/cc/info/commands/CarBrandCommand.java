@@ -16,7 +16,7 @@ public class CarBrandCommand implements Serializable {
     private String name;
     private String countryOfOrigin;
     private Integer productionYears;
-    private String series;
+    private Integer series;
     private String logoUrl;
     private List<CarCommand> cars = new ArrayList<>();
 }

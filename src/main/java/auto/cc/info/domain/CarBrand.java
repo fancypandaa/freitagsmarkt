@@ -19,7 +19,8 @@ public class CarBrand {
     private String countryOfOrigin;
     @Min(1800)
     private Integer productionYears;
-    private String series;
+    @Min(1)
+    private Integer series;
     private String logoUrl;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "carBrand")
