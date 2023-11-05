@@ -54,8 +54,8 @@ public class AdsServiceImpl implements AdsService {
 
     @Override
     @Transactional
-    public AdsCommand createNewAds(AdsCommand adsCommand) {
-        Optional<Seller> sellerOptional= sellerRepository.findById(adsCommand.getSellerId());
+    public AdsCommand createNewAds(Long sellerId,AdsCommand adsCommand) {
+        Optional<Seller> sellerOptional= sellerRepository.findById(sellerId);
         Optional<Car> carOptional= carRepository.findById(adsCommand.getCarId());
 
         if(!sellerOptional.isPresent() || !carOptional.isPresent()){
@@ -82,14 +82,33 @@ public class AdsServiceImpl implements AdsService {
     }
     @Override
     @Transactional
-    public AdsCommand findAdsById(Long ads_id) {
-        Ads ads = adsRepository.findById(ads_id).get();
+    public AdsCommand findAdsById(Long adsId) {
+        Ads ads = adsRepository.findById(adsId).get();
         return adsToAdsCommand.convert(ads);
     }
 
     @Override
-    public void removeAdsById(Long ads_id) {
-        adsRepository.deleteById(ads_id);
+    public AdsCommand updateAds(Long sellerId,Long adsId,AdsCommand adsCommand) {
+        Optional<Seller> sellerOptional= sellerRepository.findById(sellerId);
+
+        Optional<Ads> ads = adsRepository.findById(adsId);
+        if(!ads.isPresent() || !sellerOptional.isPresent()) return null;
+        if(ads.get().getStatus() != adsCommand.getStatus()){
+            ads.get().setStatus(adsCommand.getStatus());
+        }
+        if(ads.get().getDaysOfSale() != adsCommand.getDaysOfSale()){
+            ads.get().setDaysOfSale(adsCommand.getDaysOfSale());
+        }
+        if(ads.get().getPublished() != adsCommand.getPublished()){
+            ads.get().setPublished(adsCommand.getPublished());
+        }
+        adsRepository.save(ads.get());
+        return adsCommand;
+    }
+
+    @Override
+    public void removeAdsById(Long adsId) {
+        adsRepository.deleteById(adsId);
     }
 
 

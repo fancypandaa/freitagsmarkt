@@ -6,7 +6,8 @@ import org.springframework.data.domain.Page;
 
 public interface AdsService {
     Page<AdsCommand> listAllAds(int page, int size);
-    AdsCommand createNewAds(AdsCommand ads);
-    AdsCommand findAdsById(Long ads_id);
-    void removeAdsById(Long ads_id);
+    AdsCommand createNewAds(Long sellerId,AdsCommand ads);
+    AdsCommand findAdsById(Long adsId);
+    AdsCommand updateAds(Long sellerId,Long adsId,AdsCommand adsCommand);
+    void removeAdsById(Long adsId);
 }
