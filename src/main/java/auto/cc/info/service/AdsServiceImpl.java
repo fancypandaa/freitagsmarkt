@@ -89,8 +89,8 @@ public class AdsServiceImpl implements AdsService {
 
     @Override
     public AdsCommand updateAds(Long sellerId,Long adsId,AdsCommand adsCommand) {
+        log.error(sellerId+" "+adsId);
         Optional<Seller> sellerOptional= sellerRepository.findById(sellerId);
-
         Optional<Ads> ads = adsRepository.findById(adsId);
         if(!ads.isPresent() || !sellerOptional.isPresent()) return null;
         if(ads.get().getStatus() != adsCommand.getStatus()){
