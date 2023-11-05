@@ -1,5 +1,6 @@
 package auto.cc.info.controllers;
 
+import auto.cc.info.commands.AdsCommand;
 import auto.cc.info.commands.CarBrandCommand;
 import auto.cc.info.commands.CarCommand;
 import auto.cc.info.service.CarBrandService;
@@ -33,7 +34,12 @@ public class CarBrandController {
             return carBrandCommandOptional.get();
         }
     }
-    @RequestMapping(value = "{carBrandId}",method = RequestMethod.DELETE,produces = "application/json")
+    @RequestMapping(value = "/{carBrandId}",method = RequestMethod.PATCH,produces = "application/json")
+    public CarBrandCommand updateCarBrand(@PathVariable Long carBrandId,@RequestBody CarBrandCommand carBrandCommand){
+        CarBrandCommand carBrandCommandI = carBrandService.updateCarBrand(carBrandId,carBrandCommand);
+        return carBrandCommandI;
+    }
+    @RequestMapping(value = "/{carBrandId}",method = RequestMethod.DELETE,produces = "application/json")
     public void deleteBrandById(@PathVariable Long carBrandId){
         carBrandService.removeCarBrandById(carBrandId);
     }
