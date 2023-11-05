@@ -19,5 +19,4 @@ public class CarBrandCommand implements Serializable {
     private String series;
     private String logoUrl;
     private List<CarCommand> cars = new ArrayList<>();
-
 }
