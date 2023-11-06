@@ -1,6 +1,6 @@
 schema {
     query: Query
-#    mutation: Mutation
+    mutation: Mutation
 }
 enum ChassisType {
     LCV
@@ -201,6 +201,7 @@ type CustomExterior{
     chassis:String!
     types:Int!
 }
+
 type Query {
     findAdById(id: ID!): Ads
     findBrakesById(id:ID):Brakes
@@ -221,6 +222,19 @@ type Query {
     listAds(page:Int = 0,size:Int = 10):[Ads]
     getFuelTypesByGroups:[CustomFuel]
     getChassisTypesByGroups:[CustomExterior]
+}
+input User {
+    userName: String!
+    email: String!
+    password: String!
+}
+input CredentialsInput {
+    username: String!
+    password: String!
+}
+type Mutation{
+    createUser(userName: String!,email: String!,password: String!): String
+    login(credentials: CredentialsInput!): String
 }
 
 #scalar Date
