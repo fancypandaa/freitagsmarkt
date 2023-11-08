@@ -12,16 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class JwtAuthenticationTokenFilter extends AbstractAuthenticationProcessingFilter {
-    public JwtAuthenticationTokenFilter() {
-        super("/graphql/**");
+
+    public JwtAuthenticationTokenFilter(String defaultFilterProcessesUrl) {
+        super(defaultFilterProcessesUrl);
     }
+
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
         String header = request.getHeader("Authorization");
-        if(header == null || !header.startsWith("Token ")){
+        if(header == null || !header.startsWith("Bearer ")){
             throw new RuntimeException("JWT Token is missing!!");
         }
-        String authenticationToken = header.substring(6);
+        String authenticationToken = header.substring(7);
         JwtAuthenticationToken token =new JwtAuthenticationToken(authenticationToken);
         return getAuthenticationManager().authenticate(token);
     }
