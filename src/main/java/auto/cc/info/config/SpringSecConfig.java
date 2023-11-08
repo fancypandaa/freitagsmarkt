@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(jsr250Enabled = true )
 @Configuration
 public class SpringSecConfig extends WebSecurityConfigurerAdapter {
     @Autowired
@@ -28,8 +28,15 @@ public class SpringSecConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationEntryPoint entryPoint;
     @Bean
-    public JwtAuthenticationTokenFilter authenticationTokenFilter() throws Exception {
-        JwtAuthenticationTokenFilter filter = new JwtAuthenticationTokenFilter();
+    public JwtAuthenticationTokenFilter authenticationTokenFilterGraphQl() throws Exception {
+        JwtAuthenticationTokenFilter filter = new JwtAuthenticationTokenFilter("/graphql/**");
+        filter.setAuthenticationManager(authenticationManager());
+        filter.setAuthenticationSuccessHandler(new JwtSuccessHandler());
+        return filter;
+    }
+    @Bean
+    public JwtAuthenticationTokenFilter authenticationTokenFilterREST() throws Exception {
+        JwtAuthenticationTokenFilter filter = new JwtAuthenticationTokenFilter("/api/**");
         filter.setAuthenticationManager(authenticationManager());
         filter.setAuthenticationSuccessHandler(new JwtSuccessHandler());
         return filter;
@@ -39,14 +46,14 @@ public class SpringSecConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/graphql","/swagger-resources")
+                .antMatchers("/graphql/**","/swagger-resources","/api/**")
                 .permitAll()
-                        .and()
+                .and()
                 .exceptionHandling().authenticationEntryPoint(entryPoint)
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-        httpSecurity.addFilterBefore(authenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(authenticationTokenFilterREST(),UsernamePasswordAuthenticationFilter.class);
+        httpSecurity.addFilterBefore(authenticationTokenFilterGraphQl(), UsernamePasswordAuthenticationFilter.class);
         httpSecurity.headers().cacheControl();
     }
     @Bean
