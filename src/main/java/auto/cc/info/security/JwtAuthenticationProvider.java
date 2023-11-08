@@ -28,8 +28,9 @@ public class JwtAuthenticationProvider extends AbstractUserDetailsAuthentication
         String token = jwtAuthenticationToken.getToken();
         UserCommand userCommand = validator.validate(token);
         if(userCommand == null){
-            throw new RuntimeException("JWT Token is incorrect");
+            throw new RuntimeException("JWT Token was expired");
         }
+
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils
                 .commaSeparatedStringToAuthorityList(userCommand.getRole());
         return new JUserService(userCommand.getUserName(),userCommand.getPassword(),token,grantedAuthorities);
