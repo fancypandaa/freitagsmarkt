@@ -9,8 +9,8 @@ import java.util.Date;
 @Component
 public class JwtGenerator {
     public String generate(UserCommand userCommand){
-        Date date = new Date();
-        date.setHours(date.getHours()+2);
+//        Date date = new Date();
+//        date.setHours(date.getHours()+2);
         String secretKey= "Freedom is slavery";
         AESEncryptionDecryption aesEncryptionDecryption = new AESEncryptionDecryption();
         String userName = aesEncryptionDecryption.encrypt(userCommand.getUserName(), secretKey);
@@ -19,11 +19,18 @@ public class JwtGenerator {
         Claims claims = Jwts.claims()
                 .setSubject(userName);
         claims.put("password",password);
-        claims.put("role",userCommand.getRole());
+        claims.put("role","ROLE_"+userCommand.getRole());
         return Jwts.builder().setClaims(claims)
-                .setExpiration(date)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30))
                 .signWith(SignatureAlgorithm.HS512,"$2a$10$EWk4NyP6rnCeeuMKNogTgO0lU43BQT/XjS.dLVcMwO0JBfQ75zqiW")
                 .compact();
     }
+//    private Key getSignKey() {
+//        byte[] keyBytes= Decoders.BASE64.decode(SECRET);
+//        return Keys.hmacShaKeyFor(keyBytes);
+//    }
+
+
 
 }
