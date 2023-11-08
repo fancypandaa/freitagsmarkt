@@ -1,6 +1,7 @@
 package auto.cc.info.controllers;
 
 import auto.cc.info.commands.SellerCommand;
+import auto.cc.info.domain.user.Constants;
 import auto.cc.info.service.SellerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,11 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/seller")
+@RequestMapping("/api/seller")
 @Slf4j
 public class SellerController {
     private SellerService sellerService;
@@ -21,6 +23,7 @@ public class SellerController {
         this.sellerService = sellerService;
     }
     @RequestMapping(value = "",method = RequestMethod.POST,produces = "application/json")
+    @RolesAllowed(Constants.SELLER)
     public SellerCommand addNewSeller(@RequestBody SellerCommand sellerCommand){
         Optional<SellerCommand> sellerCommandOptional = Optional.ofNullable(sellerService.createNewSellerProfile(sellerCommand));
         if(!sellerCommandOptional.isPresent()){
@@ -32,21 +35,25 @@ public class SellerController {
         }
     }
     @RequestMapping(value = "/{sellerId}",method = RequestMethod.PATCH,produces = "application/json")
+    @RolesAllowed(Constants.SELLER)
     public SellerCommand updateSeller(@PathVariable Long sellerId, @RequestBody SellerCommand sellerCommand){
         SellerCommand sellerCommand1 = sellerService.updateSeller(sellerId,sellerCommand);
         return sellerCommand1;
     }
     @RequestMapping(value = "{sellerId}",method = RequestMethod.DELETE,produces = "application/json")
+    @RolesAllowed(Constants.SELLER)
     public void deleteSellerById(@PathVariable Long sellerId){
         sellerService.removeSellerById(sellerId);
     }
 
     @QueryMapping("listAllSeller")
+    @RolesAllowed({Constants.USER,Constants.SELLER})
     public Page<SellerCommand> listAllSeller(@Argument int page, @Argument int size){
         Page<SellerCommand> sellerCommands = sellerService.listSellers(page,size);
         return sellerCommands;
     }
     @QueryMapping(name = "findBySellerId")
+    @RolesAllowed({Constants.USER,Constants.SELLER})
     public SellerCommand findBySellerId(@Argument Long id) {
         SellerCommand sellerCommand = sellerService.findSellerById(id);
         return sellerCommand;
