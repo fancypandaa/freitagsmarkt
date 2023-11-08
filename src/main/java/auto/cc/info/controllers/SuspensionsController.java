@@ -1,8 +1,7 @@
 package auto.cc.info.controllers;
 
-import auto.cc.info.commands.FuelCommand;
 import auto.cc.info.commands.SuspensionsCommand;
-import auto.cc.info.service.FuelService;
+import auto.cc.info.domain.user.Constants;
 import auto.cc.info.service.SuspensionsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/suspensions")
+@RequestMapping("/api/suspensions")
 @Slf4j
 public class SuspensionsController {
     private SuspensionsService suspensionsService;
@@ -26,6 +26,7 @@ public class SuspensionsController {
 
 
     @RequestMapping(value = "",method = RequestMethod.POST,produces = "application/json")
+    @RolesAllowed(Constants.SELLER)
     public SuspensionsCommand addSuspensionsInfo(@RequestBody SuspensionsCommand suspensionsCommand){
         Optional<SuspensionsCommand> suspensionsCommandOptional = Optional.ofNullable(suspensionsService.createNewSuspensionsItems(suspensionsCommand));
         if(!suspensionsCommandOptional.isPresent()){
