@@ -2,7 +2,7 @@ spring:
   server:
     max-http-header-size: 20000
   datasource:
-    url: jdbc:mysql://172.22.0.3:3306/freitagsmarkt_db
+    url: jdbc:mysql://172.22.0.2:3306/freitagsmarkt_db
     username: root
     password: rootpassword
     driver-class-name: com.mysql.jdbc.Driver
