@@ -5,6 +5,7 @@ import auto.cc.info.commands.ExteriorCommand;
 import auto.cc.info.commands.ExteriorEquipmentCommand;
 import auto.cc.info.commands.custom.IExteriorCustom;
 import auto.cc.info.commands.custom.IFuelCustom;
+import auto.cc.info.domain.user.Constants;
 import auto.cc.info.service.ExteriorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/exterior")
+@RequestMapping("/api/exterior")
 @Slf4j
 public class ExteriorController {
     private ExteriorService exteriorService;
@@ -29,6 +31,7 @@ public class ExteriorController {
     }
 
     @RequestMapping(value = "",method = RequestMethod.POST,produces = "application/json")
+    @RolesAllowed(Constants.SELLER)
     public ExteriorCommand addNewExterior(@RequestBody ExteriorCommand exteriorCommand){
         Optional<ExteriorCommand> exteriorCommandOptional = Optional.ofNullable(exteriorService.createExterior(exteriorCommand));
         if(!exteriorCommandOptional.isPresent()){
@@ -40,6 +43,7 @@ public class ExteriorController {
         }
     }
     @RequestMapping(value = "/equip",method = RequestMethod.POST,produces = "application/json")
+    @RolesAllowed(Constants.SELLER)
     public ExteriorEquipmentCommand addNewExteriorEquip(@RequestBody ExteriorEquipmentCommand exteriorEquipmentCommand){
         Optional<ExteriorEquipmentCommand> exteriorEquipmentCommandOptional = Optional.ofNullable(exteriorService.createExteriorEquip(exteriorEquipmentCommand));
         if(!exteriorEquipmentCommandOptional.isPresent()){
@@ -51,12 +55,14 @@ public class ExteriorController {
         }
     }
     @QueryMapping(name = "findExteriorById")
+    @RolesAllowed({Constants.USER,Constants.SELLER})
     public ExteriorCommand findExteriorById(@Argument Long id) {
         ExteriorCommand exteriorCommand = exteriorService.findByExteriorId(id);
         return exteriorCommand;
     }
 
     @QueryMapping(name = "getChassisTypesByGroups")
+    @RolesAllowed({Constants.USER,Constants.SELLER})
     public List<IExteriorCustom> getChassisTypesByGroups(){
         List<IExteriorCustom> exteriorCustomList = exteriorService.getChassisTypesByGroups();
         return exteriorCustomList;
