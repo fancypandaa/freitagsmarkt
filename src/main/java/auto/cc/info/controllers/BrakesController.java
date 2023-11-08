@@ -3,6 +3,7 @@ package auto.cc.info.controllers;
 import auto.cc.info.commands.BrakesCommand;
 import auto.cc.info.domain.Ads;
 import auto.cc.info.domain.Brakes;
+import auto.cc.info.domain.user.Constants;
 import auto.cc.info.service.BrakesService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/brakes")
+@RequestMapping("/api/brakes")
 @Slf4j
 public class BrakesController {
     private BrakesService brakesService;
@@ -25,6 +27,7 @@ public class BrakesController {
         this.brakesService = brakesService;
     }
     @RequestMapping(value = "",method = RequestMethod.POST,produces = "application/json")
+    @RolesAllowed(Constants.SELLER)
     public BrakesCommand addNewBrakes(@RequestBody BrakesCommand brakesCommand){
         Optional<BrakesCommand> brakesCommandOptional = Optional.ofNullable(brakesService.addBrakes(brakesCommand));
         if(!brakesCommandOptional.isPresent()){
@@ -36,6 +39,7 @@ public class BrakesController {
         }
     }
     @QueryMapping(name = "findBrakesById")
+    @RolesAllowed({Constants.USER,Constants.SELLER})
     public BrakesCommand findAdById(@Argument Long id) {
         BrakesCommand brakes = brakesService.findBrakesById(id);
         return brakes;
