@@ -3,6 +3,7 @@ package auto.cc.info.converters;
 import auto.cc.info.commands.SellerCommand;
 import auto.cc.info.domain.Seller;
 import auto.cc.info.domain.SellerType;
+import auto.cc.info.domain.user.User;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
@@ -35,6 +36,11 @@ public class SellerCommandToSeller implements Converter<SellerCommand, Seller> {
                     seller.getAds().add(commandToAds.convert(ad));
                     }
             );
+        }
+        if(source.getUserId() != null){
+            User user = new User();
+            user.setId(source.getUserId());
+            seller.setUser(user);
         }
 
         return seller;

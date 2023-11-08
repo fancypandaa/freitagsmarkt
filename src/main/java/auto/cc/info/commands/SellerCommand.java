@@ -19,5 +19,6 @@ public class SellerCommand implements Serializable {
     private String sellerWebsite;
     private List<AdsCommand> ads= new ArrayList<>();
     private List<CarCommand> cars=new ArrayList<>();
+    private Long userId;
 
 }

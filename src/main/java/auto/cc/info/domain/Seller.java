@@ -1,5 +1,6 @@
 package auto.cc.info.domain;
 
+import auto.cc.info.domain.user.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,6 +23,8 @@ public class Seller {
     private List<Ads> ads = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "seller")
     private List<Car> cars= new ArrayList<>();
+    @OneToOne
+    private User user;
     public Seller addAds(Ads ads){
         ads.setSeller(this);
         this.ads.add(ads);

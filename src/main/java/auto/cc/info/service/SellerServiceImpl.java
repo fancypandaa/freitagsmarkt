@@ -1,12 +1,10 @@
 package auto.cc.info.service;
 
-import auto.cc.info.commands.CarCommand;
 import auto.cc.info.commands.SellerCommand;
 import auto.cc.info.converters.SellerCommandToSeller;
 import auto.cc.info.converters.SellerToSellerCommand;
-import auto.cc.info.domain.Car;
-import auto.cc.info.domain.CarBrand;
 import auto.cc.info.domain.Seller;
+import auto.cc.info.domain.user.Constants;
 import auto.cc.info.repository.SellerRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
@@ -17,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,6 +35,7 @@ public class SellerServiceImpl implements SellerService{
 
     @Override
     @Transactional
+    @RolesAllowed({Constants.SELLER})
     public SellerCommand createNewSellerProfile(SellerCommand sellerCommand) {
         Optional<Seller> sellerOptional = Optional.ofNullable(sellerRepository.findByName(sellerCommand.getName()));
         if(sellerOptional.isPresent()) {
@@ -48,6 +48,7 @@ public class SellerServiceImpl implements SellerService{
 
     @Override
     @Transactional
+    @RolesAllowed({Constants.SELLER})
     public Page<SellerCommand> listSellers(int page, int size) {
         Pageable paging = PageRequest.of(page, size);
         List<SellerCommand> sellerCommandList= sellerRepository.findAll(paging).stream().map(seller ->{
@@ -62,6 +63,7 @@ public class SellerServiceImpl implements SellerService{
     @Override
     @Transactional
     @Cacheable(value = "Seller",key="#sellerId")
+    @RolesAllowed({Constants.SELLER})
     public SellerCommand findSellerById(Long sellerId) {
         Optional<Seller> sellerOptional = sellerRepository.findById(sellerId);
         if(!sellerOptional.isPresent()) return null;
@@ -69,6 +71,7 @@ public class SellerServiceImpl implements SellerService{
     }
 
     @Override
+    @RolesAllowed({Constants.SELLER})
     public SellerCommand updateSeller(Long sellerId, SellerCommand sellerCommand) {
         Optional<Seller> sellerOptional = sellerRepository.findById(sellerId);
         if(!sellerOptional.isPresent()) return null;
@@ -83,6 +86,7 @@ public class SellerServiceImpl implements SellerService{
     }
 
     @Override
+    @RolesAllowed({Constants.SELLER})
     public void removeSellerById(Long sellerId) {
         sellerRepository.deleteById(sellerId);
     }
