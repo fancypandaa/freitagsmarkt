@@ -1,9 +1,11 @@
 package auto.cc.info.service;
 
 import auto.cc.info.commands.UserCommand;
-import auto.cc.info.domain.user.User;
 
 public interface UserService {
-    Boolean findUserByUserName(String userName,String password);
+    UserCommand findUserByUserName(String userName,String password);
     UserCommand createNewUser(UserCommand userCommand);
+
+    UserCommand findUserBySeller(String userName,String password,Long sellerId);
+    UserCommand createNewSellerUser(UserCommand userCommand);
 }
