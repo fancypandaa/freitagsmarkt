@@ -1,7 +1,7 @@
 package auto.cc.info.controllers;
 
-import auto.cc.info.commands.FeaturesCommand;
 import auto.cc.info.commands.SafetyAndSecurityCommand;
+import auto.cc.info.domain.user.Constants;
 import auto.cc.info.service.SafetyAndSecurityService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/safety")
+@RequestMapping("/api/safety")
 @Slf4j
 public class SafetyAndSecurityController {
     private SafetyAndSecurityService safetyAndSecurityService;
@@ -26,6 +27,7 @@ public class SafetyAndSecurityController {
 
 
     @RequestMapping(value = "",method = RequestMethod.POST,produces = "application/json")
+    @RolesAllowed(Constants.SELLER)
     public SafetyAndSecurityCommand addNewCarFeatures(@RequestBody SafetyAndSecurityCommand safetyAndSecurityCommand){
         Optional<SafetyAndSecurityCommand> safetyAndSecurityCommandOptional = Optional.ofNullable(safetyAndSecurityService.addNewSafetyAndSecurity(safetyAndSecurityCommand));
         if(!safetyAndSecurityCommandOptional.isPresent()){
@@ -38,6 +40,7 @@ public class SafetyAndSecurityController {
     }
 
     @QueryMapping(name = "findBySecurityId")
+    @RolesAllowed({Constants.USER,Constants.SELLER})
     public SafetyAndSecurityCommand findBySecurityId(@Argument Long id) {
         SafetyAndSecurityCommand safetyAndSecurityCommand = safetyAndSecurityService.findBySSId(id);
         return safetyAndSecurityCommand;
