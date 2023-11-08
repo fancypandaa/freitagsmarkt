@@ -228,13 +228,9 @@ input User {
     email: String!
     password: String!
 }
-input CredentialsInput {
-    username: String!
-    password: String!
-}
 type Mutation{
     createUser(userName: String!,email: String!,password: String!): String
-    login(credentials: CredentialsInput!): String
+    login(userName: String!,password: String!): String
 }
 
 #scalar Date
