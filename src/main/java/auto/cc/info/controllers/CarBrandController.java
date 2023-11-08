@@ -3,6 +3,7 @@ package auto.cc.info.controllers;
 import auto.cc.info.commands.AdsCommand;
 import auto.cc.info.commands.CarBrandCommand;
 import auto.cc.info.commands.CarCommand;
+import auto.cc.info.domain.user.Constants;
 import auto.cc.info.service.CarBrandService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,11 @@ import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/car_brand")
+@RequestMapping("/api/car_brand")
 @Slf4j
 public class CarBrandController {
   private CarBrandService carBrandService;
@@ -24,6 +26,7 @@ public class CarBrandController {
     }
 
     @RequestMapping(value = "",method = RequestMethod.POST,produces = "application/json")
+    @RolesAllowed(Constants.SELLER)
     public CarBrandCommand addNewBrand(@RequestBody CarBrandCommand carBrandCommand){
         Optional<CarBrandCommand> carBrandCommandOptional = Optional.ofNullable(carBrandService.addNewCarBrand(carBrandCommand));
         if(!carBrandCommandOptional.isPresent()){
@@ -35,26 +38,31 @@ public class CarBrandController {
         }
     }
     @RequestMapping(value = "/{carBrandId}",method = RequestMethod.PATCH,produces = "application/json")
+    @RolesAllowed(Constants.SELLER)
     public CarBrandCommand updateCarBrand(@PathVariable Long carBrandId,@RequestBody CarBrandCommand carBrandCommand){
         CarBrandCommand carBrandCommandI = carBrandService.updateCarBrand(carBrandId,carBrandCommand);
         return carBrandCommandI;
     }
     @RequestMapping(value = "/{carBrandId}",method = RequestMethod.DELETE,produces = "application/json")
+    @RolesAllowed(Constants.SELLER)
     public void deleteBrandById(@PathVariable Long carBrandId){
         carBrandService.removeCarBrandById(carBrandId);
     }
     @QueryMapping(name = "listAllBrands")
+    @RolesAllowed({Constants.USER,Constants.SELLER})
     public Page<CarBrandCommand> listAllBrands(@Argument int page, @Argument int size){
         Page<CarBrandCommand> carBrandsCommands = carBrandService.listCarBrands(page,size);
         return carBrandsCommands;
     }
     @QueryMapping(name = "findCarBrandById")
+    @RolesAllowed({Constants.USER,Constants.SELLER})
     public CarBrandCommand findCarBrandById(@Argument Long id) {
         CarBrandCommand carBrandCommand = carBrandService.findCarBrandById(id);
         return carBrandCommand;
     }
 
     @QueryMapping(name = "findByProductionYearsAndSeries")
+    @RolesAllowed({Constants.USER,Constants.SELLER})
     public Page<CarBrandCommand> findByProductionYearsAndSeries(@Argument Integer page, @Argument Integer size,
                                                       @Argument Optional<String> series,
                                                       @Argument Optional<Integer> productionYears){
