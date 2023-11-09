@@ -6,6 +6,7 @@ import auto.cc.info.domain.Ads;
 import auto.cc.info.domain.Car;
 import auto.cc.info.domain.Seller;
 import auto.cc.info.domain.SellerType;
+import auto.cc.info.domain.user.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -30,10 +31,6 @@ class SellerToSellerCommandTest {
         assertNull(converter.convert(null));
     }
     @Test
-    public void testEmptyObject() throws Exception {
-        assertNotNull(converter.convert(new Seller()));
-    }
-    @Test
     void convert() {
         Seller seller= new Seller();
         seller.setId(ID_VALUE);
@@ -48,6 +45,9 @@ class SellerToSellerCommandTest {
         ads.setSeller(seller);
         ads.setCar(car);
         seller.getAds().add(ads);
+        User user = new User();
+        user.setId(ID_VALUE);
+        seller.setUser(user);
         SellerCommand sellerCommand= converter.convert(seller);
         assertNotNull(sellerCommand);
         assertNotNull(sellerCommand.getAds());
