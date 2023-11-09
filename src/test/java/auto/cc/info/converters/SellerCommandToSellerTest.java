@@ -6,6 +6,7 @@ import auto.cc.info.commands.SellerCommand;
 import auto.cc.info.domain.CarBrand;
 import auto.cc.info.domain.Seller;
 import auto.cc.info.domain.SellerType;
+import auto.cc.info.domain.user.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -40,6 +41,9 @@ class SellerCommandToSellerTest {
         sellerCommand.setType(SellerType.valueOf(TYPE));
         sellerCommand.setName(NAME);
         sellerCommand.setPhone(PHONE);
+        User user = new User();
+        user.setId(ID_VALUE);
+        sellerCommand.setUserId(user.getId());
         AdsCommand adsCommand= new AdsCommand();
         adsCommand.setId(ID_VALUE);
         sellerCommand.getAds().add(adsCommand);
