@@ -76,4 +76,31 @@ class AdsServiceImplTest {
         adsService.removeAdsById(idToDelete);
         verify(adsRepository, times(1)).deleteById(anyLong());
     }
+    @Test
+    public void updateAdsById() throws Exception {
+        Seller seller = new Seller();
+        seller.setId(2L);
+        Ads ads = new Ads();
+        ads.setId(2L);
+        ads.setSeller(seller);
+        Optional<Ads> adsOptional = Optional.of(ads);
+
+        when(adsRepository.findById(anyLong())).thenReturn(adsOptional);
+
+        AdsCommand adsCommand = new AdsCommand();
+        adsCommand.setId(2L);
+        adsCommand.setDaysOfSale(5);
+        adsCommand.setStatus("for_sale");
+        when(adsToAdsCommand.convert(any())).thenReturn(adsCommand);
+        AdsCommand adsCommands = adsService.findAdsById(2L);
+        assertEquals(Long.valueOf(2L), adsCommands.getId());
+        assertEquals(5, adsCommands.getDaysOfSale());
+        assertEquals("for_sale", adsCommands.getStatus());
+        verify(adsRepository, times(1)).findById(anyLong());
+        adsCommands.setDaysOfSale(6);
+        adsCommands.setStatus("sold");
+        AdsCommand savedAdsCommand = adsService.updateAds(2L,2L,adsCommands);
+        assertEquals(6, adsCommands.getDaysOfSale());
+        assertEquals("sold", adsCommands.getStatus());
+    }
 }
