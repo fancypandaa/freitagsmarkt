@@ -82,7 +82,7 @@ public class SellerServiceImpl implements SellerService{
             sellerOptional.get().setPhone(sellerCommand.getPhone());
         }
         sellerRepository.save(sellerOptional.get());
-        return sellerCommand;
+        return sellerToSellerCommand.convert(sellerOptional.get());
     }
 
     @Override
