@@ -1,0 +1,82 @@
+<html>
+<body>
+<h1>Here is one Security Class diagrams </h1>
+
+<pre class="mermaid">
+classDiagram
+
+    class JwtAuthenticationEntryPoint{
+      +commence( httpServletRequest,  httpResponse,  authException)
+
+    }
+    class JwtSuccessHandler{
+    -onAuthenticationSuccess(HttpServletRequest , HttpServletResponse , Authentication )
+    }
+    class JwtGenerator{
+        -Date date
+        -String Secret
+        +generate(UserCommand userCommand)
+    }
+    class JwtValidator{
+        -String Secret
+        -String secretKey
+        +validate(token)
+    }
+    class JwtAuthenticationProvider{
+    #additionalAuthenticationChecks( userDetails,  authentication)
+    #retrieveUser( username,  authentication)
+    +supports( aClass)
+    }
+    class JwtAuthenticationTokenFilter{
+        +JwtAuthenticationTokenFilter(String defaultFilterProcessesUrl)
+        +attemptAuthentication( request,  response)
+        #successfulAuthentication( request,  response,  chain,  authResult)
+    }
+
+class SpringSecConfig{
+    -authenticationTokenFilterGraphQl()
+    -authenticationTokenFilterREST()
+}
+    class SwaggerConfig{
+    +Docket api()
+    #addResourceHandlers( registry)
+    #generateSellerGuestToken()
+    }
+    class GraphQlConfig{
+    #RuntimeWiringConfigurer runtimeWiringConfigure()
+    #generateGuestToken()
+    }
+    class Application{
+     + void main(String[] args)
+    }
+    Application --|> SpringSecConfig
+    Application --|> SwaggerConfig
+    Application --|> GraphQlConfig
+
+    SpringSecConfig  --|> JwtAuthenticationTokenFilter
+    SpringSecConfig ..> JwtAuthenticationEntryPoint
+    SpringSecConfig ..> JwtAuthenticationProvider
+    SwaggerConfig ..> JwtGenerator
+    GraphQlConfig ..> JwtGenerator
+    JwtAuthenticationProvider ..> JwtValidator
+    JwtAuthenticationTokenFilter ..> JwtSuccessHandler
+</pre>
+
+<pre class="mermaid">
+classDiagram
+    class AESEncryptionDecryption{
+    -SecretKeySpec secretKey
+    -byte[] keys
+    -String ALGORITHM
+    -String secret
+    -prepareSecretKey(key)
+    +encrypt(plainText,secret)
+    +decrypt(cipherText,secret)
+    }
+</pre>
+<script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+</body>
+</html>
