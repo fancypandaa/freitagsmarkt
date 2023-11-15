@@ -39,5 +39,4 @@ public class InteriorEquipments {
     @Type(type = "json")
     @Column(columnDefinition = "json")
     private HashMap<String,String> tireDimensions =new HashMap<>();
-
 }
