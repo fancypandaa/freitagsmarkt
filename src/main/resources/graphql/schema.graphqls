@@ -201,7 +201,14 @@ type CustomExterior{
     chassis:String!
     types:Int!
 }
-
+type CustomTransmission{
+    transmission:String!
+    transmissionType:Int!
+}
+ type CustomCar{
+     city:String!
+     countCity:Int!
+ }
 type Query {
     findAdById(id: ID!): Ads
     findBrakesById(id:ID):Brakes
@@ -222,6 +229,8 @@ type Query {
     listAds(page:Int = 0,size:Int = 10):[Ads]
     getFuelTypesByGroups:[CustomFuel]
     getChassisTypesByGroups:[CustomExterior]
+    getTransmissionTypesByGroups:[CustomTransmission]
+    getCarCityTypesByGroups:[CustomCar]
 }
 input User {
     userName: String!
