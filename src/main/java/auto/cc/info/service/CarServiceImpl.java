@@ -1,6 +1,8 @@
 package auto.cc.info.service;
 
 import auto.cc.info.commands.CarCommand;
+import auto.cc.info.commands.custom.ICarCustom;
+import auto.cc.info.commands.custom.ITransmissionCustom;
 import auto.cc.info.converters.CarCommandToCar;
 import auto.cc.info.converters.CarToCarCommand;
 import auto.cc.info.domain.Car;
@@ -91,6 +93,13 @@ public class CarServiceImpl implements CarService{
         }
         carRepository.save(carCommandToCar.convert(carCommand));
         return newCarCommand;
+    }
+
+    @Override
+    @Transactional
+    public List<ICarCustom> getCarCityTypesByGroups() {
+        List<ICarCustom> carCustoms= carRepository.getCarCityGroups();
+        return carCustoms;
     }
 
     @Override

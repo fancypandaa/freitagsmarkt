@@ -3,6 +3,8 @@ package auto.cc.info.controllers;
 import auto.cc.info.commands.BrakesCommand;
 import auto.cc.info.commands.CarBrandCommand;
 import auto.cc.info.commands.CarCommand;
+import auto.cc.info.commands.custom.ICarCustom;
+import auto.cc.info.commands.custom.ITransmissionCustom;
 import auto.cc.info.domain.Car;
 import auto.cc.info.domain.user.Constants;
 import auto.cc.info.service.CarService;
@@ -15,6 +17,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -60,5 +63,12 @@ public class CarController {
     public CarCommand findCarById(@Argument Long id) {
         CarCommand car = carService.findCarById(id);
         return car;
+    }
+
+    @QueryMapping(name = "getCarCityTypesByGroups")
+    @RolesAllowed({Constants.USER,Constants.SELLER})
+    public List<ICarCustom> getCarCityTypesByGroups(){
+        List<ICarCustom> carCustoms = carService.getCarCityTypesByGroups();
+        return carCustoms;
     }
 }
