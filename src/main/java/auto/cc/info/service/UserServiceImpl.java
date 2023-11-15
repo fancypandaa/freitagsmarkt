@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService{
         if(!userOptional.isPresent()){
             return null;
         }
-        if(userOptional.get().getUserName() == userName && passwordEncoder.matches(password,userOptional.get().getPassword())){
+        if(userOptional.get().getUserName().equals(userName)  && passwordEncoder.matches(password,userOptional.get().getPassword())){
             return userToUserCommand.convert(userOptional.get());
         }
         return null;
