@@ -1,8 +1,8 @@
 package auto.cc.info.domain;
 
+import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import lombok.Getter;
 import lombok.Setter;
-import io.hypersistence.utils.hibernate.type.json.JsonType;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
@@ -12,34 +12,30 @@ import java.util.*;
 @Entity
 @Getter
 @Setter
-@TypeDef(
-        name = "json", typeClass = JsonType.class
-)
-public class ExteriorEquipment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Map<String,String> sideMirrors =new HashMap<>();
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Map<String,String> windscreenWipers =new HashMap<>();
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Map<String,String> windows =new HashMap<>();
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Map<String,String> lights =new HashMap<>();
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Map<String,String> rimsAndTires =new HashMap<>();
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Map<String,String> otherEquipments =new HashMap<>();
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private Map<String,String> tireDimensions =new HashMap<>();
+@TypeDef(name = "jsonb",typeClass = JsonBinaryType.class)
+public class ExteriorEquipment extends BaseEntity{
+
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String sideMirrors;
+    @Type(type = "jsonb")
+    @Column(name = "windscreen_wipers",columnDefinition = "jsonb")
+    private String windscreenWipers;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String windows;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String lights;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String rimsAndTires;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String otherEquipments;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String tireDimensions;
     private String roofColour;
     private String accent;
     private String doorHandles;

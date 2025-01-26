@@ -1,18 +1,16 @@
 package auto.cc.info.domain;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import javax.validation.constraints.Null;
 
 @Entity
 @Getter
 @Setter
-public class Brakes {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Brakes extends BaseEntity{
+
     private String parkingBrake;
     private String manual;
     @Column(nullable = false)

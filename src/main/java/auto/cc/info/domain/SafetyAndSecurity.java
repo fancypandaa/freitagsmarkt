@@ -1,5 +1,6 @@
 package auto.cc.info.domain;
 
+import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import io.hypersistence.utils.hibernate.type.json.JsonType;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,35 +14,32 @@ import java.util.HashMap;
 @Getter
 @Setter
 @TypeDef(
-        name = "json", typeClass = JsonType.class
+        name = "jsonb", typeClass = JsonBinaryType.class
 )
-public class SafetyAndSecurity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private HashMap<String,String> seatBelt =new HashMap<>();
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private HashMap<String,Boolean> assistSystems =new HashMap<>();
-    @Type(type = "json")
-    @Column(columnDefinition = "json",nullable = false)
-    private HashMap<String,String> brakeSystem =new HashMap<>();
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private HashMap<String,String> sensors =new HashMap<>();
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private HashMap<String,String> safetyTesting =new HashMap<>();
-    @Type(type = "json")
-    @Column(columnDefinition = "json",nullable = false)
-    private HashMap<String,String> airbags =new HashMap<>();
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private HashMap<String,String> childProtection =new HashMap<>();
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private HashMap<String,String> othersFeatures =new HashMap<>();
+public class SafetyAndSecurity extends BaseEntity{
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String seatBelt ;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String assistSystems ;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb",nullable = false)
+    private String brakeSystem ;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String sensors ;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String safetyTesting ;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb",nullable = false)
+    private String airbags ;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String childProtection ;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String othersFeatures ;
 
 }

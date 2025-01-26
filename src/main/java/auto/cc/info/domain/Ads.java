@@ -1,26 +1,31 @@
 package auto.cc.info.domain;
 
+import auto.cc.info.domain.enums.AdsStatus;
+import auto.cc.info.domain.enums.Seller;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+
 import java.util.*;
 @Entity
 @Getter
 @Setter
-public class Ads {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Ads extends BaseEntity{
+
     @Min(1)
     @Max(365)
     private Integer daysOfSale;
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private AdsStatus status;
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
     private Date published;
     @ManyToOne
-    Seller seller; // **
+    Seller seller;
     @OneToOne(fetch = FetchType.EAGER)
     Car car;
+
 }

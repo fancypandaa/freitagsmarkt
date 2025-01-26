@@ -1,5 +1,6 @@
 package auto.cc.info.domain;
 
+import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import io.hypersistence.utils.hibernate.type.json.JsonType;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,21 +14,19 @@ import java.util.HashMap;
 @Getter
 @Setter
 @TypeDef(
-        name = "json", typeClass = JsonType.class
+        name = "jsonb", typeClass = JsonBinaryType.class
 )
-public class Features {
+public class Features extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private HashMap<String,String> comfort  =new HashMap<>();
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private HashMap<String,String> accessories  =new HashMap<>();
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private HashMap<String,String> others  =new HashMap<>();
+
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String comfort;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String accessories;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String others;
 }
 

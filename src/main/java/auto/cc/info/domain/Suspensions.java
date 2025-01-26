@@ -1,30 +1,27 @@
 package auto.cc.info.domain;
 
-import io.hypersistence.utils.hibernate.type.json.JsonType;
+import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
-import java.util.*;
 @Entity
 @Getter
 @Setter
 @TypeDef(
-        name = "json", typeClass = JsonType.class
+        name = "jsonb", typeClass = JsonBinaryType.class
 )
-public class Suspensions {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Suspensions extends BaseEntity{
+
     private String springFront;
     private String springRear;
     private String anti_rollBar;
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private HashMap<String,String> suspensionRear =new HashMap<>();
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private HashMap<String,String> suspensionFront =new HashMap<>();
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String suspensionRear;
+    @Type(type = "jsonb")
+    @Column(columnDefinition = "jsonb")
+    private String suspensionFront;
 }

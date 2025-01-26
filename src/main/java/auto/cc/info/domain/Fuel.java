@@ -1,24 +1,21 @@
 package auto.cc.info.domain;
 
-import io.hypersistence.utils.hibernate.type.json.JsonType;
+import auto.cc.info.domain.enums.FuelType;
+import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
-import java.util.HashMap;
 
 @Entity
 @Getter
 @Setter
 @TypeDef(
-        name = "json", typeClass = JsonType.class
+        name = "jsonb", typeClass = JsonBinaryType.class
 )
-public class Fuel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Fuel extends BaseEntity{
 //    General
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
@@ -26,9 +23,9 @@ public class Fuel {
     @Column(nullable = false)
     private String tankVolume;
     private String fuelCapPosition;
-    @Type(type = "json")
-    @Column(columnDefinition = "json")
-    private HashMap<String,String>  fuelConsumptionNEDC = new HashMap<>();
+    @Type(type = "jsonb")
+    @Column(name = "fuel_consumptionNEDC",columnDefinition = "jsonb")
+    private String  fuelConsumptionNEDC;
 //     Emission NEDC
     private String co2Combined;
 //    performance
