@@ -1,7 +1,9 @@
-package auto.cc.info.dto;
-import auto.cc.info.dto.carSpecs.CarDTO;
+package auto.cc.info.dto.car;
+import lombok.Builder;
+
 import java.util.*;
 
+@Builder
 public record CarBrandDTO(
         Long id,
         String name,

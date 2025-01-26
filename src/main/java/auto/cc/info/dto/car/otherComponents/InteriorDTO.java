@@ -1,4 +1,4 @@
-package auto.cc.info.dto.otherComponents;
+package auto.cc.info.dto.car.otherComponents;
 
 
 public record InteriorDTO(

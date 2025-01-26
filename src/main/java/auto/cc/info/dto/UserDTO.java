@@ -1,16 +1,13 @@
 package auto.cc.info.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Builder;
 
-@NoArgsConstructor
-@Getter
-@Setter
-public class UserCommand {
-    private  String id;
-    private String userName;
-    private String password;
-    private String role;
-    private  String email;
+@Builder
+public record UserDTO(
+      String id,
+     String userName,
+     String password,
+     String role,
+      String email
+){
 }

@@ -1,8 +1,10 @@
-package auto.cc.info.dto.carSpecs;
+package auto.cc.info.dto.car.specs;
 
 
 import jakarta.validation.constraints.NotBlank;
+import lombok.Builder;
 
+@Builder
 public record BrakesDTO  (
       Long id ,
       String parkingBrake ,

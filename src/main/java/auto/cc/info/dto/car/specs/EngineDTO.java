@@ -1,6 +1,8 @@
-package auto.cc.info.dto.carSpecs;
+package auto.cc.info.dto.car.specs;
 
+import lombok.Builder;
 
+@Builder
 public record EngineDTO(
       Long id ,
       String engineSpecification,

@@ -1,7 +1,9 @@
 package auto.cc.info.dto.car.specs;
 
+import lombok.Builder;
 
-public record DimensionsAndWeightDTO (
+@Builder
+public record DimensionsWeightDTO(
       Long id,
       Float length,
       Float width,
