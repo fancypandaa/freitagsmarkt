@@ -1,4 +1,4 @@
-package auto.cc.info.dto;
+package auto.freitagsmarkt.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;

@@ -1,35 +1,59 @@
-package auto.cc.info.service;
+package auto.freitagsmarkt.service;
 
 
-import auto.cc.info.dto.AdsDTO;
+import auto.freitagsmarkt.domain.Ads;
+import auto.freitagsmarkt.dto.AdsDTO;
+import auto.freitagsmarkt.mapper.AdsMapper;
+import auto.freitagsmarkt.repository.AdsRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
+import java.util.*;
 @Service
 public class AdsServiceImpl implements AdsService {
-    
-    @Override
-    public Page<AdsDTO> listAllAds(int page, int size) {
-        return null;
+    private AdsRepository adsRepository;
+    private AdsMapper adsMapper;
+
+    public AdsServiceImpl(AdsRepository adsRepository, AdsMapper adsMapper) {
+        this.adsRepository = adsRepository;
+        this.adsMapper = adsMapper;
     }
 
     @Override
-    public AdsDTO createNewAds(Long sellerId, AdsDTO ads) {
-        return null;
+    public List<AdsDTO> listAllAds(int page, int size) {
+        Page<Ads> adsList = adsRepository.findAll(PageRequest.of(page,size));
+        if(adsList.getTotalElements()<0){
+            return Collections.EMPTY_LIST;
+        }
+        return adsMapper.toAdsListDTO(adsList.getContent());
     }
 
     @Override
-    public AdsDTO findAdsById(Long adsId) {
-        return null;
+    public AdsDTO createNewAd(AdsDTO adsDTO) {
+        return Optional.of(adsDTO)
+                .map(adsMapper::toAd)
+                .map(adsRepository::save)
+                .map(adsMapper::toAdDTO)
+                .orElseThrow(()-> new RuntimeException("Ads cannot created!!"));
     }
 
     @Override
-    public AdsDTO updateAds(Long sellerId, Long adsId, AdsDTO adsCommand) {
-        return null;
+    public AdsDTO findAdById(Long adId) {
+        return adsRepository.findById(adId)
+                .map(adsMapper::toAdDTO)
+                .orElseThrow(() -> new RuntimeException("Ad Not Found"));
     }
 
     @Override
-    public void removeAdsById(Long adsId) {
+    public AdsDTO updateAd(Long adId, AdsDTO adsDTO) {
+        Ads ads = adsRepository.findById(adId).
+                orElseThrow(() -> new RuntimeException("Ad not found"));
+        adsMapper.updateAdsFromAdsDTO(adsDTO,ads);
+        return adsMapper.toAdDTO(adsRepository.save(ads));
+    }
 
+    @Override
+    public void removeAdById(Long adId) {
+        adsRepository.deleteById(adId);
     }
 }

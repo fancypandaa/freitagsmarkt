@@ -1,12 +1,13 @@
-package auto.cc.info.service;
+package auto.freitagsmarkt.service;
 
-import auto.cc.info.dto.AdsDTO;
-import org.springframework.data.domain.Page;
+import auto.freitagsmarkt.dto.AdsDTO;
+
+import java.util.List;
 
 public interface AdsService {
-    Page<AdsDTO> listAllAds(int page, int size);
-    AdsDTO createNewAds(Long sellerId, AdsDTO ads);
-    AdsDTO findAdsById(Long adsId);
-    AdsDTO updateAds(Long sellerId, Long adsId, AdsDTO adsCommand);
-    void removeAdsById(Long adsId);
+    List<AdsDTO> listAllAds(int page, int size);
+    AdsDTO createNewAd(AdsDTO adsDTO);
+    AdsDTO findAdById(Long adId);
+    AdsDTO updateAd(Long adId, AdsDTO adsDTO);
+    void removeAdById(Long adId);
 }

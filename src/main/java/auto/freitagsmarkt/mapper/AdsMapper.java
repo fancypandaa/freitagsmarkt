@@ -1,15 +1,20 @@
-package auto.cc.info.mapper;
+package auto.freitagsmarkt.mapper;
 
-import auto.cc.info.domain.Ads;
-import auto.cc.info.dto.AdsDTO;
+import auto.freitagsmarkt.domain.Ads;
+import auto.freitagsmarkt.dto.AdsDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface AdsMapper {
     AdsMapper INSTANCE = Mappers.getMapper(AdsMapper.class);
-    Ads adsToAdsDTO(AdsDTO adsDTO);
-    AdsDTO adsDTOtoAds(Ads ads);
+    Ads toAd(AdsDTO adDTO);
+    AdsDTO toAdDTO(Ads ad);
+    List<AdsDTO> toAdsListDTO(List<Ads> ads);
+    List<Ads> toAdsList(List<AdsDTO> adsDTOList);
+
     void updateAdsFromAdsDTO(AdsDTO adsDTO, @MappingTarget Ads ads);
 }

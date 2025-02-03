@@ -1,6 +1,6 @@
-package auto.cc.info.domain;
+package auto.freitagsmarkt.domain;
 
-import auto.cc.info.domain.enums.AdsStatus;
+import auto.freitagsmarkt.domain.enums.AdsStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -10,10 +10,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 import java.util.*;
+import java.util.function.Function;
+
 @Entity
 @Getter
 @Setter
-public class Ads extends BaseEntity{
+public class Ads extends BaseEntity  {
 
     @Min(1)
     @Max(365)

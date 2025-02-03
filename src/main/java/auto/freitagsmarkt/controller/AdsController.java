@@ -1,11 +1,11 @@
-package auto.cc.info.controller;
+package auto.freitagsmarkt.controller;
 
-import auto.cc.info.dto.AdsDTO;
-import auto.cc.info.domain.user.Constants;
-import auto.cc.info.service.AdsService;
+import auto.freitagsmarkt.dto.AdsDTO;
+import auto.freitagsmarkt.service.AdsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -19,36 +19,28 @@ public class AdsController {
     public AdsController(AdsService adsService) {
         this.adsService = adsService;
     }
+    @GetMapping("/all-ads")
+    public ResponseEntity<List<AdsDTO>> listAds(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size){
+        return ResponseEntity.ok(adsService.listAllAds(page, size));
+    }
+    @GetMapping("/{adId}")
+    public ResponseEntity<AdsDTO> findAdById(@PathVariable Long adId) {
+        return ResponseEntity.ok(adsService.findAdById(adId));
+    }
 
-    @RequestMapping(value = "/{sellerId}",method = RequestMethod.POST,produces = "application/json")
-    public AdsDTO createNewAd(@PathVariable Long sellerId, @RequestBody AdsDTO adsCommand){
-        Optional<AdsDTO> adsCommandOptional = Optional.ofNullable(adsService.createNewAds(sellerId,adsCommand));
-        if(!adsCommandOptional.isPresent()){
-            log.error("Your seller id not found !!!");
-            return null;
-        }
-        else {
-            return adsCommandOptional.get();
-        }
+    @PostMapping
+    public ResponseEntity<AdsDTO> createNewAd(@RequestBody AdsDTO adsDTO){
+        return ResponseEntity.status(HttpStatus.CREATED).body(adsService.createNewAd(adsDTO));
     }
-    @RequestMapping(value ="/{sellerId}/{adsId}",method = RequestMethod.PATCH,produces = "application/json")
-    public AdsDTO updateAds(@PathVariable Long sellerId, @PathVariable Long adsId, @RequestBody AdsDTO adsCommand){
-        AdsDTO adsCommandI = adsService.updateAds(sellerId,adsId,adsCommand);
-        return adsCommandI;
+    @PutMapping("/{adId}")
+    public ResponseEntity<AdsDTO> updateAds(@PathVariable Long adId, @RequestBody AdsDTO adsDTO){
+        return ResponseEntity.ok(adsService.updateAd(adId,adsDTO));
     }
-    @RequestMapping(value = "/{adsId}",method = RequestMethod.DELETE,produces = "application/json")
-    public void deleteAdsById(@PathVariable Long adsId){
-            adsService.removeAdsById(Long.valueOf(adsId));
+    @DeleteMapping("{adId}")
+    public void deleteAdsById(@PathVariable Long adId){
+            adsService.removeAdById(adId);
     }
-    @QueryMapping("listAds")
-    @RolesAllowed({Constants.USER,Constants.SELLER})
-    public Page<AdsDTO> listAds(@Argument int page, @Argument int size){
-        Page<AdsDTO> adsList = adsService.listAllAds(page,size);
-        return adsList;
-    }
-    @QueryMapping(name = "findAdById")
-    public AdsDTO findAdById(@Argument Long id) {
-        AdsDTO ads = adsService.findAdsById(id);
-        return ads;
-    }
+
 }
