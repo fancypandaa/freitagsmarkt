@@ -22,7 +22,7 @@ public class AdsServiceImpl implements AdsService {
     @Override
     public List<AdsDTO> listAllAds(int page, int size) {
         Page<Ads> adsList = adsRepository.findAll(PageRequest.of(page,size));
-        if(adsList.getTotalElements()<0){
+        if(adsList.getTotalElements()<=0){
             return Collections.EMPTY_LIST;
         }
         return adsMapper.toAdsListDTO(adsList.getContent());

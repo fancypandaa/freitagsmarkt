@@ -1,6 +1,6 @@
-package auto.cc.info.dto;
-import auto.cc.info.domain.enums.SellerType;
-import auto.cc.info.dto.car.CarDTO;
+package auto.freitagsmarkt.dto;
+import auto.freitagsmarkt.domain.enums.SellerType;
+import auto.freitagsmarkt.dto.car.CarDTO;
 import lombok.Builder;
 
 import java.util.*;

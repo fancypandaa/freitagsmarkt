@@ -1,33 +1,62 @@
-package auto.cc.info.service;
+package auto.freitagsmarkt.service;
 
-import auto.cc.info.dto.SellerCommand;
+import auto.freitagsmarkt.domain.Seller;
+import auto.freitagsmarkt.dto.SellerDTO;
+import auto.freitagsmarkt.mapper.SellerMapper;
+import auto.freitagsmarkt.repository.SellerRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SellerServiceImpl implements SellerService{
+    private SellerRepository sellerRepository;
+    private SellerMapper sellerMapper;
+
+    public SellerServiceImpl(SellerRepository sellerRepository, SellerMapper sellerMapper) {
+        this.sellerRepository = sellerRepository;
+        this.sellerMapper = sellerMapper;
+    }
+
     @Override
-    public SellerCommand createNewSellerProfile(SellerCommand SellerCommand) {
+    public SellerDTO createNewSellerProfile(SellerDTO sellerDTO) {
+        return Optional.of(sellerDTO)
+                .map(sellerMapper::toSeller)
+                .map(sellerRepository::save)
+                .map(sellerMapper::toSellerDTO)
+                .orElseThrow(()-> new RuntimeException("Seller cannot created!!"));
+    }
+
+    @Override
+    public List<SellerDTO> listSellers(int page, int size) {
+        Page<Seller> sellers = sellerRepository.findAll(PageRequest.of(page,size));
+        if(sellers.getTotalElements() <= 0){
+            return Collections.EMPTY_LIST;
+        }
         return null;
     }
 
     @Override
-    public Page<SellerCommand> listSellers(int page, int size) {
-        return null;
+    public SellerDTO findSellerById(Long sellerId) {
+        return sellerRepository.findById(sellerId)
+                .map(sellerMapper::toSellerDTO)
+                .orElseThrow(() -> new RuntimeException("Seller Not Found"));
     }
 
     @Override
-    public SellerCommand findSellerById(Long sellerId) {
-        return null;
-    }
-
-    @Override
-    public SellerCommand updateSeller(Long sellerId, SellerCommand sellerCommand) {
-        return null;
+    public SellerDTO updateSeller(Long sellerId, SellerDTO sellerDTO) {
+        Seller seller = sellerRepository.findById(sellerId)
+                .orElseThrow(() -> new RuntimeException("Seller not found"));
+        sellerMapper.updateSellerFromSellerDTO(sellerDTO,seller);
+        return sellerMapper.toSellerDTO(sellerRepository.save(seller));
     }
 
     @Override
     public void removeSellerById(Long sellerId) {
-
+        sellerRepository.deleteById(sellerId);
     }
 }

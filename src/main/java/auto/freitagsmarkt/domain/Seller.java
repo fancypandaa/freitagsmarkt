@@ -1,7 +1,7 @@
-package auto.cc.info.domain;
+package auto.freitagsmarkt.domain;
 
-import auto.cc.info.domain.enums.SellerType;
-import auto.cc.info.domain.user.User;
+import auto.freitagsmarkt.domain.enums.SellerType;
+import auto.freitagsmarkt.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

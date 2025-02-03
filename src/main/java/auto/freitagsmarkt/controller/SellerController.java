@@ -1,61 +1,48 @@
-package auto.cc.info.controller;
+package auto.freitagsmarkt.controller;
 
-import auto.cc.info.dto.SellerCommand;
-import auto.cc.info.domain.user.Constants;
-import auto.cc.info.service.SellerService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.graphql.data.method.annotation.Argument;
-import org.springframework.graphql.data.method.annotation.QueryMapping;
+import auto.freitagsmarkt.dto.SellerDTO;
+import auto.freitagsmarkt.service.SellerService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
-import java.util.Optional;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/seller")
-@Slf4j
+@RequestMapping(SellerController.SELLER_URI)
 public class SellerController {
+    public static final String SELLER_URI = "/api/seller";
+
     private SellerService sellerService;
-    @Autowired
-    public void setSellerService(SellerService sellerService) {
+
+    public SellerController(SellerService sellerService) {
         this.sellerService = sellerService;
     }
-    @RequestMapping(value = "",method = RequestMethod.POST,produces = "application/json")
-    @RolesAllowed(Constants.SELLER)
-    public SellerCommand addNewSeller(@RequestBody SellerCommand sellerCommand){
-        Optional<SellerCommand> sellerCommandOptional = Optional.ofNullable(sellerService.createNewSellerProfile(sellerCommand));
-        if(!sellerCommandOptional.isPresent()){
-            log.error("Your new seller not added failed process !!!");
-            return null;
-        }
-        else {
-            return sellerCommandOptional.get();
-        }
+
+    @GetMapping("/list-sellers")
+    public ResponseEntity<List<SellerDTO>> listAllSeller(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ){
+        return ResponseEntity.ok(sellerService.listSellers(page,size));
     }
-    @RequestMapping(value = "/{sellerId}",method = RequestMethod.PATCH,produces = "application/json")
-    @RolesAllowed(Constants.SELLER)
-    public SellerCommand updateSeller(@PathVariable Long sellerId, @RequestBody SellerCommand sellerCommand){
-        SellerCommand sellerCommand1 = sellerService.updateSeller(sellerId,sellerCommand);
-        return sellerCommand1;
+    @GetMapping("/{sellerId}")
+    public ResponseEntity<SellerDTO> findBySellerId(@PathVariable Long sellerId) {
+        return ResponseEntity.ok(sellerService.findSellerById(sellerId));
     }
-    @RequestMapping(value = "{sellerId}",method = RequestMethod.DELETE,produces = "application/json")
-    @RolesAllowed(Constants.SELLER)
-    public void deleteSellerById(@PathVariable Long sellerId){
+    @PostMapping
+    public ResponseEntity<SellerDTO> addNewSeller(@RequestBody SellerDTO sellerDTO){
+        return ResponseEntity.status(HttpStatus.CREATED).body(sellerService.createNewSellerProfile(sellerDTO));
+    }
+    @PutMapping("/{sellerId}")
+    public ResponseEntity<SellerDTO> updateSeller(@PathVariable Long sellerId, @RequestBody SellerDTO sellerDTO){
+        return ResponseEntity.ok(sellerService.updateSeller(sellerId,sellerDTO));
+    }
+    @DeleteMapping("/{sellerId}")
+    public ResponseEntity<String> deleteSellerById(@PathVariable Long sellerId){
         sellerService.removeSellerById(sellerId);
+        return ResponseEntity.ok("Seller Removed successfully");
     }
 
-    @QueryMapping("listAllSeller")
-    @RolesAllowed({Constants.USER,Constants.SELLER})
-    public Page<SellerCommand> listAllSeller(@Argument int page, @Argument int size){
-        Page<SellerCommand> sellerCommands = sellerService.listSellers(page,size);
-        return sellerCommands;
-    }
-    @QueryMapping(name = "findBySellerId")
-    @RolesAllowed({Constants.USER,Constants.SELLER})
-    public SellerCommand findBySellerId(@Argument Long id) {
-        SellerCommand sellerCommand = sellerService.findSellerById(id);
-        return sellerCommand;
-    }
+
 }
