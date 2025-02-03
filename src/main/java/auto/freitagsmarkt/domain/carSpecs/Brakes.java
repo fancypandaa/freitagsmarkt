@@ -1,6 +1,6 @@
-package auto.cc.info.domain.carSpecs;
+package auto.freitagsmarkt.domain.carSpecs;
 
-import auto.cc.info.domain.BaseEntity;
+import auto.freitagsmarkt.domain.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import lombok.Getter;

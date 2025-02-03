@@ -1,9 +1,9 @@
-package auto.cc.info.service;
+package auto.freitagsmarkt.service;
 
-import auto.cc.info.dto.car.specs.BrakesDTO;
+import auto.freitagsmarkt.dto.car.specs.BrakesDTO;
 
 public interface BrakesService {
-    BrakesDTO addBrakes(BrakesDTO brakesCommand);
+    BrakesDTO addBrakes(BrakesDTO brakesDTO);
     BrakesDTO findBrakesById(Long id);
-
+    BrakesDTO updateBrakesById(Long id,BrakesDTO brakesDTO);
 }

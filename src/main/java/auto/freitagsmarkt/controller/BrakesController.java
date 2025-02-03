@@ -1,45 +1,37 @@
-package auto.cc.info.controller;
+package auto.freitagsmarkt.controller;
 
-import auto.cc.info.dto.car.specs.BrakesDTO;
-import auto.cc.info.domain.user.Constants;
-import auto.cc.info.service.BrakesService;
-import lombok.extern.slf4j.Slf4j;
+import auto.freitagsmarkt.dto.car.specs.BrakesDTO;
+import auto.freitagsmarkt.domain.user.Constants;
+import auto.freitagsmarkt.service.BrakesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.graphql.data.method.annotation.Argument;
-import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
+import static auto.freitagsmarkt.controller.BrakesController.ADS_URI;
+
 @RestController
-@RequestMapping("/api/brakes")
-@Slf4j
+@RequestMapping(ADS_URI)
 public class BrakesController {
+    public static final String ADS_URI = "/api/brakes";
     private BrakesService brakesService;
     @Autowired
     public void setBrakesService(BrakesService brakesService) {
         this.brakesService = brakesService;
     }
-    @RequestMapping(value = "",method = RequestMethod.POST,produces = "application/json")
-    @RolesAllowed(Constants.SELLER)
-    public BrakesDTO addNewBrakes(@RequestBody BrakesDTO brakesCommand){
-        Optional<BrakesDTO> brakesCommandOptional = Optional.ofNullable(brakesService.addBrakes(brakesCommand));
-        if(!brakesCommandOptional.isPresent()){
-            log.error("Your new brakes not added failed process !!!");
-            return null;
-        }
-        else {
-            return brakesCommandOptional.get();
-        }
+
+    @PostMapping
+    public ResponseEntity<BrakesDTO> addNewBrakes(@RequestBody BrakesDTO brakesDTO){
+        return ResponseEntity.status(HttpStatus.CREATED).body(brakesService.addBrakes(brakesDTO));
     }
-    @QueryMapping(name = "findBrakesById")
-    @RolesAllowed({Constants.USER,Constants.SELLER})
-    public BrakesDTO findAdById(@Argument Long id) {
-        BrakesDTO brakes = brakesService.findBrakesById(id);
-        return brakes;
+    @GetMapping("/{brakesId}")
+    public ResponseEntity<BrakesDTO> findBrakesById(@PathVariable Long brakesId) {
+        return ResponseEntity.ok(brakesService.findBrakesById(brakesId));
+    }
+    @PutMapping("/{brakesId}")
+    public ResponseEntity<BrakesDTO> updateBrakesById(@PathVariable Long brakesId,@RequestBody BrakesDTO brakesDTO){
+        return ResponseEntity.ok(brakesService.updateBrakesById(brakesId,brakesDTO));
     }
 }
