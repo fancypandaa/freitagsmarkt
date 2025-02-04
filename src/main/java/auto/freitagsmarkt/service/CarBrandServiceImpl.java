@@ -1,40 +1,63 @@
-package auto.cc.info.service;
+package auto.freitagsmarkt.service;
 
 
-import auto.cc.info.dto.car.CarBrandDTO;
+import auto.freitagsmarkt.domain.carSpecs.CarBrand;
+import auto.freitagsmarkt.dto.car.CarBrandDTO;
+import auto.freitagsmarkt.mapper.CarBrandMapper;
+import auto.freitagsmarkt.repository.CarBrandRepository;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
+
 @Service
 public class CarBrandServiceImpl implements CarBrandService{
-    @Override
-    public Page<CarBrandDTO> listCarBrands(int page, int size) {
-        return null;
+    private CarBrandMapper carBrandMapper;
+    private CarBrandRepository carBrandRepository;
+
+    public CarBrandServiceImpl(CarBrandMapper carBrandMapper, CarBrandRepository carBrandRepository) {
+        this.carBrandMapper = carBrandMapper;
+        this.carBrandRepository = carBrandRepository;
     }
 
     @Override
-    public CarBrandDTO addNewCarBrand(CarBrandDTO carBrandCommand) {
-        return null;
+    public List<CarBrandDTO> listCarBrands(int page, int size) {
+        Page<CarBrand> carBrands = carBrandRepository.findAll(PageRequest.of(page,size));
+        if(carBrands.getTotalElements()<=0){
+            return Collections.EMPTY_LIST;
+        }
+        return carBrandMapper.toCarBrandListDTO(carBrands.getContent());
+    }
+
+    @Override
+    public CarBrandDTO addNewCarBrand(CarBrandDTO carBrandDTO) {
+        return Optional.of(carBrandDTO)
+                .map(carBrandMapper::toCarBrand)
+                .map(carBrandRepository::save)
+                .map(carBrandMapper::toCarBrandDTO)
+                .orElseThrow(()-> new RuntimeException("CarBrand cannot created!!"));
     }
 
     @Override
     public CarBrandDTO findCarBrandById(Long carBrandId) {
-        return null;
+        return carBrandRepository.findById(carBrandId)
+                .map(carBrandMapper::toCarBrandDTO)
+                .orElseThrow(()-> new RuntimeException("CarBrand Not Found"));
     }
 
     @Override
-    public Page<CarBrandDTO> findByProductionYearsAndSeries(Integer page, Integer size, Optional<String> series, Optional<Integer> productionYear) {
-        return null;
-    }
-
-    @Override
-    public CarBrandDTO updateCarBrand(Long carBrandId, CarBrandDTO carBrandCommand) {
-        return null;
+    public CarBrandDTO updateCarBrand(Long carBrandId, CarBrandDTO carBrandDTO) {
+        CarBrand carBrand = carBrandRepository.findById(carBrandId)
+                .orElseThrow(()-> new RuntimeException("CarBrand not found"));
+        carBrandMapper.updateCarBrandDto(carBrandDTO,carBrand);
+        return carBrandMapper.toCarBrandDTO(carBrandRepository.save(carBrand));
     }
 
     @Override
     public void removeCarBrandById(Long carBrandId) {
-
+        carBrandRepository.deleteById(carBrandId);
     }
 }

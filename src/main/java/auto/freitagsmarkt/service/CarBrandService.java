@@ -1,13 +1,11 @@
-package auto.cc.info.service;
+package auto.freitagsmarkt.service;
 
-import auto.cc.info.dto.car.CarBrandDTO;
-import org.springframework.data.domain.Page;
-import java.util.Optional;
+import auto.freitagsmarkt.dto.car.CarBrandDTO;
+import java.util.List;
 public interface CarBrandService {
-    Page<CarBrandDTO> listCarBrands(int page, int size);
-    CarBrandDTO addNewCarBrand(CarBrandDTO carBrandCommand);
+    List<CarBrandDTO> listCarBrands(int page, int size);
+    CarBrandDTO addNewCarBrand(CarBrandDTO carBrandDTO);
     CarBrandDTO findCarBrandById(Long carBrandId);
-    Page<CarBrandDTO> findByProductionYearsAndSeries(Integer page, Integer size, Optional<String> series, Optional<Integer> productionYear);
-    CarBrandDTO updateCarBrand(Long carBrandId, CarBrandDTO carBrandCommand);
+    CarBrandDTO updateCarBrand(Long carBrandId, CarBrandDTO carBrandDTO);
     void removeCarBrandById(Long carBrandId);
 }

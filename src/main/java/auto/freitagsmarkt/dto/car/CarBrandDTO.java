@@ -1,4 +1,4 @@
-package auto.cc.info.dto.car;
+package auto.freitagsmarkt.dto.car;
 import lombok.Builder;
 
 import java.util.*;

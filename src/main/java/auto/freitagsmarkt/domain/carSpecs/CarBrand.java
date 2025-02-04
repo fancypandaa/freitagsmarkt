@@ -1,7 +1,7 @@
-package auto.cc.info.domain.carSpecs;
+package auto.freitagsmarkt.domain.carSpecs;
 
-import auto.cc.info.domain.BaseEntity;
-import auto.cc.info.domain.Car;
+import auto.freitagsmarkt.domain.BaseEntity;
+import auto.freitagsmarkt.domain.Car;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
