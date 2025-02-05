@@ -1,12 +1,12 @@
-package auto.cc.info.domain;
+package auto.freitagsmarkt.domain;
 
-import auto.cc.info.domain.carSpecs.CarBrand;
-import auto.cc.info.domain.carSpecs.DimensionsWeight;
-import auto.cc.info.domain.carSpecs.Engine;
-import auto.cc.info.domain.carSpecs.Exterior;
-import auto.cc.info.domain.exCarComponents.Features;
-import auto.cc.info.domain.exCarComponents.Interior;
-import auto.cc.info.domain.exCarComponents.SafetyAndSecurity;
+import auto.freitagsmarkt.domain.carSpecs.CarBrand;
+import auto.freitagsmarkt.domain.carSpecs.DimensionsWeight;
+import auto.freitagsmarkt.domain.carSpecs.Engine;
+import auto.freitagsmarkt.domain.carSpecs.Exterior;
+import auto.freitagsmarkt.domain.exCarComponents.Features;
+import auto.freitagsmarkt.domain.exCarComponents.Interior;
+import auto.freitagsmarkt.domain.exCarComponents.SafetyAndSecurity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

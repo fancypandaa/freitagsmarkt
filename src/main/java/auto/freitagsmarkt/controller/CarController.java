@@ -1,69 +1,46 @@
-package auto.cc.info.controller;
+package auto.freitagsmarkt.controller;
 
-import auto.cc.info.dto.carSpecs.CarCommand;
-import auto.cc.info.dto.custom.ICarCustom;
-import auto.cc.info.domain.user.Constants;
-import auto.cc.info.service.CarService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.graphql.data.method.annotation.Argument;
-import org.springframework.graphql.data.method.annotation.QueryMapping;
+
+import auto.freitagsmarkt.dto.car.CarDTO;
+import auto.freitagsmarkt.service.CarService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
-@RequestMapping("/api/car")
-@Slf4j
+@RequestMapping(CarController.CAR_URI)
 public class CarController {
+    public static final String CAR_URI = "/api/car";
     private CarService carService;
-    @Autowired
-    public void setCarService(CarService carService) {
+
+    public CarController(CarService carService) {
         this.carService = carService;
     }
-    @RequestMapping(value = "",method = RequestMethod.POST,produces = "application/json")
-    @RolesAllowed(Constants.SELLER)
-    public CarCommand addNewCar(@RequestBody CarCommand carCommand){
-        Optional<CarCommand> carCommandOptional = Optional.ofNullable(carService.addNewCar(carCommand));
-        if(!carCommandOptional.isPresent()){
-            log.error("Your new car not added failed process !!!");
-            return null;
-        }
-        else {
-            return carCommandOptional.get();
-        }
+    @PostMapping
+    public ResponseEntity<CarDTO> addNewCar(@RequestBody CarDTO carDTO){
+        return ResponseEntity.status(HttpStatus.CREATED).body(carService.addNewCar(carDTO));
     }
-    @RequestMapping(value = "/{carId}",method = RequestMethod.PATCH,produces = "application/json")
-    @RolesAllowed(Constants.SELLER)
-    public CarCommand updateCar(@PathVariable Long carId, @RequestBody CarCommand carCommand){
-        CarCommand carCommand1 = carService.updateCarById(carId,carCommand);
-        return carCommand1;
+    @PatchMapping("/{carId}")
+    public ResponseEntity<CarDTO> updateCar(@PathVariable Long carId, @RequestBody CarDTO carDTO){
+        return ResponseEntity.ok(carService.updateCarById(carId,carDTO));
     }
-    @RequestMapping(value = "{carId}",method = RequestMethod.DELETE,produces = "application/json")
-    @RolesAllowed(Constants.SELLER)
-    public void deleteCarById(@PathVariable Long carId){
+    @DeleteMapping("/{carId}")
+    public ResponseEntity<String> deleteCarById(@PathVariable Long carId){
         carService.removeCarById(carId);
+        return ResponseEntity.ok("Car removed");
     }
-    @QueryMapping("listAllCars")
-    @RolesAllowed({Constants.USER,Constants.SELLER})
-    public Page<CarCommand> listAllCars(@Argument int page, @Argument int size){
-        Page<CarCommand> carCommands = carService.listCars(page,size);
-        return carCommands;
+    @GetMapping("/list-cars")
+    public ResponseEntity<List<CarDTO>> listAllCars(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ){
+        return ResponseEntity.ok(carService.listCars(page, size));
     }
-    @QueryMapping(name = "findCarById")
-    @RolesAllowed({Constants.USER,Constants.SELLER})
-    public CarCommand findCarById(@Argument Long id) {
-        CarCommand car = carService.findCarById(id);
-        return car;
+    @GetMapping("/{carId}")
+    public ResponseEntity<CarDTO> findCarById(@PathVariable Long carId) {
+        return ResponseEntity.ok(carService.findCarById(carId));
     }
 
-    @QueryMapping(name = "getCarCityTypesByGroups")
-    @RolesAllowed({Constants.USER,Constants.SELLER})
-    public List<ICarCustom> getCarCityTypesByGroups(){
-        List<ICarCustom> carCustoms = carService.getCarCityTypesByGroups();
-        return carCustoms;
-    }
 }

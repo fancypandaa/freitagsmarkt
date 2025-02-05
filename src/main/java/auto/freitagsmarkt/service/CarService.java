@@ -1,15 +1,15 @@
-package auto.cc.info.service;
+package auto.freitagsmarkt.service;
 
-import auto.cc.info.dto.carSpecs.CarCommand;
-import auto.cc.info.dto.custom.ICarCustom;
+
+import auto.freitagsmarkt.dto.car.CarDTO;
 import org.springframework.data.domain.Page;
+
 import java.util.List;
 
 public interface CarService {
-    CarCommand addNewCar(CarCommand carCommand);
-    Page<CarCommand> listCars(int page,int size);
-    CarCommand findCarById(Long carId);
-    CarCommand updateCarById(Long carId,CarCommand newCarCommand);
-    List<ICarCustom> getCarCityTypesByGroups();
+    CarDTO addNewCar(CarDTO carDTO);
+    List<CarDTO> listCars(int page, int size);
+    CarDTO findCarById(Long carId);
+    CarDTO updateCarById(Long carId,CarDTO carDTO);
     void removeCarById(Long Id);
 }
