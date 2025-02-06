@@ -1,10 +1,10 @@
-package auto.cc.info.service;
+package auto.freitagsmarkt.service;
 
-import auto.cc.info.dto.carSpecs.EngineCommand;
-import org.springframework.data.domain.Page;
-
+import auto.freitagsmarkt.dto.car.specs.EngineDTO;
+import java.util.List;
 public interface EngineService {
-    EngineCommand addNewEngineDetails(EngineCommand engineCommand);
-    Page<EngineCommand> listEngines(int page,int size);
+    EngineDTO addNewEngineDetails(EngineDTO engineCommand);
+    List<EngineDTO> listEngines(int page,int size);
+    EngineDTO findEngineById(Long engineId);
     void removeEngineById(Long engineId);
 }

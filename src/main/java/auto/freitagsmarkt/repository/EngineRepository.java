@@ -1,6 +1,6 @@
-package auto.cc.info.repository;
+package auto.freitagsmarkt.repository;
 
-import auto.cc.info.domain.carSpecs.Engine;
+import auto.freitagsmarkt.domain.carSpecs.Engine;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
