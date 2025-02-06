@@ -1,4 +1,4 @@
-package auto.cc.info.domain;
+package auto.freitagsmarkt.domain;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

@@ -1,4 +1,4 @@
-package auto.cc.info.domain.user;
+package auto.freitagsmarkt.domain.user;
 
 public class Constants {
     public static final String GUEST = "ROLE_GUEST";
