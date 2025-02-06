@@ -1,8 +1,8 @@
-package auto.cc.info.domain.carSpecs;
+package auto.freitagsmarkt.domain.carSpecs;
 
-import auto.cc.info.domain.BaseEntity;
-import auto.cc.info.domain.exCarComponents.ExteriorEquipment;
-import auto.cc.info.domain.enums.ChassisType;
+import auto.freitagsmarkt.domain.BaseEntity;
+import auto.freitagsmarkt.domain.exCarComponents.ExteriorEquipment;
+import auto.freitagsmarkt.domain.enums.ChassisType;
 import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,7 +1,7 @@
-package auto.cc.info.dto.car.otherComponents;
+package auto.freitagsmarkt.dto.car.otherComponents;
 
 
-import auto.cc.info.domain.enums.ChassisType;
+import auto.freitagsmarkt.domain.enums.ChassisType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
