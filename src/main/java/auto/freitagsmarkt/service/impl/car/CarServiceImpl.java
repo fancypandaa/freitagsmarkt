@@ -1,9 +1,10 @@
-package auto.freitagsmarkt.service;
+package auto.freitagsmarkt.service.impl.car;
 
-import auto.freitagsmarkt.domain.Car;
+import auto.freitagsmarkt.domain.car.Car;
 import auto.freitagsmarkt.dto.car.CarDTO;
-import auto.freitagsmarkt.mapper.CarMapper;
+import auto.freitagsmarkt.mapper.car.CarMapper;
 import auto.freitagsmarkt.repository.CarRepository;
+import auto.freitagsmarkt.service.car.CarService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CarServiceImpl implements CarService{
+public class CarServiceImpl implements CarService {
     private CarMapper carMapper;
     private CarRepository carRepository;
 

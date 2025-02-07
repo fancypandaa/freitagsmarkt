@@ -1,12 +1,13 @@
-package auto.freitagsmarkt.domain;
+package auto.freitagsmarkt.domain.car;
 
-import auto.freitagsmarkt.domain.carSpecs.CarBrand;
+import auto.freitagsmarkt.domain.BaseEntity;
+import auto.freitagsmarkt.domain.Seller;
 import auto.freitagsmarkt.domain.carSpecs.DimensionsWeight;
 import auto.freitagsmarkt.domain.carSpecs.Engine;
-import auto.freitagsmarkt.domain.carSpecs.Exterior;
-import auto.freitagsmarkt.domain.exCarComponents.Features;
-import auto.freitagsmarkt.domain.exCarComponents.Interior;
-import auto.freitagsmarkt.domain.exCarComponents.SafetyAndSecurity;
+import auto.freitagsmarkt.domain.components.Exterior;
+import auto.freitagsmarkt.domain.components.Features;
+import auto.freitagsmarkt.domain.components.Interior;
+import auto.freitagsmarkt.domain.components.SafetyAndSecurity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +16,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Car extends BaseEntity{
+public class Car extends BaseEntity {
 
     @Column(unique=true,nullable = false)
     private String model;

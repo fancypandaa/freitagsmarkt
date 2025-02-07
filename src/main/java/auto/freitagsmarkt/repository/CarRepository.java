@@ -1,6 +1,6 @@
 package auto.freitagsmarkt.repository;
 
-import auto.freitagsmarkt.domain.Car;
+import auto.freitagsmarkt.domain.car.Car;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

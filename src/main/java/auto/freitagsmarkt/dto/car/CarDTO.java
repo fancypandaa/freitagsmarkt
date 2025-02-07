@@ -1,11 +1,11 @@
 package auto.freitagsmarkt.dto.car;
 
 
-import auto.freitagsmarkt.dto.car.otherComponents.FeaturesDTO;
-import auto.freitagsmarkt.dto.car.otherComponents.InteriorDTO;
-import auto.freitagsmarkt.dto.car.otherComponents.SafetyAndSecurityDTO;
-import auto.freitagsmarkt.dto.car.specs.DimensionsWeightDTO;
-import auto.freitagsmarkt.dto.car.specs.EngineDTO;
+import auto.freitagsmarkt.dto.components.FeaturesDTO;
+import auto.freitagsmarkt.dto.components.InteriorDTO;
+import auto.freitagsmarkt.dto.components.SafetyAndSecurityDTO;
+import auto.freitagsmarkt.dto.specs.DimensionsWeightDTO;
+import auto.freitagsmarkt.dto.specs.EngineDTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;

@@ -1,8 +1,8 @@
-package auto.freitagsmarkt.controller;
+package auto.freitagsmarkt.controller.car;
 
 
 import auto.freitagsmarkt.dto.car.CarDTO;
-import auto.freitagsmarkt.service.CarService;
+import auto.freitagsmarkt.service.car.CarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

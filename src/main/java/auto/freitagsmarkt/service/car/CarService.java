@@ -1,8 +1,7 @@
-package auto.freitagsmarkt.service;
+package auto.freitagsmarkt.service.car;
 
 
 import auto.freitagsmarkt.dto.car.CarDTO;
-import org.springframework.data.domain.Page;
 
 import java.util.List;
 
