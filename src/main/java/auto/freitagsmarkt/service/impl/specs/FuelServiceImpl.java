@@ -1,14 +1,15 @@
-package auto.freitagsmarkt.service;
+package auto.freitagsmarkt.service.impl.specs;
 
-import auto.freitagsmarkt.dto.car.specs.FuelDTO;
-import auto.freitagsmarkt.mapper.FuelMapper;
-import auto.freitagsmarkt.repository.FuelRepository;
+import auto.freitagsmarkt.dto.specs.FuelDTO;
+import auto.freitagsmarkt.mapper.specs.FuelMapper;
+import auto.freitagsmarkt.repository.specs.FuelRepository;
+import auto.freitagsmarkt.service.specs.FuelService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class FuelServiceImpl implements FuelService{
+public class FuelServiceImpl implements FuelService {
 
     private FuelMapper fuelMapper;
     private FuelRepository fuelRepository;
