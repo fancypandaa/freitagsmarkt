@@ -1,6 +1,6 @@
-package auto.cc.info.repository;
+package auto.freitagsmarkt.repository;
 
-import auto.cc.info.domain.carSpecs.Fuel;
+import auto.freitagsmarkt.domain.carSpecs.Fuel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

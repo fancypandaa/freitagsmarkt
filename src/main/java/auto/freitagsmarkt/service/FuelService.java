@@ -1,10 +1,10 @@
-package auto.cc.info.service;
+package auto.freitagsmarkt.service;
 
-import auto.cc.info.dto.carSpecs.FuelCommand;
-import auto.cc.info.dto.custom.IFuelCustom;
 
-import java.util.*;
+import auto.freitagsmarkt.dto.car.specs.FuelDTO;
+
 public interface FuelService {
-    FuelCommand addFuelInfo(FuelCommand fuelCommand);
-    List<IFuelCustom> getFuelTypesByGroups();
+    FuelDTO addFuelInfo(FuelDTO fuelDTO);
+    FuelDTO findFuelById(Long fuelId);
+
 }

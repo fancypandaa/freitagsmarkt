@@ -1,45 +1,27 @@
-package auto.cc.info.controller;
+package auto.freitagsmarkt.controller;
 
-import auto.cc.info.dto.carSpecs.FuelCommand;
-import auto.cc.info.dto.custom.IFuelCustom;
-import auto.cc.info.domain.user.Constants;
-import auto.cc.info.service.FuelService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.security.RolesAllowed;
-import java.util.*;
+import auto.freitagsmarkt.dto.car.specs.FuelDTO;
+import auto.freitagsmarkt.service.FuelService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/fuel")
-@Slf4j
+@RequestMapping(FuelController.FUEL_URI)
 public class FuelController {
+    public static final String FUEL_URI= "/api/fuel";
     private FuelService fuelService;
-    @Autowired
-    public void setFuelService(FuelService fuelService) {
+
+    public FuelController(FuelService fuelService) {
         this.fuelService = fuelService;
     }
-    @RequestMapping(value = "",method = RequestMethod.POST,produces = "application/json")
-    @RolesAllowed(Constants.SELLER)
-    public FuelCommand addFuelInfo(@RequestBody FuelCommand fuelCommand){
-        Optional<FuelCommand> fuelCommandOptional = Optional.ofNullable(fuelService.addFuelInfo(fuelCommand));
-        if(!fuelCommandOptional.isPresent()){
-            log.error("Your new fuel not added failed process !!!");
-            return null;
-        }
-        else {
-            return fuelCommandOptional.get();
-        }
+    @PostMapping
+    public ResponseEntity<FuelDTO> addFuelInfo(@RequestBody FuelDTO fuelDTO){
+        return ResponseEntity.status(HttpStatus.CREATED).body(fuelService.addFuelInfo(fuelDTO));
     }
-    @QueryMapping(name = "getFuelTypesByGroups")
-    @RolesAllowed({Constants.USER,Constants.SELLER})
-    public List<IFuelCustom> getFuelTypesByGroups(){
-        List<IFuelCustom> fuelCommands = fuelService.getFuelTypesByGroups();
-        return fuelCommands;
+    @GetMapping("/{fuelId}")
+    public ResponseEntity<FuelDTO> getFuelById(@PathVariable Long fuelId){
+        return ResponseEntity.ok(fuelService.findFuelById(fuelId));
     }
 }

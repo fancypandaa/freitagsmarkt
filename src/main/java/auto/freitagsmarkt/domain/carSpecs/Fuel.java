@@ -1,7 +1,7 @@
-package auto.cc.info.domain.carSpecs;
+package auto.freitagsmarkt.domain.carSpecs;
 
-import auto.cc.info.domain.BaseEntity;
-import auto.cc.info.domain.enums.FuelType;
+import auto.freitagsmarkt.domain.BaseEntity;
+import auto.freitagsmarkt.domain.enums.FuelType;
 import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,7 +1,7 @@
-package auto.cc.info.dto.car.specs;
+package auto.freitagsmarkt.dto.car.specs;
 
 
-import auto.cc.info.domain.enums.FuelType;
+import auto.freitagsmarkt.domain.enums.FuelType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.Builder;
