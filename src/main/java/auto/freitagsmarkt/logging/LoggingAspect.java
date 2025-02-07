@@ -1,4 +1,4 @@
-package auto.cc.info.logging;
+package auto.freitagsmarkt.logging;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -13,14 +13,14 @@ import java.util.Arrays;
 @Component
 public class LoggingAspect {
     private static final Logger log = LoggerFactory.getLogger(LoggingAspect.class);
-    @Pointcut("execution(* auto.cc.info.controller.*.*(..)) || execution(* auto.cc.info.services.*.*(..))")
+    @Pointcut("execution(* auto.freitagsmarkt.controller.*.*(..)) || execution(* auto.freitagsmarkt.services.*.*(..))")
     public void actionMethods(){}
 
     @Before("actionMethods()")
     public void logBefore(JoinPoint joinPoint){
         log.info("Entering Method: {} with Arguments: {}",joinPoint.getSignature(), Arrays.toString(joinPoint.getArgs()));
     }
-    @Before("execution(* auto.cc.info.*.*(..))")
+    @Before("execution(* auto.freitagsmarkt.*.*(..))")
     public void logDebug(JoinPoint joinPoint){
         log.info("Debugging - Method: {} with Arguments: {}",joinPoint.getSignature(), Arrays.toString(joinPoint.getArgs()));
     }
