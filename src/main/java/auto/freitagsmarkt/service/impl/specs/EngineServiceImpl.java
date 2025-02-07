@@ -1,10 +1,11 @@
-package auto.freitagsmarkt.service;
+package auto.freitagsmarkt.service.impl.specs;
 
 
 import auto.freitagsmarkt.domain.carSpecs.Engine;
-import auto.freitagsmarkt.dto.car.specs.EngineDTO;
+import auto.freitagsmarkt.dto.specs.EngineDTO;
 import auto.freitagsmarkt.mapper.specs.EngineMapper;
-import auto.freitagsmarkt.repository.EngineRepository;
+import auto.freitagsmarkt.repository.specs.EngineRepository;
+import auto.freitagsmarkt.service.specs.EngineService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EngineServiceImpl implements EngineService{
+public class EngineServiceImpl implements EngineService {
     private EngineRepository engineRepository;
     private EngineMapper engineMapper;
 

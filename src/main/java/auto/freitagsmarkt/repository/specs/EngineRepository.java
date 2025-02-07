@@ -1,4 +1,4 @@
-package auto.freitagsmarkt.repository;
+package auto.freitagsmarkt.repository.specs;
 
 import auto.freitagsmarkt.domain.carSpecs.Engine;
 import org.springframework.data.domain.Page;
