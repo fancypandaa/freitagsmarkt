@@ -1,15 +1,16 @@
-package auto.freitagsmarkt.service;
+package auto.freitagsmarkt.service.impl.components;
 
 
-import auto.freitagsmarkt.dto.car.otherComponents.FeaturesDTO;
-import auto.freitagsmarkt.mapper.otherComponents.FeaturesMapper;
-import auto.freitagsmarkt.repository.FeaturesRepository;
+import auto.freitagsmarkt.dto.components.FeaturesDTO;
+import auto.freitagsmarkt.mapper.components.FeaturesMapper;
+import auto.freitagsmarkt.repository.components.FeaturesRepository;
+import auto.freitagsmarkt.service.components.FeaturesService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class FeaturesServiceImpl implements FeaturesService{
+public class FeaturesServiceImpl implements FeaturesService {
 
     private FeaturesMapper featuresMapper;
     private FeaturesRepository featuresRepository;

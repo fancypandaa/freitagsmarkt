@@ -1,6 +1,6 @@
-package auto.freitagsmarkt.repository;
+package auto.freitagsmarkt.repository.components;
 
-import auto.freitagsmarkt.domain.exCarComponents.Features;
+import auto.freitagsmarkt.domain.components.Features;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

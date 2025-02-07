@@ -1,13 +1,10 @@
-package auto.freitagsmarkt.controller;
+package auto.freitagsmarkt.controller.components;
 
-import auto.freitagsmarkt.dto.car.otherComponents.ExteriorDTO;
-import auto.freitagsmarkt.domain.user.Constants;
-import auto.freitagsmarkt.service.ExteriorService;
+import auto.freitagsmarkt.dto.components.ExteriorDTO;
+import auto.freitagsmarkt.service.components.ExteriorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 
 @RestController

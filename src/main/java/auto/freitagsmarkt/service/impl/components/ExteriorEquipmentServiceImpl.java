@@ -1,14 +1,15 @@
-package auto.freitagsmarkt.service;
+package auto.freitagsmarkt.service.impl.components;
 
-import auto.freitagsmarkt.dto.car.otherComponents.ExteriorEquipmentDTO;
-import auto.freitagsmarkt.mapper.otherComponents.ExteriorEquipmentMapper;
-import auto.freitagsmarkt.repository.ExteriorEquipmentRepository;
+import auto.freitagsmarkt.dto.components.ExteriorEquipmentDTO;
+import auto.freitagsmarkt.mapper.components.ExteriorEquipmentMapper;
+import auto.freitagsmarkt.repository.components.ExteriorEquipmentRepository;
+import auto.freitagsmarkt.service.components.ExteriorEquipmentService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class ExteriorEquipmentServiceImpl implements ExteriorEquipmentService{
+public class ExteriorEquipmentServiceImpl implements ExteriorEquipmentService {
     private ExteriorEquipmentMapper exteriorEquipmentMapper;
     private ExteriorEquipmentRepository exteriorEquipmentRepository;
 

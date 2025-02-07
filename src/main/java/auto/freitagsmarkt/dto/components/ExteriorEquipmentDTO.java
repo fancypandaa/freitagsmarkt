@@ -1,4 +1,4 @@
-package auto.freitagsmarkt.dto.car.otherComponents;
+package auto.freitagsmarkt.dto.components;
 
 import lombok.Builder;
 

@@ -1,6 +1,6 @@
-package auto.freitagsmarkt.service;
+package auto.freitagsmarkt.service.components;
 
-import auto.freitagsmarkt.dto.car.otherComponents.ExteriorEquipmentDTO;
+import auto.freitagsmarkt.dto.components.ExteriorEquipmentDTO;
 
 public interface ExteriorEquipmentService {
     ExteriorEquipmentDTO findExteriorEquipmentById(Long exId);

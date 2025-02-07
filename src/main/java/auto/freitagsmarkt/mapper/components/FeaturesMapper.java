@@ -1,7 +1,7 @@
-package auto.freitagsmarkt.mapper.otherComponents;
+package auto.freitagsmarkt.mapper.components;
 
-import auto.freitagsmarkt.domain.exCarComponents.Features;
-import auto.freitagsmarkt.dto.car.otherComponents.FeaturesDTO;
+import auto.freitagsmarkt.domain.components.Features;
+import auto.freitagsmarkt.dto.components.FeaturesDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

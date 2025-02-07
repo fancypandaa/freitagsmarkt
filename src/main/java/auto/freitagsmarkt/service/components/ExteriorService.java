@@ -1,6 +1,6 @@
-package auto.freitagsmarkt.service;
+package auto.freitagsmarkt.service.components;
 
-import auto.freitagsmarkt.dto.car.otherComponents.ExteriorDTO;
+import auto.freitagsmarkt.dto.components.ExteriorDTO;
 
 public interface ExteriorService {
     ExteriorDTO createExterior(ExteriorDTO exteriorCommand);

@@ -1,7 +1,6 @@
-package auto.freitagsmarkt.domain.carSpecs;
+package auto.freitagsmarkt.domain.components;
 
 import auto.freitagsmarkt.domain.BaseEntity;
-import auto.freitagsmarkt.domain.exCarComponents.ExteriorEquipment;
 import auto.freitagsmarkt.domain.enums.ChassisType;
 import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import jakarta.persistence.*;

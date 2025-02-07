@@ -1,7 +1,7 @@
-package auto.freitagsmarkt.service;
+package auto.freitagsmarkt.service.components;
 
 
-import auto.freitagsmarkt.dto.car.otherComponents.FeaturesDTO;
+import auto.freitagsmarkt.dto.components.FeaturesDTO;
 
 public interface FeaturesService {
     FeaturesDTO addNewCarFeatures(FeaturesDTO featuresDTO);

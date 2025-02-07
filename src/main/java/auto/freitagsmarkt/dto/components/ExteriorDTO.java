@@ -1,4 +1,4 @@
-package auto.freitagsmarkt.dto.car.otherComponents;
+package auto.freitagsmarkt.dto.components;
 
 
 import auto.freitagsmarkt.domain.enums.ChassisType;
