@@ -1,13 +1,13 @@
-package auto.cc.info.mapper.specs;
+package auto.freitagsmarkt.mapper.specs;
 
-import auto.cc.info.domain.carSpecs.Transmission;
-import auto.cc.info.dto.car.specs.TransmissionDTO;
+import auto.freitagsmarkt.domain.carSpecs.Transmission;
+import auto.freitagsmarkt.dto.specs.TransmissionDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface TransmissionMapper {
     TransmissionMapper INSTANCE = Mappers.getMapper(TransmissionMapper.class);
-    Transmission transmissionDTOtoTransmission(TransmissionDTO transmissionDTO);
-    TransmissionDTO transmissionToTransmissionDTO(Transmission transmission);
+    Transmission toTransmission(TransmissionDTO transmissionDTO);
+    TransmissionDTO toTransmissionDTO(Transmission transmission);
 }
