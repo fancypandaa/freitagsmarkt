@@ -1,9 +1,10 @@
-package auto.freitagsmarkt.service;
+package auto.freitagsmarkt.service.impl;
 
 import auto.freitagsmarkt.domain.Seller;
 import auto.freitagsmarkt.dto.SellerDTO;
 import auto.freitagsmarkt.mapper.SellerMapper;
 import auto.freitagsmarkt.repository.SellerRepository;
+import auto.freitagsmarkt.service.SellerService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SellerServiceImpl implements SellerService{
+public class SellerServiceImpl implements SellerService {
     private SellerRepository sellerRepository;
     private SellerMapper sellerMapper;
 
@@ -37,7 +38,7 @@ public class SellerServiceImpl implements SellerService{
         if(sellers.getTotalElements() <= 0){
             return Collections.EMPTY_LIST;
         }
-        return null;
+        return sellerMapper.toSellerListDTO(sellers.getContent());
     }
 
     @Override

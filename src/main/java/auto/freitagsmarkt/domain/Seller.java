@@ -1,5 +1,6 @@
 package auto.freitagsmarkt.domain;
 
+import auto.freitagsmarkt.domain.car.Car;
 import auto.freitagsmarkt.domain.enums.SellerType;
 import auto.freitagsmarkt.domain.user.User;
 import jakarta.persistence.*;

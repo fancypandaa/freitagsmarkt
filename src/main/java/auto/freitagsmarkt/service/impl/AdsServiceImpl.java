@@ -1,10 +1,11 @@
-package auto.freitagsmarkt.service;
+package auto.freitagsmarkt.service.impl;
 
 
 import auto.freitagsmarkt.domain.Ads;
 import auto.freitagsmarkt.dto.AdsDTO;
 import auto.freitagsmarkt.mapper.AdsMapper;
 import auto.freitagsmarkt.repository.AdsRepository;
+import auto.freitagsmarkt.service.AdsService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;

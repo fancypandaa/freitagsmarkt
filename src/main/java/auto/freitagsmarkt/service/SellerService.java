@@ -1,13 +1,11 @@
-package auto.cc.info.service;
+package auto.freitagsmarkt.service;
 
-import auto.cc.info.dto.SellerCommand;
-import org.springframework.data.domain.Page;
-
+import auto.freitagsmarkt.dto.SellerDTO;
+import java.util.List;
 public interface SellerService {
-    SellerCommand createNewSellerProfile(SellerCommand SellerCommand);
-    Page<SellerCommand> listSellers(int page, int size);
-    SellerCommand findSellerById(Long sellerId);
-    SellerCommand updateSeller(Long sellerId, SellerCommand sellerCommand);
-
+    SellerDTO createNewSellerProfile(SellerDTO sellerDTO);
+    List<SellerDTO> listSellers(int page, int size);
+    SellerDTO findSellerById(Long sellerId);
+    SellerDTO updateSeller(Long sellerId, SellerDTO sellerDTO);
     void removeSellerById(Long sellerId);
 }

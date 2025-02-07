@@ -1,5 +1,6 @@
 package auto.freitagsmarkt.domain;
 
+import auto.freitagsmarkt.domain.car.Car;
 import auto.freitagsmarkt.domain.enums.AdsStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
@@ -10,7 +11,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 
 import java.util.*;
-import java.util.function.Function;
 
 @Entity
 @Getter
