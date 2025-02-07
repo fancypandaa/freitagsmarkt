@@ -1,6 +1,6 @@
-package auto.freitagsmarkt.mapper;
+package auto.freitagsmarkt.mapper.car;
 
-import auto.freitagsmarkt.domain.carSpecs.CarBrand;
+import auto.freitagsmarkt.domain.car.CarBrand;
 import auto.freitagsmarkt.dto.car.CarBrandDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

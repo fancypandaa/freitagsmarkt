@@ -1,4 +1,4 @@
-package auto.freitagsmarkt.service;
+package auto.freitagsmarkt.service.car;
 
 import auto.freitagsmarkt.dto.car.CarBrandDTO;
 import java.util.List;
