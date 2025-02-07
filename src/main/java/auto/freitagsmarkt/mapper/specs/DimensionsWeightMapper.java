@@ -1,7 +1,7 @@
 package auto.freitagsmarkt.mapper.specs;
 
 import auto.freitagsmarkt.domain.carSpecs.DimensionsWeight;
-import auto.freitagsmarkt.dto.car.specs.DimensionsWeightDTO;
+import auto.freitagsmarkt.dto.specs.DimensionsWeightDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.TargetType;
 import org.mapstruct.factory.Mappers;

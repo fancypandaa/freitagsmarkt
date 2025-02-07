@@ -1,13 +1,11 @@
-package auto.freitagsmarkt.controller;
+package auto.freitagsmarkt.controller.carSpecs;
 
-import auto.freitagsmarkt.dto.car.specs.DimensionsWeightDTO;
-import auto.freitagsmarkt.service.DimensionsWeightService;
+import auto.freitagsmarkt.dto.specs.DimensionsWeightDTO;
+import auto.freitagsmarkt.service.specs.DimensionsWeightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping(DimensionsWeightController.DimensionsWeight_URI)

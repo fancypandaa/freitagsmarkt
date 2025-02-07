@@ -1,9 +1,10 @@
-package auto.freitagsmarkt.service;
+package auto.freitagsmarkt.service.impl.specs;
 
 
-import auto.freitagsmarkt.dto.car.specs.DimensionsWeightDTO;
+import auto.freitagsmarkt.dto.specs.DimensionsWeightDTO;
 import auto.freitagsmarkt.mapper.specs.DimensionsWeightMapper;
-import auto.freitagsmarkt.repository.DimensionsWeightRepository;
+import auto.freitagsmarkt.repository.specs.DimensionsWeightRepository;
+import auto.freitagsmarkt.service.specs.DimensionsWeightService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

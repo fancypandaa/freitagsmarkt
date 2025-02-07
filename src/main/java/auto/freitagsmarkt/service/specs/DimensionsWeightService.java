@@ -1,7 +1,7 @@
-package auto.freitagsmarkt.service;
+package auto.freitagsmarkt.service.specs;
 
 
-import auto.freitagsmarkt.dto.car.specs.DimensionsWeightDTO;
+import auto.freitagsmarkt.dto.specs.DimensionsWeightDTO;
 
 public interface DimensionsWeightService {
     DimensionsWeightDTO addNewDimAndWeight(DimensionsWeightDTO dimensionsWeightDTO);
