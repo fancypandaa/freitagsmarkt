@@ -1,16 +1,13 @@
-package auto.freitagsmarkt.controller;
+package auto.freitagsmarkt.controller.carSpecs;
 
-import auto.freitagsmarkt.dto.car.specs.BrakesDTO;
-import auto.freitagsmarkt.domain.user.Constants;
-import auto.freitagsmarkt.service.BrakesService;
+import auto.freitagsmarkt.dto.specs.BrakesDTO;
+import auto.freitagsmarkt.service.specs.BrakesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
-import static auto.freitagsmarkt.controller.BrakesController.ADS_URI;
+import static auto.freitagsmarkt.controller.carSpecs.BrakesController.ADS_URI;
 
 @RestController
 @RequestMapping(ADS_URI)

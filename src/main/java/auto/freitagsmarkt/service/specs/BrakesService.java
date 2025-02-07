@@ -1,6 +1,6 @@
-package auto.freitagsmarkt.service;
+package auto.freitagsmarkt.service.specs;
 
-import auto.freitagsmarkt.dto.car.specs.BrakesDTO;
+import auto.freitagsmarkt.dto.specs.BrakesDTO;
 
 public interface BrakesService {
     BrakesDTO addBrakes(BrakesDTO brakesDTO);

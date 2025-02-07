@@ -1,16 +1,17 @@
-package auto.freitagsmarkt.service;
+package auto.freitagsmarkt.service.impl.specs;
 
 
 import auto.freitagsmarkt.domain.carSpecs.Brakes;
-import auto.freitagsmarkt.dto.car.specs.BrakesDTO;
+import auto.freitagsmarkt.dto.specs.BrakesDTO;
 import auto.freitagsmarkt.mapper.specs.BrakesMapper;
-import auto.freitagsmarkt.repository.BrakesRepository;
+import auto.freitagsmarkt.repository.specs.BrakesRepository;
+import auto.freitagsmarkt.service.specs.BrakesService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class BrakesServiceImpl implements BrakesService{
+public class BrakesServiceImpl implements BrakesService {
     private BrakesRepository brakesRepository;
     private BrakesMapper brakesMapper;
 
