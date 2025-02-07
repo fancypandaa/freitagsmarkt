@@ -1,8 +1,6 @@
 package auto.freitagsmarkt.controller.carSpecs;
 
-import auto.freitagsmarkt.dto.carSpecs.TransmissionCommand;
-import auto.freitagsmarkt.dto.custom.ITransmissionCustom;
-import auto.freitagsmarkt.domain.user.Constants;
+
 import auto.freitagsmarkt.dto.specs.TransmissionDTO;
 import auto.freitagsmarkt.service.specs.TransmissionService;
 import org.springframework.http.HttpStatus;
