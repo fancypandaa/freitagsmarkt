@@ -4,7 +4,9 @@ package auto.freitagsmarkt.dto.car.otherComponents;
 import auto.freitagsmarkt.domain.enums.ChassisType;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import lombok.Builder;
 
+@Builder
 public record ExteriorDTO(
       Long id ,
     @Enumerated(value = EnumType.STRING)
