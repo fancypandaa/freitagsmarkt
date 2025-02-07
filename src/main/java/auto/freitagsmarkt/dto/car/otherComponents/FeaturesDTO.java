@@ -1,6 +1,8 @@
-package auto.cc.info.dto.car.otherComponents;
+package auto.freitagsmarkt.dto.car.otherComponents;
 
+import lombok.Builder;
 
+@Builder
 public record FeaturesDTO(
       Long id,
       String comfort,

@@ -1,43 +1,27 @@
-package auto.cc.info.controller;
+package auto.freitagsmarkt.controller;
 
-import auto.cc.info.dto.otherComponents.FeaturesCommand;
-import auto.cc.info.domain.user.Constants;
-import auto.cc.info.service.FeaturesService;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.graphql.data.method.annotation.Argument;
-import org.springframework.graphql.data.method.annotation.QueryMapping;
+
+import auto.freitagsmarkt.dto.car.otherComponents.FeaturesDTO;
+import auto.freitagsmarkt.service.FeaturesService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
-import java.util.Optional;
-
 @RestController
-@RequestMapping("/api/features")
-@Slf4j
+@RequestMapping(FeaturesController.FEATURES_URI)
 public class FeaturesController {
+    public static final String FEATURES_URI= "/api/features";
     private FeaturesService featuresService;
-    @Autowired
-    public void setFeaturesService(FeaturesService featuresService) {
+
+    public FeaturesController(FeaturesService featuresService) {
         this.featuresService = featuresService;
     }
-    @RequestMapping(value = "",method = RequestMethod.POST,produces = "application/json")
-    @RolesAllowed(Constants.SELLER)
-    public FeaturesCommand addNewCarFeatures(@RequestBody FeaturesCommand featuresCommand){
-        Optional<FeaturesCommand> featuresCommandOptional = Optional.ofNullable(featuresService.addNewCarFeatures(featuresCommand));
-        if(!featuresCommandOptional.isPresent()){
-            log.error("Your new brand not added failed process !!!");
-            return null;
-        }
-        else {
-            return featuresCommandOptional.get();
-        }
+    @PostMapping
+    public ResponseEntity<FeaturesDTO> addNewCarFeatures(@RequestBody FeaturesDTO featuresDTO){
+        return ResponseEntity.status(HttpStatus.CREATED).body(featuresService.addNewCarFeatures(featuresDTO));
     }
-    @QueryMapping(name = "findFeaturesById")
-    @RolesAllowed({Constants.USER,Constants.SELLER})
-    public FeaturesCommand findFeaturesById(@Argument Long id) {
-        FeaturesCommand featuresCommand = featuresService.findFeaturesById(id);
-        return featuresCommand;
+    @GetMapping("/{featureId}")
+    public ResponseEntity<FeaturesDTO> findFeaturesById(@PathVariable Long featureId) {
+        return ResponseEntity.ok(featuresService.findFeaturesById(featureId));
     }
-
 }

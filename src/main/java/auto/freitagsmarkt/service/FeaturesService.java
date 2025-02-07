@@ -1,8 +1,9 @@
-package auto.cc.info.service;
+package auto.freitagsmarkt.service;
 
-import auto.cc.info.dto.otherComponents.FeaturesCommand;
+
+import auto.freitagsmarkt.dto.car.otherComponents.FeaturesDTO;
 
 public interface FeaturesService {
-    FeaturesCommand addNewCarFeatures(FeaturesCommand featuresCommand);
-    FeaturesCommand findFeaturesById(Long id);
+    FeaturesDTO addNewCarFeatures(FeaturesDTO featuresDTO);
+    FeaturesDTO findFeaturesById(Long featuresId);
 }
