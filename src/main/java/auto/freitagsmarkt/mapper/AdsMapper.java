@@ -15,6 +15,5 @@ public interface AdsMapper {
     AdsDTO toAdDTO(Ads ad);
     List<AdsDTO> toAdsListDTO(List<Ads> ads);
     List<Ads> toAdsList(List<AdsDTO> adsDTOList);
-
     void updateAdsFromAdsDTO(AdsDTO adsDTO, @MappingTarget Ads ads);
 }

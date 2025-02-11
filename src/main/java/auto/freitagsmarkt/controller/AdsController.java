@@ -38,9 +38,11 @@ public class AdsController {
     public ResponseEntity<AdsDTO> updateAds(@PathVariable Long adId, @RequestBody AdsDTO adsDTO){
         return ResponseEntity.ok(adsService.updateAd(adId,adsDTO));
     }
-    @DeleteMapping("{adId}")
-    public void deleteAdsById(@PathVariable Long adId){
-            adsService.removeAdById(adId);
+    @DeleteMapping("/{adId}")
+    public ResponseEntity<String> deleteAdsById(@PathVariable Long adId){
+        return (adsService.removeAdById(adId))?
+         ResponseEntity.ok("Ad deleted successfully!!"):
+         ResponseEntity.status(HttpStatus.NOT_FOUND).body("Ad with the given ID does not exist");
     }
 
 }

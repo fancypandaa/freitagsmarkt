@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -15,8 +16,8 @@ import java.util.*;
 @Entity
 @Getter
 @Setter
+@EntityListeners(AuditingEntityListener.class)
 public class Ads extends BaseEntity  {
-
     @Min(1)
     @Max(365)
     private Integer daysOfSale;
@@ -28,5 +29,4 @@ public class Ads extends BaseEntity  {
     private Seller seller;
     @OneToOne(fetch = FetchType.EAGER)
     private Car car;
-
 }

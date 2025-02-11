@@ -1,7 +1,10 @@
 package auto.freitagsmarkt.dto;
 
 
+import auto.freitagsmarkt.domain.enums.AdsStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Min;
 import lombok.Builder;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,7 +21,8 @@ public record AdsDTO (
      @Max(365)
      Integer daysOfSale,
      @NotBlank(message = "companyName cannot be null")
-     String Status,
+     @Enumerated(EnumType.STRING)
+     AdsStatus status,
      @DateTimeFormat(pattern = "MM/dd/yyyy")
      Date published,
      @JsonInclude(JsonInclude.Include.NON_NULL)

@@ -9,5 +9,5 @@ public interface AdsService {
     AdsDTO createNewAd(AdsDTO adsDTO);
     AdsDTO findAdById(Long adId);
     AdsDTO updateAd(Long adId, AdsDTO adsDTO);
-    void removeAdById(Long adId);
+    Boolean removeAdById(Long adId);
 }
