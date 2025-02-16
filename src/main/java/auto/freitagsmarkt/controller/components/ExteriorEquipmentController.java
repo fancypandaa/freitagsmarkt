@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(ExteriorController.EXTERIOR_URI)
+@RequestMapping(ExteriorEquipmentController.EXTERIOREQ_URI)
 public class ExteriorEquipmentController
 {
     public static final String EXTERIOREQ_URI = "/api/exteriorEquip";

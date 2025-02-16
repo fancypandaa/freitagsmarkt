@@ -21,7 +21,7 @@ public class ExteriorController {
     public ResponseEntity<ExteriorDTO> addNewExterior(@RequestBody ExteriorDTO exteriorDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(exteriorService.createExterior(exteriorDTO));
     }
-    @GetMapping("/{exteriorId")
+    @GetMapping("/{exteriorId}")
     public ResponseEntity<ExteriorDTO> findExteriorById(@PathVariable Long exteriorId) {
         return ResponseEntity.ok(exteriorService.findByExteriorId(exteriorId));
     }
