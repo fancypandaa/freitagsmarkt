@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 @Builder
 public record AdsDTO (
-     Long id,
+     Long adId,
      @Min(1)
      @Max(365)
      Integer daysOfSale,
