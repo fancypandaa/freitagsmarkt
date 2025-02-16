@@ -4,9 +4,10 @@ import auto.freitagsmarkt.dto.components.InteriorEquipmentsDTO;
 import auto.freitagsmarkt.mapper.components.InteriorEquipmentsMapper;
 import auto.freitagsmarkt.repository.components.InteriorEquipmentsRepository;
 import auto.freitagsmarkt.service.components.InteriorEquipmentsService;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class InteriorEquipmentsImpl implements InteriorEquipmentsService {
     private InteriorEquipmentsMapper interiorEquipmentsMapper;
     private InteriorEquipmentsRepository interiorEquipmentsRepository;

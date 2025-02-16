@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(InteriorController.INTERIOR_URI)
+@RequestMapping(InteriorEquipmentsController.INTERIOREQ_URI)
 public class InteriorEquipmentsController {
     public static final String INTERIOREQ_URI="/api/interiorEQ";
     private InteriorEquipmentsService interiorEquipmentsService;
