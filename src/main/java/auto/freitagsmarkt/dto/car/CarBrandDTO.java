@@ -11,6 +11,6 @@ public record CarBrandDTO(
         Integer productionYears,
         Integer series,
         String logoUrl,
-        List<CarDTO> cars
+        List<CarDTO> carsDto
     ){
 }
