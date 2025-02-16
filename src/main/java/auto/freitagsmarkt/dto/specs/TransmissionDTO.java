@@ -6,5 +6,5 @@ import lombok.Builder;
 public record TransmissionDTO  (
      Long id,
      String driveTrain,
-     String transmission){
+     String transmissionName){
 }

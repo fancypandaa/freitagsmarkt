@@ -13,7 +13,7 @@ import java.util.Arrays;
 @Component
 public class LoggingAspect {
     private static final Logger log = LoggerFactory.getLogger(LoggingAspect.class);
-    @Pointcut("execution(* auto.freitagsmarkt.controller.*.*(..)) || execution(* auto.freitagsmarkt.services.*.*(..))")
+    @Pointcut("execution(* auto.freitagsmarkt.controller.*.*(..)) || execution(* auto.freitagsmarkt.service.*.*(..))")
     public void actionMethods(){}
 
     @Before("actionMethods()")

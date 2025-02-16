@@ -11,5 +11,5 @@ import lombok.Setter;
 public class Transmission extends BaseEntity {
 
     private String driveTrain;
-    private String transmission;
+    private String transmissionName;
 }
