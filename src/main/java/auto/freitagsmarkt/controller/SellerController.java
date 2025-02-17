@@ -40,8 +40,9 @@ public class SellerController {
     }
     @DeleteMapping("/{sellerId}")
     public ResponseEntity<String> deleteSellerById(@PathVariable Long sellerId){
-        sellerService.removeSellerById(sellerId);
-        return ResponseEntity.ok("Seller Removed successfully");
+        return (sellerService.removeSellerById(sellerId))?
+                ResponseEntity.ok("Ad deleted successfully!!"):
+                ResponseEntity.status(HttpStatus.NOT_FOUND).body("Seller with the given ID does not exist");
     }
 
 
