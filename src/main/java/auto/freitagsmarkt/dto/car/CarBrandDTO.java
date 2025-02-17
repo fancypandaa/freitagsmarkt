@@ -5,7 +5,7 @@ import java.util.*;
 
 @Builder
 public record CarBrandDTO(
-        Long id,
+        Long carBrandId,
         String name,
         String countryOfOrigin,
         Integer productionYears,

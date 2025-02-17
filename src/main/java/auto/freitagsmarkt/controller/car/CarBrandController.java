@@ -17,7 +17,7 @@ public class CarBrandController {
     public CarBrandController(CarBrandService carBrandService) {
         this.carBrandService = carBrandService;
     }
-    @GetMapping("/carBrand-list")
+    @GetMapping("/all-carBrand")
     public ResponseEntity<List<CarBrandDTO>> listAllBrands(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size){
@@ -31,7 +31,7 @@ public class CarBrandController {
     public ResponseEntity<CarBrandDTO> addNewBrand(@RequestBody CarBrandDTO carBrandDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(carBrandService.addNewCarBrand(carBrandDTO));
     }
-    @PatchMapping("/{carBrandId}")
+    @PutMapping("/{carBrandId}")
     public ResponseEntity<CarBrandDTO> updateCarBrand(@PathVariable Long carBrandId, @RequestBody CarBrandDTO carBrandDTO){
         return ResponseEntity.ok(carBrandService.updateCarBrand(carBrandId,carBrandDTO));
     }
