@@ -10,5 +10,5 @@ public interface CarService {
     List<CarDTO> listCars(int page, int size);
     CarDTO findCarById(Long carId);
     CarDTO updateCarById(Long carId,CarDTO carDTO);
-    void removeCarById(Long Id);
+    Boolean removeCarById(Long Id);
 }

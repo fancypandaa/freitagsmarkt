@@ -8,6 +8,7 @@ import auto.freitagsmarkt.domain.components.Exterior;
 import auto.freitagsmarkt.domain.components.Features;
 import auto.freitagsmarkt.domain.components.Interior;
 import auto.freitagsmarkt.domain.components.SafetyAndSecurity;
+import auto.freitagsmarkt.domain.enums.SaleStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +26,8 @@ public class Car extends BaseEntity {
     private Double price;
     private Double mileage;
     private String generation;
-    private String saleStatus;
+    @Enumerated(value = EnumType.STRING)
+    private SaleStatus saleStatus;
     @ManyToOne(fetch = FetchType.LAZY)
     private Seller seller;
     @ManyToOne(fetch = FetchType.LAZY)

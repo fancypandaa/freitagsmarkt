@@ -14,6 +14,17 @@ import java.util.*;
 public class CarController {
     public static final String CAR_URI = "/api/car";
     private CarService carService;
+    @GetMapping("/all-cars")
+    public ResponseEntity<List<CarDTO>> listAllCars(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ){
+        return ResponseEntity.ok(carService.listCars(page, size));
+    }
+    @GetMapping("/{carId}")
+    public ResponseEntity<CarDTO> findCarById(@PathVariable Long carId) {
+        return ResponseEntity.ok(carService.findCarById(carId));
+    }
 
     public CarController(CarService carService) {
         this.carService = carService;
@@ -28,19 +39,8 @@ public class CarController {
     }
     @DeleteMapping("/{carId}")
     public ResponseEntity<String> deleteCarById(@PathVariable Long carId){
-        carService.removeCarById(carId);
-        return ResponseEntity.ok("Car removed");
+        return (carService.removeCarById(carId)?
+                ResponseEntity.ok("Car deleted successfully!!"):
+                ResponseEntity.status(HttpStatus.NOT_FOUND).body("Car with the given ID does not exist"));
     }
-    @GetMapping("/list-cars")
-    public ResponseEntity<List<CarDTO>> listAllCars(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
-    ){
-        return ResponseEntity.ok(carService.listCars(page, size));
-    }
-    @GetMapping("/{carId}")
-    public ResponseEntity<CarDTO> findCarById(@PathVariable Long carId) {
-        return ResponseEntity.ok(carService.findCarById(carId));
-    }
-
 }

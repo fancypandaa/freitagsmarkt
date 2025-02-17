@@ -25,11 +25,11 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public CarDTO addNewCar(CarDTO carDTO) {
-        return Optional.of(carDTO)
+        return Optional.ofNullable(carDTO)
                 .map(carMapper::toCar)
                 .map(carRepository::save)
                 .map(carMapper::toCarDTO)
-                .orElseThrow(() ->new RuntimeException("Car cannot created!!"));
+                .orElseThrow(() ->new RuntimeException("Car not created"));
     }
 
     @Override
@@ -45,19 +45,23 @@ public class CarServiceImpl implements CarService {
     public CarDTO findCarById(Long carId) {
         return carRepository.findById(carId)
                 .map(carMapper::toCarDTO)
-                .orElseThrow(() -> new RuntimeException("Cars Not Found"));
+                .orElseThrow(() -> new RuntimeException("Car Not Found"));
     }
 
     @Override
     public CarDTO updateCarById(Long carId, CarDTO carDTO) {
         Car car = carRepository.findById(carId)
-                .orElseThrow(() -> new RuntimeException("car not found"));
+                .orElseThrow(() -> new RuntimeException("Car Not updated"));
         carMapper.updateCarFromCarDTO(carDTO,car);
-        return carMapper.toCarDTO(car);
+        return carMapper.toCarDTO(carRepository.save(car));
     }
 
     @Override
-    public void removeCarById(Long carId) {
-        carRepository.deleteById(carId);
+    public Boolean removeCarById(Long carId) {
+        if(carRepository.existsById(carId)){
+            carRepository.deleteById(carId);
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
     }
 }
