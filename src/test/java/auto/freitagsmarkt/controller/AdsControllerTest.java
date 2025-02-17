@@ -41,7 +41,7 @@ class AdsControllerTest {
         String url = String.format("%s/all-ads", MAIN_URI,1L);
 
         when(adsService.listAllAds(0,10)).thenReturn(adsDTOList);
-        mockMvc.perform(get(url,MAIN_URI)
+        mockMvc.perform(get(url)
                 .param("page","0")
                 .param("size","10"))
                 .andExpect(status().isOk())
