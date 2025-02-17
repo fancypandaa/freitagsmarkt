@@ -7,5 +7,5 @@ public interface CarBrandService {
     CarBrandDTO addNewCarBrand(CarBrandDTO carBrandDTO);
     CarBrandDTO findCarBrandById(Long carBrandId);
     CarBrandDTO updateCarBrand(Long carBrandId, CarBrandDTO carBrandDTO);
-    void removeCarBrandById(Long carBrandId);
+    Boolean removeCarBrandById(Long carBrandId);
 }

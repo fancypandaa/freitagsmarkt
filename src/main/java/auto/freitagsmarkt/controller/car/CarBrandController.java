@@ -36,8 +36,10 @@ public class CarBrandController {
         return ResponseEntity.ok(carBrandService.updateCarBrand(carBrandId,carBrandDTO));
     }
     @DeleteMapping("/{carBrandId}")
-    public void deleteBrandById(@PathVariable Long carBrandId){
-        carBrandService.removeCarBrandById(carBrandId);
+    public ResponseEntity<String> deleteCarBrandById(@PathVariable Long carBrandId){
+        return (carBrandService.removeCarBrandById(carBrandId))?
+                ResponseEntity.ok("CarBrand deleted successfully!!"):
+                ResponseEntity.status(HttpStatus.NOT_FOUND).body("CarBrand with the given ID does not exist");
     }
 
 }

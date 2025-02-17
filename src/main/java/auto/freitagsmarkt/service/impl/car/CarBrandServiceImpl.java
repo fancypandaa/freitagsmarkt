@@ -35,7 +35,7 @@ public class CarBrandServiceImpl implements CarBrandService {
 
     @Override
     public CarBrandDTO addNewCarBrand(CarBrandDTO carBrandDTO) {
-        return Optional.of(carBrandDTO)
+        return Optional.ofNullable(carBrandDTO)
                 .map(carBrandMapper::toCarBrand)
                 .map(carBrandRepository::save)
                 .map(carBrandMapper::toCarBrandDTO)
@@ -58,7 +58,11 @@ public class CarBrandServiceImpl implements CarBrandService {
     }
 
     @Override
-    public void removeCarBrandById(Long carBrandId) {
-        carBrandRepository.deleteById(carBrandId);
+    public Boolean removeCarBrandById(Long carBrandId) {
+        if (carBrandRepository.existsById(carBrandId)){
+            carBrandRepository.deleteById(carBrandId);
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
     }
 }
