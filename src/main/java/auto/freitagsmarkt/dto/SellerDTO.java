@@ -8,7 +8,7 @@ import java.util.*;
 
 @Builder
 public record SellerDTO(
-     Long id,
+     Long sellerId,
      SellerType type,
      String name,
      String phone,

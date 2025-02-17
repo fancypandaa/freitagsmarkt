@@ -25,7 +25,7 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public SellerDTO createNewSellerProfile(SellerDTO sellerDTO) {
-        return Optional.of(sellerDTO)
+        return Optional.ofNullable(sellerDTO)
                 .map(sellerMapper::toSeller)
                 .map(sellerRepository::save)
                 .map(sellerMapper::toSellerDTO)
@@ -57,7 +57,11 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
-    public void removeSellerById(Long sellerId) {
-        sellerRepository.deleteById(sellerId);
+    public Boolean removeSellerById(Long sellerId) {
+        if(sellerRepository.existsById(sellerId)){
+            sellerRepository.deleteById(sellerId);
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
     }
 }

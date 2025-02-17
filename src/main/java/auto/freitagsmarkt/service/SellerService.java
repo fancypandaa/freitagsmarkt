@@ -7,5 +7,5 @@ public interface SellerService {
     List<SellerDTO> listSellers(int page, int size);
     SellerDTO findSellerById(Long sellerId);
     SellerDTO updateSeller(Long sellerId, SellerDTO sellerDTO);
-    void removeSellerById(Long sellerId);
+    Boolean removeSellerById(Long sellerId);
 }
