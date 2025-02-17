@@ -20,17 +20,17 @@ public class ExteriorServiceImpl implements ExteriorService {
 
     @Override
     public ExteriorDTO createExterior(ExteriorDTO exteriorCommand) {
-        return Optional.of(exteriorCommand)
+        return Optional.ofNullable(exteriorCommand)
                 .map(exteriorMapper::toExterior)
                 .map(exteriorRepository::save)
                 .map(exteriorMapper::toExteriorDTO)
-                .orElseThrow(() -> new RuntimeException("Exterior cannot created!"));
+                .orElseThrow(() -> new RuntimeException("Exterior not created"));
     }
 
     @Override
     public ExteriorDTO findByExteriorId(Long id) {
         return exteriorRepository.findById(id)
                 .map(exteriorMapper::toExteriorDTO)
-                .orElseThrow(() -> new RuntimeException("current exterior not found"));
+                .orElseThrow(() -> new RuntimeException("Exterior not found"));
     }
 }

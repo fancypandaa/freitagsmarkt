@@ -8,10 +8,10 @@ import lombok.Builder;
 
 @Builder
 public record ExteriorDTO(
-      Long id ,
+      Long exId ,
     @Enumerated(value = EnumType.STRING)
       ChassisType chassis ,
-      String numberOfDoors ,
+      Integer numberOfDoors ,
       String frontDoors ,
       String backDoors ,
       String platform ,
