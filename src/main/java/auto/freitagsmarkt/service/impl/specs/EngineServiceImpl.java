@@ -1,7 +1,7 @@
 package auto.freitagsmarkt.service.impl.specs;
 
 
-import auto.freitagsmarkt.domain.carSpecs.Engine;
+import auto.freitagsmarkt.domain.specs.Engine;
 import auto.freitagsmarkt.dto.specs.EngineDTO;
 import auto.freitagsmarkt.mapper.specs.EngineMapper;
 import auto.freitagsmarkt.repository.specs.EngineRepository;
@@ -21,7 +21,7 @@ public class EngineServiceImpl implements EngineService {
 
     @Override
     public EngineDTO addNewEngineDetails(EngineDTO engineCommand) {
-        return Optional.of(engineCommand)
+        return Optional.ofNullable(engineCommand)
                 .map(engineMapper::toEngine)
                 .map(engineRepository::save)
                 .map(engineMapper::toEngineDTO)
@@ -45,7 +45,11 @@ public class EngineServiceImpl implements EngineService {
     }
 
     @Override
-    public void removeEngineById(Long engineId) {
-        engineRepository.deleteById(engineId);
+    public Boolean removeEngineById(Long engineId) {
+        if(engineRepository.existsById(engineId)){
+            engineRepository.deleteById(engineId);
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
     }
 }

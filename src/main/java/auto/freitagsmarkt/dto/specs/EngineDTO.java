@@ -4,14 +4,15 @@ import lombok.Builder;
 
 @Builder
 public record EngineDTO(
-      Long id ,
+      Long engineId,
       String engineSpecification,
       String engineConfiguration,
       String engineFluids,
       String serviceIntervals,
-      BrakesDTO brakes ,
-      SuspensionsDTO suspensions ,
+      String performance,
+      BrakesDTO brakes,
+      SuspensionsDTO suspensions,
       FuelDTO fuel,
       TransmissionDTO transmission
-        ){
+){
 }

@@ -1,6 +1,6 @@
 package auto.freitagsmarkt.mapper.specs;
 
-import auto.freitagsmarkt.domain.carSpecs.Engine;
+import auto.freitagsmarkt.domain.specs.Engine;
 import auto.freitagsmarkt.dto.specs.EngineDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

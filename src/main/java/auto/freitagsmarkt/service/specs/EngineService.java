@@ -6,5 +6,5 @@ public interface EngineService {
     EngineDTO addNewEngineDetails(EngineDTO engineCommand);
     List<EngineDTO> listEngines(int page,int size);
     EngineDTO findEngineById(Long engineId);
-    void removeEngineById(Long engineId);
+    Boolean removeEngineById(Long engineId);
 }

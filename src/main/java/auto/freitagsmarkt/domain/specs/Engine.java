@@ -1,6 +1,10 @@
-package auto.freitagsmarkt.domain.carSpecs;
+package auto.freitagsmarkt.domain.specs;
 
 import auto.freitagsmarkt.domain.BaseEntity;
+import auto.freitagsmarkt.domain.othersComponents.Brakes;
+import auto.freitagsmarkt.domain.othersComponents.Fuel;
+import auto.freitagsmarkt.domain.othersComponents.Suspensions;
+import auto.freitagsmarkt.domain.othersComponents.Transmission;
 import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -31,6 +35,9 @@ public class Engine extends BaseEntity {
     @Type(JsonBinaryType.class)
     @Column(name = "service_intervals",columnDefinition = "jsonb")
     private String serviceIntervals;
+    @Type(JsonBinaryType.class)
+    @Column(name = "performance",columnDefinition = "jsonb")
+    private String performance;
     @OneToOne(cascade=CascadeType.ALL)
     Brakes brakes;
     @OneToOne(cascade= CascadeType.ALL)

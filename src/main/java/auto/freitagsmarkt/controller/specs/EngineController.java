@@ -1,4 +1,4 @@
-package auto.freitagsmarkt.controller.carSpecs;
+package auto.freitagsmarkt.controller.specs;
 
 import auto.freitagsmarkt.dto.specs.EngineDTO;
 import auto.freitagsmarkt.service.specs.EngineService;
@@ -16,7 +16,7 @@ public class EngineController {
     public EngineController(EngineService engineService) {
         this.engineService = engineService;
     }
-    @GetMapping("/list-engines")
+    @GetMapping("/all-engines")
     public ResponseEntity<List<EngineDTO>> listAllEngine(
             @RequestParam(defaultValue = "0")  int page,
             @RequestParam(defaultValue = "10") int size){
@@ -26,10 +26,14 @@ public class EngineController {
     public ResponseEntity<EngineDTO> findEngineById(@PathVariable Long engineId){
         return ResponseEntity.ok(engineService.findEngineById(engineId));
     }
+    @PostMapping
     public ResponseEntity<EngineDTO> addNewEngine(@RequestBody EngineDTO engineDTO){
         return ResponseEntity.status(HttpStatus.CREATED).body(engineService.addNewEngineDetails(engineDTO));
     }
-    public void deleteEngineById(@PathVariable Long engineId){
-        engineService.removeEngineById(engineId);
+    @DeleteMapping("/{engineId}")
+    public ResponseEntity<String> deleteEngineById(@PathVariable Long engineId){
+        return (engineService.removeEngineById(engineId))?
+                ResponseEntity.ok("Engine deleted successfully!!"):
+                ResponseEntity.status(HttpStatus.NOT_FOUND).body("Engine with the given ID does not exist");
     }
 }
