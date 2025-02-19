@@ -1,10 +1,10 @@
-package auto.freitagsmarkt.service.impl.components;
+package auto.freitagsmarkt.service.impl.specs;
 
 
-import auto.freitagsmarkt.domain.components.Exterior;
-import auto.freitagsmarkt.dto.components.ExteriorDTO;
-import auto.freitagsmarkt.mapper.components.ExteriorMapper;
-import auto.freitagsmarkt.repository.components.ExteriorRepository;
+import auto.freitagsmarkt.domain.specs.Exterior;
+import auto.freitagsmarkt.dto.specs.ExteriorDTO;
+import auto.freitagsmarkt.mapper.specs.ExteriorMapper;
+import auto.freitagsmarkt.repository.specs.ExteriorRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +20,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ExteriorServiceImplTest {
-
     @Mock
     private ExteriorRepository exteriorRepository;
     @Mock
@@ -66,4 +65,5 @@ class ExteriorServiceImplTest {
         Exception exception = assertThrows(RuntimeException.class,()-> exteriorService.findByExteriorId(anyLong()));
         assertEquals("Exterior not found",exception.getMessage());
     }
+
 }

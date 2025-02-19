@@ -1,7 +1,7 @@
-package auto.freitagsmarkt.controller.components;
+package auto.freitagsmarkt.controller.specs;
 
-import auto.freitagsmarkt.dto.components.ExteriorDTO;
-import auto.freitagsmarkt.service.components.ExteriorService;
+import auto.freitagsmarkt.dto.specs.ExteriorDTO;
+import auto.freitagsmarkt.service.specs.ExteriorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 public class ExteriorController {
     public static final String EXTERIOR_URI = "/api/exterior";
     private ExteriorService exteriorService;
-
     public ExteriorController(ExteriorService exteriorService) {
         this.exteriorService = exteriorService;
     }

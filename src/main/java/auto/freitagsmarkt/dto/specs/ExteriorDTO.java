@@ -1,7 +1,8 @@
-package auto.freitagsmarkt.dto.components;
+package auto.freitagsmarkt.dto.specs;
 
 
 import auto.freitagsmarkt.domain.enums.ChassisType;
+import auto.freitagsmarkt.dto.components.ExteriorEquipmentDTO;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.Builder;
@@ -9,7 +10,7 @@ import lombok.Builder;
 @Builder
 public record ExteriorDTO(
       Long exId ,
-    @Enumerated(value = EnumType.STRING)
+      @Enumerated(value = EnumType.STRING)
       ChassisType chassis ,
       Integer numberOfDoors ,
       String frontDoors ,

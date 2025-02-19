@@ -1,9 +1,9 @@
-package auto.freitagsmarkt.service.impl.components;
+package auto.freitagsmarkt.service.impl.specs;
 
-import auto.freitagsmarkt.dto.components.ExteriorDTO;
-import auto.freitagsmarkt.mapper.components.ExteriorMapper;
-import auto.freitagsmarkt.repository.components.ExteriorRepository;
-import auto.freitagsmarkt.service.components.ExteriorService;
+import auto.freitagsmarkt.dto.specs.ExteriorDTO;
+import auto.freitagsmarkt.mapper.specs.ExteriorMapper;
+import auto.freitagsmarkt.repository.specs.ExteriorRepository;
+import auto.freitagsmarkt.service.specs.ExteriorService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
