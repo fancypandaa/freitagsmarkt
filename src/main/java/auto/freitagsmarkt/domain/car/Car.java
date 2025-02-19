@@ -2,12 +2,12 @@ package auto.freitagsmarkt.domain.car;
 
 import auto.freitagsmarkt.domain.BaseEntity;
 import auto.freitagsmarkt.domain.Seller;
-import auto.freitagsmarkt.domain.carSpecs.DimensionsWeight;
-import auto.freitagsmarkt.domain.carSpecs.Engine;
-import auto.freitagsmarkt.domain.components.Exterior;
-import auto.freitagsmarkt.domain.components.Features;
-import auto.freitagsmarkt.domain.components.Interior;
-import auto.freitagsmarkt.domain.components.SafetyAndSecurity;
+import auto.freitagsmarkt.domain.specs.DimensionsWeight;
+import auto.freitagsmarkt.domain.specs.Engine;
+import auto.freitagsmarkt.domain.specs.Exterior;
+import auto.freitagsmarkt.domain.specs.Features;
+import auto.freitagsmarkt.domain.specs.Interior;
+import auto.freitagsmarkt.domain.specs.SafetyAndSecurity;
 import auto.freitagsmarkt.domain.enums.SaleStatus;
 import jakarta.persistence.*;
 import lombok.Getter;

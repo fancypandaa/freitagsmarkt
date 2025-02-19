@@ -2,9 +2,9 @@ package auto.freitagsmarkt.dto.car;
 
 
 import auto.freitagsmarkt.domain.enums.SaleStatus;
-import auto.freitagsmarkt.dto.components.FeaturesDTO;
-import auto.freitagsmarkt.dto.components.InteriorDTO;
-import auto.freitagsmarkt.dto.components.SafetyAndSecurityDTO;
+import auto.freitagsmarkt.dto.specs.FeaturesDTO;
+import auto.freitagsmarkt.dto.specs.InteriorDTO;
+import auto.freitagsmarkt.dto.specs.SafetyAndSecurityDTO;
 import auto.freitagsmarkt.dto.specs.DimensionsWeightDTO;
 import auto.freitagsmarkt.dto.specs.EngineDTO;
 import com.fasterxml.jackson.annotation.JsonInclude;
