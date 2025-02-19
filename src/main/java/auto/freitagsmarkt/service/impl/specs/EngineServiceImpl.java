@@ -19,13 +19,18 @@ public class EngineServiceImpl implements EngineService {
     private EngineRepository engineRepository;
     private EngineMapper engineMapper;
 
+    public EngineServiceImpl(EngineRepository engineRepository, EngineMapper engineMapper) {
+        this.engineRepository = engineRepository;
+        this.engineMapper = engineMapper;
+    }
+
     @Override
     public EngineDTO addNewEngineDetails(EngineDTO engineCommand) {
         return Optional.ofNullable(engineCommand)
                 .map(engineMapper::toEngine)
                 .map(engineRepository::save)
                 .map(engineMapper::toEngineDTO)
-                .orElseThrow(() -> new RuntimeException("Created New Engine failed!!"));
+                .orElseThrow(() -> new RuntimeException("Engine cannot created"));
     }
 
     @Override
@@ -41,7 +46,7 @@ public class EngineServiceImpl implements EngineService {
     public EngineDTO findEngineById(Long engineId) {
         return engineRepository.findById(engineId)
                 .map(engineMapper::toEngineDTO)
-                .orElseThrow(() -> new RuntimeException("Cannot find Engine "));
+                .orElseThrow(() -> new RuntimeException("Engine Not Found"));
     }
 
     @Override
