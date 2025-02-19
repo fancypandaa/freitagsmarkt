@@ -1,6 +1,6 @@
 package auto.freitagsmarkt.repository.specs;
 
-import auto.freitagsmarkt.domain.carSpecs.DimensionsWeight;
+import auto.freitagsmarkt.domain.specs.DimensionsWeight;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -15,9 +15,15 @@ public class DimensionsWeightServiceImpl implements DimensionsWeightService {
     private DimensionsWeightMapper dimensionsWeightMapper;
     private DimensionsWeightRepository dimensionsWeightRepository;
 
+    public DimensionsWeightServiceImpl(DimensionsWeightMapper dimensionsWeightMapper,
+                                       DimensionsWeightRepository dimensionsWeightRepository) {
+        this.dimensionsWeightMapper = dimensionsWeightMapper;
+        this.dimensionsWeightRepository = dimensionsWeightRepository;
+    }
+
     @Override
     public DimensionsWeightDTO addNewDimAndWeight(DimensionsWeightDTO dimensionsWeightDTO) {
-        return Optional.of(dimensionsWeightDTO)
+        return Optional.ofNullable(dimensionsWeightDTO)
                 .map(dimensionsWeightMapper::toDimensionWeight)
                 .map(dimensionsWeightRepository::save)
                 .map(dimensionsWeightMapper::toDimensionsWeightDTO)
@@ -28,6 +34,6 @@ public class DimensionsWeightServiceImpl implements DimensionsWeightService {
     public DimensionsWeightDTO findDimensionsAndWeighById(Long id) {
         return dimensionsWeightRepository.findById(id)
                 .map(dimensionsWeightMapper::toDimensionsWeightDTO)
-                .orElseThrow(()-> new RuntimeException("Items with current Id not found"));
+                .orElseThrow(()-> new RuntimeException("DimensionsAndWeigh for current Id not found"));
     }
 }

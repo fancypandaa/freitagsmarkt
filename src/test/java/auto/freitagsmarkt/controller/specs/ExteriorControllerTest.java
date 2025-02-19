@@ -1,10 +1,8 @@
-package auto.freitagsmarkt.controller.components;
+package auto.freitagsmarkt.controller.specs;
 
-import auto.freitagsmarkt.domain.enums.AdsStatus;
 import auto.freitagsmarkt.domain.enums.ChassisType;
-import auto.freitagsmarkt.dto.AdsDTO;
-import auto.freitagsmarkt.dto.components.ExteriorDTO;
-import auto.freitagsmarkt.service.components.ExteriorService;
+import auto.freitagsmarkt.dto.specs.ExteriorDTO;
+import auto.freitagsmarkt.service.specs.ExteriorService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,10 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.Date;
-
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
