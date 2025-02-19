@@ -1,8 +1,7 @@
-package auto.freitagsmarkt.controller.carSpecs;
+package auto.freitagsmarkt.controller.specs;
 
 import auto.freitagsmarkt.dto.specs.DimensionsWeightDTO;
 import auto.freitagsmarkt.service.specs.DimensionsWeightService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,12 +9,13 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(DimensionsWeightController.DimensionsWeight_URI)
 public class DimensionsWeightController {
-    public static final String DimensionsWeight_URI="/api/weight";
+    public static final String DimensionsWeight_URI="/api/dimensionsWeight";
     private DimensionsWeightService dimensionsWeightService;
-    @Autowired
-    public void setDimAndWeightService(DimensionsWeightService dimensionsWeightService) {
+
+    public DimensionsWeightController(DimensionsWeightService dimensionsWeightService) {
         this.dimensionsWeightService = dimensionsWeightService;
-        }
+    }
+
     @PostMapping
     public ResponseEntity<DimensionsWeightDTO> addNewCarDimensionAndWeight(
             @RequestBody DimensionsWeightDTO dimensionsWeightDTO){
@@ -23,8 +23,8 @@ public class DimensionsWeightController {
                 .body(dimensionsWeightService.addNewDimAndWeight(dimensionsWeightDTO));
     }
 
-    @GetMapping("/{id}")
-     public ResponseEntity<DimensionsWeightDTO> findDimAndWeightById(@PathVariable Long id) {
-        return ResponseEntity.ok(dimensionsWeightService.findDimensionsAndWeighById(id));
+    @GetMapping("/{dimId}")
+     public ResponseEntity<DimensionsWeightDTO> findDimAndWeightById(@PathVariable Long dimId) {
+        return ResponseEntity.ok(dimensionsWeightService.findDimensionsAndWeighById(dimId));
     }
 }
