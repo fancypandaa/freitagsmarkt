@@ -1,6 +1,7 @@
-package auto.freitagsmarkt.domain.components;
+package auto.freitagsmarkt.domain.specs;
 
 import auto.freitagsmarkt.domain.BaseEntity;
+import auto.freitagsmarkt.domain.othersComponents.InteriorEquipments;
 import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,7 +16,6 @@ import org.hibernate.annotations.Type;
 @Getter
 @Setter
 public class Interior extends BaseEntity {
-
     @Type(JsonBinaryType.class)
     @Column(columnDefinition = "jsonb")
     private String instrumentCluster;

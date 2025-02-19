@@ -1,10 +1,11 @@
-package auto.freitagsmarkt.dto.components;
+package auto.freitagsmarkt.dto.specs;
 
+import auto.freitagsmarkt.dto.components.InteriorEquipmentsDTO;
 import lombok.Builder;
 
 @Builder
 public record InteriorDTO(
-     Long id,
+     Long interiorId,
      String instrumentCluster,
      String connectivity,
      String climateControl,

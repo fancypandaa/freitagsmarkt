@@ -1,13 +1,10 @@
-package auto.freitagsmarkt.controller.components;
+package auto.freitagsmarkt.controller.specs;
 
-import auto.freitagsmarkt.dto.components.InteriorDTO;
-import auto.freitagsmarkt.domain.user.Constants;
-import auto.freitagsmarkt.service.components.InteriorService;
+import auto.freitagsmarkt.dto.specs.InteriorDTO;
+import auto.freitagsmarkt.service.specs.InteriorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping(InteriorController.INTERIOR_URI)

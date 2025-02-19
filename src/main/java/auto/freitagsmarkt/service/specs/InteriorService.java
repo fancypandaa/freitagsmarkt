@@ -1,6 +1,6 @@
-package auto.freitagsmarkt.service.components;
+package auto.freitagsmarkt.service.specs;
 
-import auto.freitagsmarkt.dto.components.InteriorDTO;
+import auto.freitagsmarkt.dto.specs.InteriorDTO;
 
 public interface InteriorService {
     InteriorDTO createInterior(InteriorDTO interiorDTO);
