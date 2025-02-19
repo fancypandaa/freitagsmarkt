@@ -1,5 +1,9 @@
 package auto.freitagsmarkt.dto.specs;
 
+import auto.freitagsmarkt.dto.components.BrakesDTO;
+import auto.freitagsmarkt.dto.components.FuelDTO;
+import auto.freitagsmarkt.dto.components.SuspensionsDTO;
+import auto.freitagsmarkt.dto.components.TransmissionDTO;
 import lombok.Builder;
 
 @Builder
