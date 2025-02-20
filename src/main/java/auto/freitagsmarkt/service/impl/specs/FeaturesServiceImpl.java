@@ -1,10 +1,10 @@
-package auto.freitagsmarkt.service.impl.components;
+package auto.freitagsmarkt.service.impl.specs;
 
 
-import auto.freitagsmarkt.dto.components.FeaturesDTO;
-import auto.freitagsmarkt.mapper.components.FeaturesMapper;
-import auto.freitagsmarkt.repository.components.FeaturesRepository;
-import auto.freitagsmarkt.service.components.FeaturesService;
+import auto.freitagsmarkt.dto.specs.FeaturesDTO;
+import auto.freitagsmarkt.mapper.specs.FeaturesMapper;
+import auto.freitagsmarkt.repository.specs.FeaturesRepository;
+import auto.freitagsmarkt.service.specs.FeaturesService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -22,7 +22,7 @@ public class FeaturesServiceImpl implements FeaturesService {
 
     @Override
     public FeaturesDTO addNewCarFeatures(FeaturesDTO featuresDTO) {
-        return Optional.of(featuresDTO)
+        return Optional.ofNullable(featuresDTO)
                 .map(featuresMapper::toFeatures)
                 .map(featuresRepository::save)
                 .map(featuresMapper::toFeaturesDTO)

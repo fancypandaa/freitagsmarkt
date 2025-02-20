@@ -1,10 +1,10 @@
-package auto.freitagsmarkt.dto.components;
+package auto.freitagsmarkt.dto.specs;
 
 import lombok.Builder;
 
 @Builder
 public record FeaturesDTO(
-      Long id,
+      Long featuresId,
       String comfort,
       String accessories,
       String others
