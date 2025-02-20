@@ -1,4 +1,4 @@
-package auto.freitagsmarkt.domain.components;
+package auto.freitagsmarkt.domain.othersComponents;
 
 import auto.freitagsmarkt.domain.BaseEntity;
 import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;

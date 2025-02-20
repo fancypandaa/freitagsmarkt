@@ -1,15 +1,15 @@
-package auto.freitagsmarkt.controller.components;
+package auto.freitagsmarkt.controller.otherComponents;
 
 import auto.freitagsmarkt.dto.components.InteriorEquipmentsDTO;
-import auto.freitagsmarkt.service.components.InteriorEquipmentsService;
+import auto.freitagsmarkt.service.otherComponents.InteriorEquipmentsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(InteriorEquipmentsController.INTERIOREQ_URI)
+@RequestMapping(InteriorEquipmentsController.INTERIOR_EQUIP_URI)
 public class InteriorEquipmentsController {
-    public static final String INTERIOREQ_URI="/api/interiorEQ";
+    public static final String INTERIOR_EQUIP_URI="/api/interiorEquipments";
     private InteriorEquipmentsService interiorEquipmentsService;
 
     public InteriorEquipmentsController(InteriorEquipmentsService interiorEquipmentsService) {
