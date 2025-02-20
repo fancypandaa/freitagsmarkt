@@ -1,8 +1,7 @@
-package auto.freitagsmarkt.controller.components;
+package auto.freitagsmarkt.controller.specs;
 
-import auto.freitagsmarkt.domain.user.Constants;
-import auto.freitagsmarkt.dto.components.SafetyAndSecurityDTO;
-import auto.freitagsmarkt.service.components.SafetyAndSecurityService;
+import auto.freitagsmarkt.dto.specs.SafetyAndSecurityDTO;
+import auto.freitagsmarkt.service.specs.SafetyAndSecurityService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(SafetyAndSecurityController.SAFETY_URI)
 public class SafetyAndSecurityController {
-    public static final String SAFETY_URI ="/api/safety";
+    public static final String SAFETY_URI ="/api/safetyAndSecurity";
     private SafetyAndSecurityService safetyAndSecurityService;
     public SafetyAndSecurityController(SafetyAndSecurityService safetyAndSecurityService) {
         this.safetyAndSecurityService = safetyAndSecurityService;

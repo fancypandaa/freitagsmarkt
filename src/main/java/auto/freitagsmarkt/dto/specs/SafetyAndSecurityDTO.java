@@ -1,10 +1,10 @@
-package auto.freitagsmarkt.dto.components;
+package auto.freitagsmarkt.dto.specs;
 
 import lombok.Builder;
 
 @Builder
 public record SafetyAndSecurityDTO (
-     Long id,
+     Long safetyId,
      String seatBelt  ,
     String assistSystems  ,
      String brakeSystem  ,

@@ -1,4 +1,4 @@
-package auto.freitagsmarkt.domain.components;
+package auto.freitagsmarkt.domain.specs;
 
 import auto.freitagsmarkt.domain.BaseEntity;
 import io.hypersistence.utils.hibernate.type.json.JsonBinaryType;
@@ -23,7 +23,7 @@ public class SafetyAndSecurity extends BaseEntity {
     private String brakeSystem ;
     @Type(JsonBinaryType.class)
     @Column(columnDefinition = "jsonb")
-    private String sensors ;
+    private String sensors;
     @Type(JsonBinaryType.class)
     @Column(columnDefinition = "jsonb")
     private String safetyTesting ;

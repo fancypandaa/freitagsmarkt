@@ -1,10 +1,10 @@
-package auto.freitagsmarkt.service.impl.components;
+package auto.freitagsmarkt.service.impl.specs;
 
 
-import auto.freitagsmarkt.dto.components.SafetyAndSecurityDTO;
-import auto.freitagsmarkt.mapper.components.SafetyAndSecurityMapper;
-import auto.freitagsmarkt.repository.components.SafetyAndSecurityRepository;
-import auto.freitagsmarkt.service.components.SafetyAndSecurityService;
+import auto.freitagsmarkt.dto.specs.SafetyAndSecurityDTO;
+import auto.freitagsmarkt.mapper.specs.SafetyAndSecurityMapper;
+import auto.freitagsmarkt.repository.specs.SafetyAndSecurityRepository;
+import auto.freitagsmarkt.service.specs.SafetyAndSecurityService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -23,7 +23,7 @@ public class SafetyAndSecurityServiceImpl implements SafetyAndSecurityService {
 
     @Override
     public SafetyAndSecurityDTO addNewSafetyAndSecurity(SafetyAndSecurityDTO safetyAndSecurityDTO) {
-        return Optional.of(safetyAndSecurityDTO)
+        return Optional.ofNullable(safetyAndSecurityDTO)
                 .map(safetyAndSecurityMapper::toSafetyAndSecurity)
                 .map(safetyAndSecurityRepository::save)
                 .map(safetyAndSecurityMapper::toSafetyAndSecurityDTO)

@@ -1,7 +1,7 @@
-package auto.freitagsmarkt.service.components;
+package auto.freitagsmarkt.service.specs;
 
 
-import auto.freitagsmarkt.dto.components.SafetyAndSecurityDTO;
+import auto.freitagsmarkt.dto.specs.SafetyAndSecurityDTO;
 
 public interface SafetyAndSecurityService {
     SafetyAndSecurityDTO addNewSafetyAndSecurity(SafetyAndSecurityDTO safetyAndSecurityDTO);
