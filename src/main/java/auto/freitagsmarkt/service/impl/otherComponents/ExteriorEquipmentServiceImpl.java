@@ -1,9 +1,9 @@
-package auto.freitagsmarkt.service.impl.components;
+package auto.freitagsmarkt.service.impl.otherComponents;
 
 import auto.freitagsmarkt.dto.components.ExteriorEquipmentDTO;
 import auto.freitagsmarkt.mapper.components.ExteriorEquipmentMapper;
 import auto.freitagsmarkt.repository.components.ExteriorEquipmentRepository;
-import auto.freitagsmarkt.service.components.ExteriorEquipmentService;
+import auto.freitagsmarkt.service.otherComponents.ExteriorEquipmentService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -29,10 +29,10 @@ public class ExteriorEquipmentServiceImpl implements ExteriorEquipmentService {
 
     @Override
     public ExteriorEquipmentDTO createExteriorEquipment(ExteriorEquipmentDTO exteriorEquipmentDTO) {
-        return Optional.of(exteriorEquipmentDTO)
+        return Optional.ofNullable(exteriorEquipmentDTO)
                 .map(exteriorEquipmentMapper::toExteriorEquipment)
                 .map(exteriorEquipmentRepository::save)
                 .map(exteriorEquipmentMapper::toExteriorEquipmentDTO)
-                .orElseThrow(() -> new RuntimeException("exterior equipment cannot created!"));
+                .orElseThrow(() -> new RuntimeException("Exterior equipment cannot created!"));
     }
 }

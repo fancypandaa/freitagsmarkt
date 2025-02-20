@@ -4,7 +4,7 @@ import lombok.Builder;
 
 @Builder
 public record ExteriorEquipmentDTO(
-      Long id,
+      Long exEquipmentId,
        String sideMirrors  ,
        String windscreenWipers  ,
        String windows  ,

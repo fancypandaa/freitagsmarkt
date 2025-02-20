@@ -1,16 +1,16 @@
-package auto.freitagsmarkt.controller.components;
+package auto.freitagsmarkt.controller.otherComponents;
 
 import auto.freitagsmarkt.dto.components.ExteriorEquipmentDTO;
-import auto.freitagsmarkt.service.components.ExteriorEquipmentService;
+import auto.freitagsmarkt.service.otherComponents.ExteriorEquipmentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(ExteriorEquipmentController.EXTERIOREQ_URI)
+@RequestMapping(ExteriorEquipmentController.EXTERIOR_EQUIPMENT_URI)
 public class ExteriorEquipmentController
 {
-    public static final String EXTERIOREQ_URI = "/api/exteriorEquip";
+    public static final String EXTERIOR_EQUIPMENT_URI = "/api/exteriorEquipment";
     private ExteriorEquipmentService exteriorEquipmentService;
 
     public ExteriorEquipmentController(ExteriorEquipmentService exteriorEquipmentService) {

@@ -1,4 +1,4 @@
-package auto.freitagsmarkt.service.components;
+package auto.freitagsmarkt.service.otherComponents;
 
 import auto.freitagsmarkt.dto.components.ExteriorEquipmentDTO;
 
