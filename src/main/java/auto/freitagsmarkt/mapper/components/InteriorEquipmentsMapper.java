@@ -1,6 +1,6 @@
 package auto.freitagsmarkt.mapper.components;
 
-import auto.freitagsmarkt.domain.components.InteriorEquipments;
+import auto.freitagsmarkt.domain.othersComponents.InteriorEquipments;
 import auto.freitagsmarkt.dto.components.InteriorEquipmentsDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

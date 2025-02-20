@@ -1,9 +1,9 @@
-package auto.freitagsmarkt.service.impl.components;
+package auto.freitagsmarkt.service.impl.otherComponents;
 
 import auto.freitagsmarkt.dto.components.InteriorEquipmentsDTO;
 import auto.freitagsmarkt.mapper.components.InteriorEquipmentsMapper;
 import auto.freitagsmarkt.repository.components.InteriorEquipmentsRepository;
-import auto.freitagsmarkt.service.components.InteriorEquipmentsService;
+import auto.freitagsmarkt.service.otherComponents.InteriorEquipmentsService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -21,7 +21,7 @@ public class InteriorEquipmentsImpl implements InteriorEquipmentsService {
 
     @Override
     public InteriorEquipmentsDTO createNewInteriorEquipment(InteriorEquipmentsDTO interiorEquipmentsDTO) {
-        return Optional.of(interiorEquipmentsDTO)
+        return Optional.ofNullable(interiorEquipmentsDTO)
                 .map(interiorEquipmentsMapper::toInteriorEquipments)
                 .map(interiorEquipmentsRepository::save)
                 .map(interiorEquipmentsMapper::toInteriorEquipmentsDTO)
