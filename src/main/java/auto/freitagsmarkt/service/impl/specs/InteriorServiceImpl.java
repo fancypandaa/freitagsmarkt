@@ -20,7 +20,7 @@ public class InteriorServiceImpl implements InteriorService {
 
     @Override
     public InteriorDTO createInterior(InteriorDTO interiorDTO) {
-        return Optional.of(interiorDTO)
+        return Optional.ofNullable(interiorDTO)
                 .map(interiorMapper::toInterior)
                 .map(interiorRepository::save)
                 .map(interiorMapper::toInteriorDTO)
