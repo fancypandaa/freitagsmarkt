@@ -1,14 +1,16 @@
-package auto.cc.info.domain.user;
+package auto.freitagsmarkt.domain.user;
 
-import auto.cc.info.domain.BaseEntity;
+import auto.freitagsmarkt.domain.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@Table(name = "users")
 public class User extends BaseEntity {
 
     @Column(unique=true,nullable = false)
