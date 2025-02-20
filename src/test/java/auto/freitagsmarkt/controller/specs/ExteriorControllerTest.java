@@ -45,12 +45,10 @@ class ExteriorControllerTest {
                 .andExpect(jsonPath("$.exId").value(is(1)))
                 .andExpect(jsonPath("$.chassisOptions").value(is("SUV")))
                 .andExpect(jsonPath("$.backDoors").value(is("Conventional")));
-
     }
 
     @Test
     void findExteriorById() throws Exception {
-
         when(exteriorService.findByExteriorId(anyLong())).thenReturn(
                 ExteriorDTO.builder().exId(1L).chassis(ChassisType.MPV).numberOfDoors(4).frontDoors("Conventional")
                         .backDoors("Conventional").platform("CMA").chassisOptions("SUV").build()
